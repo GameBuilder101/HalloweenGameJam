@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b2etrwsocv43v"]
+
+[node name="Label" type="Label"]
+offset_left = 234.0
+offset_top = 117.0
+offset_right = 274.0
+offset_bottom = 143.0
+text = "Hi"
