@@ -1,9 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://dw1bjd2q8gdoc"]
+[gd_scene load_steps=11 format=3 uid="uid://dw1bjd2q8gdoc"]
 
+[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="1_kwyd3"]
 [ext_resource type="PackedScene" uid="uid://cs3yhvd8ve87m" path="res://task_framework/task_list_item.tscn" id="1_wvnim"]
 [ext_resource type="PackedScene" uid="uid://bsi77spgnfmrw" path="res://tasks/test/test_task.tscn" id="3_p5co2"]
 [ext_resource type="Script" path="res://task_framework/TaskManager.cs" id="4_awjuh"]
 [ext_resource type="Script" path="res://boss_system/BossManager.cs" id="4_x3guh"]
+
+[sub_resource type="Gradient" id="Gradient_626ia"]
+colors = PackedColorArray(0.666569, 0.666569, 0.666569, 1, 0.703808, 0.703808, 0.703808, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1n35h"]
+gradient = SubResource("Gradient_626ia")
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1yqu"]
 font_size = 39
@@ -22,6 +29,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BossSpace" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 619.0
+grow_vertical = 2
+
+[node name="Boss" type="Sprite2D" parent="BossSpace"]
+position = Vector2(311, 713)
+scale = Vector2(2.85156, 2.98438)
+texture = ExtResource("1_kwyd3")
+
+[node name="Wall" type="Sprite2D" parent="BossSpace"]
+position = Vector2(318.5, 796.125)
+scale = Vector2(2.58203, 588.25)
+texture = SubResource("GradientTexture1D_1n35h")
 
 [node name="TaskSpace" type="Control" parent="."]
 layout_mode = 1
@@ -162,12 +186,16 @@ _taskList = NodePath("../TaskSpace/TaskList/ScrollContainer/VBoxContainer")
 _taskListItem = NodePath("../TaskSpace/TaskList/ScrollContainer/VBoxContainer/TaskListItem")
 _timerGradient = SubResource("Gradient_wlntb")
 
-[node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel")]
+[node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite")]
 script = ExtResource("4_x3guh")
-_initialMinBossArrivalTime = 60.0
-_initialMaxBossArrivalTime = 80.0
-_laterMinBossArrivalTime = 20.0
-_laterMaxBossArrivalTime = 25.0
+_initialMinBossArrivalTime = 30.0
+_initialMaxBossArrivalTime = 45.0
+_laterMinBossArrivalTime = 15.0
+_laterMaxBossArrivalTime = 20.0
 minAdditionalRequiredScore = 30
 maxAdditionalRequiredScore = 80
 _requiredScoreLabel = NodePath("../ScorePanel/RequiredScore")
+_bossSprite = NodePath("../BossSpace/Boss")
+_bossPeekOffset = -80.0
+_bossPeekAnimationDuration = 1.0
+_bossPeekDuration = 3.0

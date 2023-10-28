@@ -49,6 +49,8 @@ public partial class Task : Control
 		CurrentTime -= delta;
 		if (IsOverdue)
             Overdue();
+		if (!Visible)
+			return;
 
 		Vector2 mousePos = GetViewport().GetMousePosition();
 		Vector2 maxPos = ((Control)GetParent()).Size - Size;

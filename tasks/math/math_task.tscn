@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://c01xrouuul2kl"]
-
-[ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_oqtas"]
-[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="2_6jm0i"]
-
-[node name="Task" instance=ExtResource("1_oqtas")]
-TaskName = "Math"
-TaskIcon = ExtResource("2_6jm0i")
