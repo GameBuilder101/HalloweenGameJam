@@ -57,6 +57,8 @@ public partial class TaskManager : Node
     private List<Node> _activeTaskListItems;
     [Export]
     private Node _taskListItem;
+    [Export]
+    private Gradient _timerGradient;
 
     Random random = new Random();
 
@@ -65,6 +67,8 @@ public partial class TaskManager : Node
         Instance = this;
         _activeTasks = new List<Task>();
         _activeTaskListItems = new List<Node>();
+
+        TaskArrivalTimer = 3.0; // Give an initial first task delay
     }
 
     public override void _Process(double delta)
@@ -77,9 +81,11 @@ public partial class TaskManager : Node
         int i = 0;
         foreach (Node activeTaskListItem in _activeTaskListItems)
         {
-            activeTaskListItem.GetNode<ProgressBar>("Button/Timer").Value = _activeTasks[i].CurrentTime / _activeTasks[i].TimeLimit * 100.0;
+            double progress = _activeTasks[i].CurrentTime / _activeTasks[i].TimeLimit;
+            activeTaskListItem.GetNode<ProgressBar>("Button/Timer").Value = progress * 100.0;
             activeTaskListItem.GetNode<Label>("Button/TimerLabel").Text =
                 Math.Floor(_activeTasks[i].CurrentTime / 60.0) + ":" + (_activeTasks[i].CurrentTime % 60.0).ToString("00");
+            ((StyleBoxFlat)((Control)activeTaskListItem).GetThemeStylebox("fill", "")).BgColor = _timerGradient.Sample((float)progress);
             i++;
         }
 

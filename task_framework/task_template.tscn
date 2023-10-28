@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2edm0805f3g"]
+[gd_scene load_steps=10 format=3 uid="uid://b2edm0805f3g"]
 
 [ext_resource type="Script" path="res://task_framework/Task.cs" id="1_5pwll"]
 [ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="2_6faa1"]
@@ -43,11 +43,14 @@ Score = 50
 FailPenalty = 50
 OverduePenalty = 25
 
+[sub_resource type="Gradient" id="Gradient_dnrd4"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_6irry"]
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
-[node name="Task" type="Control" node_paths=PackedStringArray("_dragButton")]
+[node name="Task" type="Control" node_paths=PackedStringArray("_dragButton", "_titleLabel", "_timerBar")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 480.0
@@ -55,6 +58,9 @@ offset_bottom = 440.0
 script = ExtResource("1_5pwll")
 Difficulties = Array[Resource]([SubResource("Resource_uimwd"), SubResource("Resource_ljhh6"), SubResource("Resource_a6ge6"), SubResource("Resource_ybhod"), SubResource("Resource_7c00t")])
 _dragButton = NodePath("TopBar/DragButton")
+_titleLabel = NodePath("TopBar/Title")
+_timerBar = NodePath("TopBar/Timer")
+_timerGradient = SubResource("Gradient_dnrd4")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1

@@ -27,10 +27,20 @@ public partial class Task : Control
 	private Vector2 _dragStartPos;
 	private Vector2 _dragStartMousePos;
 
+    [Export]
+    private Label _titleLabel;
+    [Export]
+	private ProgressBar _timerBar;
+	private StyleBoxFlat _timerBarStyleBox;
+	[Export]
+	private Gradient _timerGradient;
+
 	Random random = new Random();
 
 	public override void _Ready()
 	{
+		_timerBarStyleBox = new StyleBoxFlat();
+		_timerBar.AddThemeStyleboxOverride("fill", _timerBarStyleBox);
 	}
 
 	public override void _Process(double delta)
@@ -56,7 +66,8 @@ public partial class Task : Control
                 Position = new Vector2(Position.X, maxPos.Y);
         }
 
-        GetNode<ProgressBar>("TopBar/Timer").Value = CurrentTime / TimeLimit * 100.0;
+        _timerBar.Value = CurrentTime / TimeLimit * 100.0;
+		_timerBarStyleBox.BgColor = _timerGradient.Sample((float)(CurrentTime / TimeLimit));
     }
 
 	public void SetDifficulty(int index)
@@ -67,7 +78,7 @@ public partial class Task : Control
 
 		TimeLimit = CurrentDifficulty.MinTimeLimit + random.NextDouble() * CurrentDifficulty.MaxTimeLimit;
 		CurrentTime = TimeLimit;
-		GetNode<Label>("TopBar/Title").Text = TaskName + " [" + CurrentDifficulty.Score + " POINTS]";
+		_titleLabel.Text = TaskName + " [" + CurrentDifficulty.Score + " POINTS]";
 	}
 
 	/// <summary>
@@ -109,6 +120,8 @@ public partial class Task : Control
 		IsDragging = true;
 		_dragStartPos = Position;
 		_dragStartMousePos = GetViewport().GetMousePosition();
+		// Move the task to the top
+        GetParent().MoveChild(this, GetParent().GetChildCount() - 1);
 	}
 
 	public void StopDragging()

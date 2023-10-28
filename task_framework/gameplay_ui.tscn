@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw1bjd2q8gdoc"]
+[gd_scene load_steps=8 format=3 uid="uid://dw1bjd2q8gdoc"]
 
 [ext_resource type="PackedScene" uid="uid://cs3yhvd8ve87m" path="res://task_framework/task_list_item.tscn" id="1_wvnim"]
 [ext_resource type="PackedScene" uid="uid://bsi77spgnfmrw" path="res://tasks/test/test_task.tscn" id="3_p5co2"]
 [ext_resource type="Script" path="res://task_framework/TaskManager.cs" id="4_awjuh"]
+[ext_resource type="Script" path="res://boss_system/BossManager.cs" id="4_x3guh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_1k32s"]
-font_size = 31
+[sub_resource type="LabelSettings" id="LabelSettings_y1yqu"]
+font_size = 39
+
+[sub_resource type="LabelSettings" id="LabelSettings_qnmy5"]
+font_size = 25
+font_color = Color(1, 0.427451, 0.356863, 1)
+
+[sub_resource type="Gradient" id="Gradient_wlntb"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
 
 [node name="GameplayUI" type="Control"]
 layout_mode = 3
@@ -53,6 +61,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.396078, 0.686275, 0.701961, 1)
 
+[node name="TaskContainer" type="Control" parent="TaskSpace/Desktop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="TaskList" type="Control" parent="TaskSpace"]
 layout_mode = 1
 anchors_preset = 11
@@ -82,7 +98,7 @@ anchor_bottom = 0.5
 offset_left = -196.5
 offset_top = -498.0
 offset_right = 189.5
-offset_bottom = 424.0
+offset_bottom = 488.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -94,28 +110,64 @@ size_flags_horizontal = 3
 visible = false
 layout_mode = 2
 
-[node name="ScoreLabel" type="Label" parent="TaskSpace/TaskList"]
+[node name="ScorePanel" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 56.0
+offset_top = 32.0
+offset_right = 556.0
+offset_bottom = 158.0
+
+[node name="Background" type="ColorRect" parent="ScorePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.313726)
+
+[node name="Score" type="Label" parent="ScorePanel"]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 977.0
-offset_right = 383.0
-offset_bottom = 1038.0
-text = "Score: 1234"
-label_settings = SubResource("LabelSettings_1k32s")
+offset_left = 10.0
+offset_top = 13.0
+offset_right = 492.0
+offset_bottom = 70.0
+text = "SCORE: ####"
+label_settings = SubResource("LabelSettings_y1yqu")
 horizontal_alignment = 1
-vertical_alignment = 2
+
+[node name="RequiredScore" type="Label" parent="ScorePanel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 73.0
+offset_right = 481.0
+offset_bottom = 115.0
+text = "NEXT GOAL: ####"
+label_settings = SubResource("LabelSettings_qnmy5")
+horizontal_alignment = 1
 
 [node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem")]
 script = ExtResource("4_awjuh")
-_scoreLabel = NodePath("../TaskSpace/TaskList/ScoreLabel")
+_scoreLabel = NodePath("../ScorePanel/Score")
 Tasks = Array[Object]([ExtResource("3_p5co2")])
-_desktop = NodePath("../TaskSpace/Desktop")
+_desktop = NodePath("../TaskSpace/Desktop/TaskContainer")
 _laterThreshold = 480.0
-_initialMinTaskArrivalTime = 10.0
-_initialMaxTaskArrivalTime = 20.0
+_initialMinTaskArrivalTime = 8.0
+_initialMaxTaskArrivalTime = 15.0
 _laterMinTaskArrivalTime = 5.0
-_laterMaxTaskArrivalTime = 15.0
+_laterMaxTaskArrivalTime = 10.0
 InitialDifficultyChances = Array[float]([100.0, 20.0, 15.0, 10.0, 5.0, 1.0])
 LaterDifficultyChances = Array[float]([100.0, 100.0, 100.0, 100.0, 100.0, 50.0])
 _taskList = NodePath("../TaskSpace/TaskList/ScrollContainer/VBoxContainer")
 _taskListItem = NodePath("../TaskSpace/TaskList/ScrollContainer/VBoxContainer/TaskListItem")
+_timerGradient = SubResource("Gradient_wlntb")
+
+[node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel")]
+script = ExtResource("4_x3guh")
+_initialMinBossArrivalTime = 60.0
+_initialMaxBossArrivalTime = 80.0
+_laterMinBossArrivalTime = 20.0
+_laterMaxBossArrivalTime = 25.0
+minAdditionalRequiredScore = 30
+maxAdditionalRequiredScore = 80
+_requiredScoreLabel = NodePath("../ScorePanel/RequiredScore")
