@@ -14,7 +14,7 @@ public partial class Task : Control
 
     [Export]
 	public Godot.Collections.Array<Resource> Difficulties { get; private set; }
-	private int _currentDifficultyIndex;
+	protected int _currentDifficultyIndex;
 	public TaskDifficulty CurrentDifficulty { get { return (TaskDifficulty)Difficulties[_currentDifficultyIndex]; } }
 
 	public double TimeLimit { get; private set; }
