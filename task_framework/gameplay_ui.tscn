@@ -207,8 +207,8 @@ _timerGradient = SubResource("Gradient_wlntb")
 
 [node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite")]
 script = ExtResource("4_x3guh")
-_initialMinBossArrivalTime = 1.0
-_initialMaxBossArrivalTime = 1.0
+_initialMinBossArrivalTime = 40.0
+_initialMaxBossArrivalTime = 45.0
 _laterMinBossArrivalTime = 15.0
 _laterMaxBossArrivalTime = 20.0
 minAdditionalRequiredScore = 30
