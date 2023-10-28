@@ -35,7 +35,7 @@ public partial class Task : Control
 	[Export]
 	private Gradient _timerGradient;
 
-	Random random = new Random();
+	protected Random RandomNum { get; private set; } = new Random();
 
 	public override void _Ready()
 	{
@@ -79,7 +79,7 @@ public partial class Task : Control
 			return;
 		_currentDifficultyIndex = index;
 
-		TimeLimit = CurrentDifficulty.MinTimeLimit + random.NextDouble() * CurrentDifficulty.MaxTimeLimit;
+		TimeLimit = CurrentDifficulty.MinTimeLimit + RandomNum.NextDouble() * CurrentDifficulty.MaxTimeLimit;
 		CurrentTime = TimeLimit;
 		_titleLabel.Text = TaskName + " [" + CurrentDifficulty.Score + " POINTS]";
 	}
