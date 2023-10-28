@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://8ujm242aqa4o"]
+[gd_scene load_steps=9 format=3 uid="uid://8ujm242aqa4o"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_fvxjj"]
 [ext_resource type="Script" path="res://tasks/spelling/SpellingTask.cs" id="2_jt0jx"]
@@ -29,24 +29,60 @@ Score = 30
 FailPenalty = 30
 OverduePenalty = 15
 
-[sub_resource type="Resource" id="Resource_ybhod"]
-script = ExtResource("4_fckwy")
-MinTimeLimit = 30.0
-MaxTimeLimit = 35.0
-Score = 40
-FailPenalty = 40
-OverduePenalty = 20
-
-[sub_resource type="Resource" id="Resource_7c00t"]
-script = ExtResource("4_fckwy")
-MinTimeLimit = 35.0
-MaxTimeLimit = 40.0
-Score = 50
-FailPenalty = 50
-OverduePenalty = 25
+[sub_resource type="LabelSettings" id="LabelSettings_fyts1"]
+line_spacing = 0.0
+font_size = 30
+font_color = Color(0, 0, 0, 1)
 
 [node name="SpellingTask" instance=ExtResource("1_fvxjj")]
 script = ExtResource("2_jt0jx")
+_image = null
 TaskName = "Spelling"
 TaskIcon = ExtResource("3_i50k6")
-Difficulties = Array[Resource]([SubResource("Resource_uimwd"), SubResource("Resource_ljhh6"), SubResource("Resource_a6ge6"), SubResource("Resource_ybhod"), SubResource("Resource_7c00t")])
+Difficulties = Array[Resource]([SubResource("Resource_uimwd"), SubResource("Resource_ljhh6"), SubResource("Resource_a6ge6")])
+
+[node name="CheckButton" type="Button" parent="Content" index="0"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 327.0
+offset_right = 325.0
+offset_bottom = 360.0
+text = "Check (0/3)"
+
+[node name="LeftLabel" type="Label" parent="Content" index="1"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 238.0
+offset_right = 164.0
+offset_bottom = 296.0
+text = "C"
+label_settings = SubResource("LabelSettings_fyts1")
+horizontal_alignment = 2
+
+[node name="RightLabel" type="Label" parent="Content" index="2"]
+layout_mode = 0
+offset_left = 311.0
+offset_top = 237.0
+offset_right = 417.0
+offset_bottom = 295.0
+text = "T"
+label_settings = SubResource("LabelSettings_fyts1")
+
+[node name="CharacterEdit" type="LineEdit" parent="Content" index="3"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 228.0
+offset_right = 298.0
+offset_bottom = 291.0
+theme_override_font_sizes/font_size = 30
+text = "A"
+alignment = 1
+max_length = 4
+
+[node name="Image" type="TextureRect" parent="Content" index="4"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 35.0
+offset_right = 328.0
+offset_bottom = 215.0
+texture = ExtResource("3_i50k6")
