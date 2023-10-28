@@ -41,7 +41,6 @@ public partial class Task : Control
 	{
 		_timerBarStyleBox = new StyleBoxFlat();
 		_timerBar.AddThemeStyleboxOverride("fill", _timerBarStyleBox);
-		SetDifficulty(0);
 	}
 
 	public override void _Process(double delta)
