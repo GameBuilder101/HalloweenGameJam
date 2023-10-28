@@ -39,6 +39,9 @@ public partial class BossManager : Node
     public bool BossPeeking { get { return CurrentBossPeekTime >= 0.0; } }
     private bool _performedBossCheck;
 
+    [Export]
+    private PackedScene _gameOverScene;
+
     Random random = new Random();
 
     public override void _Ready()
@@ -104,7 +107,8 @@ public partial class BossManager : Node
         // Check if the player failed
         if (TaskManager.Instance.currentScore < CurrentRequiredScore)
         {
-            GD.Print("Game over lol get gud");
+            GameOver.finalScore = TaskManager.Instance.currentScore;
+            GetTree().ChangeSceneToPacked(_gameOverScene);
             return;
         }
 
@@ -115,7 +119,7 @@ public partial class BossManager : Node
     public void SetNewRequiredScore()
     {
         CurrentRequiredScore += random.Next(minAdditionalRequiredScore, maxAdditionalRequiredScore);
-        _requiredScoreLabel.Text = "NEXT GOAL: " + CurrentRequiredScore;
+        _requiredScoreLabel.Text = "QUOTA: " + CurrentRequiredScore;
     }
 
     private double Lerp(double a, double b, double t)

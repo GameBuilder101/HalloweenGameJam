@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://rndei5k0jabx"]
+
+[ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_oqtas"]
+[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="2_6jm0i"]
+[ext_resource type="Script" path="res://tasks/math/MathTask.cs" id="2_kg8le"]
+
+[sub_resource type="Gradient" id="Gradient_uq7bb"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
+
+[node name="Task" instance=ExtResource("1_oqtas")]
+script = ExtResource("2_kg8le")
+TaskName = "Math"
+TaskIcon = ExtResource("2_6jm0i")
+_timerGradient = SubResource("Gradient_uq7bb")
