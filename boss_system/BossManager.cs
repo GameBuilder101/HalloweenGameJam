@@ -119,7 +119,7 @@ public partial class BossManager : Node
     public void SetNewRequiredScore()
     {
         CurrentRequiredScore += random.Next(minAdditionalRequiredScore, maxAdditionalRequiredScore);
-        _requiredScoreLabel.Text = "NEXT GOAL: " + CurrentRequiredScore;
+        _requiredScoreLabel.Text = "QUOTA: " + CurrentRequiredScore;
     }
 
     private double Lerp(double a, double b, double t)

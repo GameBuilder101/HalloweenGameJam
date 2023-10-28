@@ -185,7 +185,7 @@ offset_left = 18.0
 offset_top = 73.0
 offset_right = 481.0
 offset_bottom = 115.0
-text = "NEXT GOAL: ####"
+text = "QUOTA: ####"
 label_settings = SubResource("LabelSettings_qnmy5")
 horizontal_alignment = 1
 
