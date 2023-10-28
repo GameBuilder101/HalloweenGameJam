@@ -73,7 +73,7 @@ public partial class Task : Control
 		_timerBarStyleBox.BgColor = _timerGradient.Sample((float)(CurrentTime / TimeLimit));
     }
 
-	public void SetDifficulty(int index)
+	public virtual void SetDifficulty(int index)
 	{
 		if (index < 0 || index >= Difficulties.Count)
 			return;
