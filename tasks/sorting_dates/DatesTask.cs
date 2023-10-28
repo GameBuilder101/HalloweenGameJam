@@ -7,6 +7,8 @@ using System.Diagnostics;
 /// </summary>
 public partial class DatesTask : Task
 {
+	private int selected = -1;
+
 	private int filesLength;
 	private File[] files;
 	[Export]
@@ -17,14 +19,37 @@ public partial class DatesTask : Task
 		base._Process(delta);
 		if (!Visible)
 			return;
-		
-		for (int i = 0; i < filesLength - 1; i++) {
-			if (!files[i].EarlierThan(files[i + 1])) return;
+
+		if (filesList.IsAnythingSelected()) {
+			int newSelected = filesList.GetSelectedItems()[0];
+			if (selected == -1) {
+				selected = newSelected;
+			} else if (selected != newSelected) {
+				filesList.DeselectAll();
+				File swapFile = files[selected];
+				String swapString = filesList.GetItemText(selected);
+				files[selected] = files[newSelected];
+				filesList.SetItemText(selected, filesList.GetItemText(
+					newSelected));
+				files[newSelected] = swapFile;
+				filesList.SetItemText(newSelected, swapString);
+				selected = -1;
+			}
+		} else {
+			selected = -1;
 		}
-		
+	}
+
+	public void Submit() {
+		for (int i = 0; i < filesLength - 1; i++) {
+			if (!files[i].EarlierThan(files[i + 1])) {
+				Fail();
+				return;
+			}
+		}
 		Pass();
 	}
-	
+
 	public override void SetDifficulty(int index) {
 		base.SetDifficulty(index);
 
@@ -33,9 +58,11 @@ public partial class DatesTask : Task
 			max_files = 10;
 		}
 		files = new File[max_files];
+		filesLength = max_files;
+		int baseYear = RandomNum.Next(3001);
 		for (int i = 0; i < max_files; i++) {
 			files[i] = new File() {
-				year = RandomNum.Next(4000),
+				year = RandomNum.Next(1000) + baseYear,
 				month = RandomNum.Next(13) + 1,
 				day = RandomNum.Next(32) + 1
 			};
@@ -49,7 +76,7 @@ public partial class DatesTask : Task
 	}
 }
 
-public partial class File : Node {
+public class File {
 	public int day {get; init;}
 	public int month {get; init;}
 	public int year {get; init;}
