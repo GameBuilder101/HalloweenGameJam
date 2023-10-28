@@ -98,8 +98,29 @@ public partial class TaskManager : Node
         Task task = Tasks[random.Next(Tasks.Count)].Instantiate() as Task;
         _desktop.AddChild(task);
         task.Close();
-        task.SetDifficulty(0);
         _activeTasks.Add(task);
+
+        // DIFFICULTY MATH ---------------------
+        // Calculate total weight
+        double totalWeight = 0.0;
+        for (int i = 0; i < task.Difficulties.Count; i++)
+            totalWeight += Lerp(InitialDifficultyChances[i], LaterDifficultyChances[i], LaterPercent);
+        // Get random weight
+        double randomWeight = random.NextDouble() * totalWeight;
+        totalWeight = 0.0;
+        int difficultyIndex = 0;
+        // Find which difficulty that random weight falls under
+        for (int i = 0; i < task.Difficulties.Count; i++)
+        {
+            totalWeight += Lerp(InitialDifficultyChances[i], LaterDifficultyChances[i], LaterPercent);
+            if (randomWeight < totalWeight)
+            {
+                difficultyIndex = i;
+                break;
+            }
+        }
+        // Set the difficulty
+        task.SetDifficulty(difficultyIndex);
 
         // Add the task list item
         Node taskListItem = _taskListItem.Duplicate();

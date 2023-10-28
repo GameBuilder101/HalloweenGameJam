@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Diagnostics;
 
 /// <summary>
 /// Both holds data about a task and acts as the task "window".
@@ -42,6 +41,7 @@ public partial class Task : Control
 	{
 		_timerBarStyleBox = new StyleBoxFlat();
 		_timerBar.AddThemeStyleboxOverride("fill", _timerBarStyleBox);
+		SetDifficulty(0);
 	}
 
 	public override void _Process(double delta)
