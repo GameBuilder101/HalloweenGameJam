@@ -1,0 +1,121 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw1bjd2q8gdoc"]
+
+[ext_resource type="PackedScene" uid="uid://cs3yhvd8ve87m" path="res://task_framework/task_list_item.tscn" id="1_wvnim"]
+[ext_resource type="PackedScene" uid="uid://bsi77spgnfmrw" path="res://tasks/test/test_task.tscn" id="3_p5co2"]
+[ext_resource type="Script" path="res://task_framework/TaskManager.cs" id="4_awjuh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1k32s"]
+font_size = 31
+
+[node name="GameplayUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TaskSpace" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1300.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="TaskSpace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Desktop" type="Control" parent="TaskSpace"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 44.0
+offset_right = 808.0
+offset_bottom = -52.0
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="TaskSpace/Desktop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.396078, 0.686275, 0.701961, 1)
+
+[node name="TaskList" type="Control" parent="TaskSpace"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -467.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="TaskSpace/TaskList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TaskSpace/TaskList"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.5
+offset_top = -498.0
+offset_right = 189.5
+offset_bottom = 424.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskSpace/TaskList/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TaskListItem" parent="TaskSpace/TaskList/ScrollContainer/VBoxContainer" instance=ExtResource("1_wvnim")]
+visible = false
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="TaskSpace/TaskList"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 977.0
+offset_right = 383.0
+offset_bottom = 1038.0
+text = "Score: 1234"
+label_settings = SubResource("LabelSettings_1k32s")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem")]
+script = ExtResource("4_awjuh")
+_scoreLabel = NodePath("../TaskSpace/TaskList/ScoreLabel")
+Tasks = Array[Object]([ExtResource("3_p5co2")])
+_desktop = NodePath("../TaskSpace/Desktop")
+_laterThreshold = 480.0
+_initialMinTaskArrivalTime = 30.0
+_initialMaxTaskArrivalTime = 40.0
+_laterMinTaskArrivalTime = 5.0
+_laterMaxTaskArrivalTime = 15.0
+InitialDifficultyChances = Array[float]([100.0, 20.0, 15.0, 10.0, 5.0, 1.0])
+LaterDifficultyChances = Array[float]([100.0, 100.0, 100.0, 100.0, 100.0, 50.0])
+_taskList = NodePath("../TaskSpace/TaskList/ScrollContainer/VBoxContainer")
+_taskListItem = NodePath("../TaskSpace/TaskList/ScrollContainer/VBoxContainer/TaskListItem")

@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2edm0805f3g"]
+
+[ext_resource type="Script" path="res://task_framework/Task.cs" id="1_5pwll"]
+[ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="2_6faa1"]
+
+[sub_resource type="Resource" id="Resource_uimwd"]
+script = ExtResource("2_6faa1")
+MinTimeLimit = 15.0
+MaxTimeLimit = 20.0
+Score = 10
+FailPenalty = 10
+OverduePenalty = 5
+
+[sub_resource type="Resource" id="Resource_ljhh6"]
+script = ExtResource("2_6faa1")
+MinTimeLimit = 20.0
+MaxTimeLimit = 25.0
+Score = 20
+FailPenalty = 20
+OverduePenalty = 10
+
+[sub_resource type="Resource" id="Resource_a6ge6"]
+script = ExtResource("2_6faa1")
+MinTimeLimit = 25.0
+MaxTimeLimit = 30.0
+Score = 30
+FailPenalty = 30
+OverduePenalty = 15
+
+[sub_resource type="Resource" id="Resource_ybhod"]
+script = ExtResource("2_6faa1")
+MinTimeLimit = 30.0
+MaxTimeLimit = 35.0
+Score = 40
+FailPenalty = 40
+OverduePenalty = 20
+
+[sub_resource type="Resource" id="Resource_7c00t"]
+script = ExtResource("2_6faa1")
+MinTimeLimit = 35.0
+MaxTimeLimit = 40.0
+Score = 50
+FailPenalty = 50
+OverduePenalty = 25
+
+[node name="Task" type="Control" node_paths=PackedStringArray("_dragButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 440.0
+script = ExtResource("1_5pwll")
+Difficulties = Array[Resource]([SubResource("Resource_uimwd"), SubResource("Resource_ljhh6"), SubResource("Resource_a6ge6"), SubResource("Resource_ybhod"), SubResource("Resource_7c00t")])
+_dragButton = NodePath("Top Bar/DragButton")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top Bar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="Background" type="ColorRect" parent="Top Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.835294, 0.835294, 0.835294, 1)
+
+[node name="DragButton" type="Button" parent="Top Bar"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 424.0
+offset_bottom = 47.0
+flat = true
+
+[node name="CloseButton" type="Button" parent="Top Bar"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 10.0
+offset_right = 464.0
+offset_bottom = 39.0
+
+[node name="Content" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="button_down" from="Top Bar/DragButton" to="." method="StartDragging"]
+[connection signal="button_up" from="Top Bar/DragButton" to="." method="StopDragging"]
+[connection signal="pressed" from="Top Bar/CloseButton" to="." method="Close"]

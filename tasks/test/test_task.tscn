@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsi77spgnfmrw"]
+
+[ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_u8bfg"]
+[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="2_jc4xe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q8827"]
+font_size = 41
+font_color = Color(0, 0, 0, 1)
+
+[node name="TestTask" instance=ExtResource("1_u8bfg")]
+TaskName = "Test Task"
+TaskIcon = ExtResource("2_jc4xe")
+
+[node name="Him" type="TextureRect" parent="Content" index="0"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 77.0
+offset_right = 438.0
+offset_bottom = 149.0
+texture = ExtResource("2_jc4xe")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Content" index="1"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 6.0
+offset_right = 411.0
+offset_bottom = 77.0
+text = "he  W I D E
+"
+label_settings = SubResource("LabelSettings_q8827")
+horizontal_alignment = 1
+
+[node name="PassButton" type="Button" parent="Content" index="2"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 171.0
+offset_right = 374.0
+offset_bottom = 224.0
+text = "Pass"
+
+[node name="FailButton" type="Button" parent="Content" index="3"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 259.0
+offset_right = 374.0
+offset_bottom = 312.0
+text = "Fail"
+
+[connection signal="pressed" from="Content/PassButton" to="." method="Pass"]
+[connection signal="pressed" from="Content/FailButton" to="." method="Fail"]
