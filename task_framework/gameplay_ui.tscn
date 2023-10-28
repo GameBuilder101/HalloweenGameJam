@@ -2,15 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="1_kwyd3"]
 [ext_resource type="PackedScene" uid="uid://cs3yhvd8ve87m" path="res://task_framework/task_list_item.tscn" id="1_wvnim"]
+[ext_resource type="Texture2D" uid="uid://cjdk5204olwlw" path="res://boss_system/unpaid-intern-left-side.png" id="2_266s1"]
 [ext_resource type="Script" path="res://task_framework/TaskManager.cs" id="4_awjuh"]
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="4_qcsp6"]
 [ext_resource type="Script" path="res://boss_system/BossManager.cs" id="4_x3guh"]
-
-[sub_resource type="Gradient" id="Gradient_626ia"]
-colors = PackedColorArray(0.666569, 0.666569, 0.666569, 1, 0.703808, 0.703808, 0.703808, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_1n35h"]
-gradient = SubResource("Gradient_626ia")
+[ext_resource type="PackedScene" uid="uid://bfpq6ryjvvr4b" path="res://game_over/game_over.tscn" id="6_6rl4b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1yqu"]
 font_size = 39
@@ -57,14 +53,14 @@ offset_right = 619.0
 grow_vertical = 2
 
 [node name="Boss" type="Sprite2D" parent="BossSpace"]
-position = Vector2(311, 713)
+position = Vector2(311, 565.64)
 scale = Vector2(2.85156, 2.98438)
 texture = ExtResource("1_kwyd3")
 
 [node name="Wall" type="Sprite2D" parent="BossSpace"]
-position = Vector2(318.5, 796.125)
-scale = Vector2(2.58203, 588.25)
-texture = SubResource("GradientTexture1D_1n35h")
+position = Vector2(960, 540)
+texture = ExtResource("2_266s1")
+offset = Vector2(-16.355, 0)
 
 [node name="TaskSpace" type="Control" parent="."]
 layout_mode = 1
@@ -72,7 +68,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1300.0
+offset_left = -1236.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -89,10 +85,10 @@ color = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 44.0
-offset_right = 808.0
-offset_bottom = -52.0
+offset_left = 28.0
+offset_top = 56.0
+offset_right = 814.0
+offset_bottom = -40.0
 grow_vertical = 2
 
 [node name="Background" type="ColorRect" parent="TaskSpace/Desktop"]
@@ -118,7 +114,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -467.0
+offset_left = -399.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -138,10 +134,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -196.5
-offset_top = -498.0
-offset_right = 189.5
-offset_bottom = 488.0
+offset_left = -170.5
+offset_top = -497.0
+offset_right = 175.5
+offset_bottom = 489.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -154,11 +150,15 @@ visible = false
 layout_mode = 2
 
 [node name="ScorePanel" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 56.0
-offset_top = 32.0
-offset_right = 556.0
-offset_bottom = 158.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = -176.0
+offset_right = 557.0
+offset_bottom = -50.0
+grow_vertical = 0
 
 [node name="Background" type="ColorRect" parent="ScorePanel"]
 layout_mode = 1
@@ -167,7 +167,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.313726)
+color = Color(0, 0, 0, 0.607843)
 
 [node name="Score" type="Label" parent="ScorePanel"]
 layout_mode = 0
@@ -207,8 +207,8 @@ _timerGradient = SubResource("Gradient_wlntb")
 
 [node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite")]
 script = ExtResource("4_x3guh")
-_initialMinBossArrivalTime = 45.0
-_initialMaxBossArrivalTime = 45.0
+_initialMinBossArrivalTime = 1.0
+_initialMaxBossArrivalTime = 1.0
 _laterMinBossArrivalTime = 15.0
 _laterMaxBossArrivalTime = 20.0
 minAdditionalRequiredScore = 30
@@ -218,3 +218,4 @@ _bossSprite = NodePath("../BossSpace/Boss")
 _bossPeekOffset = -80.0
 _bossPeekAnimationDuration = 1.0
 _bossPeekDuration = 3.0
+_gameOverScene = ExtResource("6_6rl4b")

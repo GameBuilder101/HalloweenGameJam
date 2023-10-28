@@ -9,7 +9,7 @@ public partial class TaskManager : Node
     /// <summary>
     /// The player's current score.
     /// </summary>
-    public double currentScore;
+    public int currentScore;
     [Export]
     private Label _scoreLabel;
 
@@ -95,7 +95,7 @@ public partial class TaskManager : Node
     public void AssignTask()
     {
         // Add a new task
-        Task task = Tasks[random.Next(Tasks.Count)].Instantiate() as Task;
+        Task task = (Task)Tasks[random.Next(Tasks.Count)].Instantiate();
         _desktop.AddChild(task);
         task.Close();
         _activeTasks.Add(task);
