@@ -5,6 +5,7 @@ using System.Diagnostics;
 /// <summary>
 /// Both holds data about a task and acts as the task "window".
 /// </summary>
+[GlobalClass]
 public partial class Task : Control
 {
 	[Export]
