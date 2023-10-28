@@ -1,0 +1,167 @@
+[gd_scene load_steps=10 format=3 uid="uid://bv88k143kun4r"]
+
+[ext_resource type="Script" path="res://task_framework/Task.cs" id="1_1pa5t"]
+[ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="2_g6moc"]
+
+[sub_resource type="Resource" id="Resource_uimwd"]
+script = ExtResource("2_g6moc")
+MinTimeLimit = 15.0
+MaxTimeLimit = 20.0
+Score = 10
+FailPenalty = 10
+OverduePenalty = 5
+
+[sub_resource type="Resource" id="Resource_ljhh6"]
+script = ExtResource("2_g6moc")
+MinTimeLimit = 20.0
+MaxTimeLimit = 25.0
+Score = 20
+FailPenalty = 20
+OverduePenalty = 10
+
+[sub_resource type="Resource" id="Resource_a6ge6"]
+script = ExtResource("2_g6moc")
+MinTimeLimit = 25.0
+MaxTimeLimit = 30.0
+Score = 30
+FailPenalty = 30
+OverduePenalty = 15
+
+[sub_resource type="Resource" id="Resource_ybhod"]
+script = ExtResource("2_g6moc")
+MinTimeLimit = 30.0
+MaxTimeLimit = 35.0
+Score = 40
+FailPenalty = 40
+OverduePenalty = 20
+
+[sub_resource type="Resource" id="Resource_7c00t"]
+script = ExtResource("2_g6moc")
+MinTimeLimit = 35.0
+MaxTimeLimit = 40.0
+Score = 50
+FailPenalty = 50
+OverduePenalty = 25
+
+[sub_resource type="Gradient" id="Gradient_dnrd4"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6irry"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[node name="Task" type="Control" node_paths=PackedStringArray("_dragButton", "_titleLabel", "_timerBar")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 440.0
+script = ExtResource("1_1pa5t")
+TaskName = "File Sorting"
+Difficulties = Array[Resource]([SubResource("Resource_uimwd"), SubResource("Resource_ljhh6"), SubResource("Resource_a6ge6"), SubResource("Resource_ybhod"), SubResource("Resource_7c00t")])
+_dragButton = NodePath("TopBar/DragButton")
+_titleLabel = NodePath("TopBar/Title")
+_timerBar = NodePath("TopBar/Timer")
+_timerGradient = SubResource("Gradient_dnrd4")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+
+[node name="Background" type="ColorRect" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.835294, 0.835294, 0.835294, 1)
+
+[node name="DragButton" type="Button" parent="TopBar"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 426.0
+offset_bottom = 54.0
+flat = true
+
+[node name="CloseButton" type="Button" parent="TopBar"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 10.0
+offset_right = 464.0
+offset_bottom = 39.0
+
+[node name="Title" type="Label" parent="TopBar"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 6.0
+offset_right = 425.0
+offset_bottom = 42.0
+text = "Task Name [# POINTS]"
+label_settings = SubResource("LabelSettings_6irry")
+vertical_alignment = 1
+
+[node name="Timer" type="ProgressBar" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 46.0
+offset_bottom = 58.0
+grow_horizontal = 2
+show_percentage = false
+
+[node name="Content" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Content"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 481.0
+offset_bottom = 30.0
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Earlier"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Content/Label"]
+offset_left = -2.0
+offset_top = 351.0
+offset_right = 479.0
+offset_bottom = 382.0
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Later"
+horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 83.0
+offset_right = 473.0
+offset_bottom = 415.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+allow_search = false
+item_count = 1
+item_0/text = "boop"
+
+[connection signal="button_down" from="TopBar/DragButton" to="." method="StartDragging"]
+[connection signal="button_up" from="TopBar/DragButton" to="." method="StopDragging"]
+[connection signal="pressed" from="TopBar/CloseButton" to="." method="Close"]
