@@ -71,13 +71,13 @@ public partial class TaskManager : Node
     {
         TotalTime += delta;
         TaskArrivalTimer -= delta;
-        if ((TaskArrivalTimer <= 0.0 || _activeTasks.Count <= 0) && _activeTasks.Count < maxTasks)
+        if (TaskArrivalTimer <= 0.0 && _activeTasks.Count < maxTasks)
             AssignTask();
 
         int i = 0;
         foreach (Node activeTaskListItem in _activeTaskListItems)
         {
-            activeTaskListItem.GetNode<ProgressBar>("Button/Timer").Value = _activeTasks[i].CurrentTime / _activeTasks[i].TimeLimit;
+            activeTaskListItem.GetNode<ProgressBar>("Button/Timer").Value = _activeTasks[i].CurrentTime / _activeTasks[i].TimeLimit * 100.0;
             activeTaskListItem.GetNode<Label>("Button/TimerLabel").Text =
                 Math.Floor(_activeTasks[i].CurrentTime / 60.0) + ":" + (_activeTasks[i].CurrentTime % 60.0).ToString("00");
             i++;
@@ -91,7 +91,7 @@ public partial class TaskManager : Node
         // Add a new task
         Task task = Tasks[random.Next(Tasks.Count)].Instantiate() as Task;
         _desktop.AddChild(task);
-        //task.Close();
+        task.Close();
         task.SetDifficulty(0);
         _activeTasks.Add(task);
 
@@ -117,10 +117,13 @@ public partial class TaskManager : Node
         _activeTaskListItems[index].QueueFree();
         _activeTasks.RemoveAt(index);
         _activeTaskListItems.RemoveAt(index);
+
+        if (_activeTasks.Count <= 0)
+            TaskArrivalTimer = 1.0; // Add a small delay instead of immediately assigning a new task
     }
 
     private double Lerp(double a, double b, double t)
     {
-        return a * (1 - t) + b * t;
+        return a + (b - a) * t;
     }
 }

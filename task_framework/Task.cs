@@ -55,6 +55,8 @@ public partial class Task : Control
             else if (Position.Y > maxPos.Y)
                 Position = new Vector2(Position.X, maxPos.Y);
         }
+
+        GetNode<ProgressBar>("TopBar/Timer").Value = CurrentTime / TimeLimit * 100.0;
     }
 
 	public void SetDifficulty(int index)
@@ -62,8 +64,10 @@ public partial class Task : Control
 		if (index < 0 || index >= Difficulties.Count)
 			return;
 		_currentDifficultyIndex = index;
+
 		TimeLimit = CurrentDifficulty.MinTimeLimit + random.NextDouble() * CurrentDifficulty.MaxTimeLimit;
 		CurrentTime = TimeLimit;
+		GetNode<Label>("TopBar/Title").Text = TaskName + " [" + CurrentDifficulty.Score + " POINTS]";
 	}
 
 	/// <summary>

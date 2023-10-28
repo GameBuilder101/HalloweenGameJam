@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2edm0805f3g"]
+[gd_scene load_steps=9 format=3 uid="uid://b2edm0805f3g"]
 
 [ext_resource type="Script" path="res://task_framework/Task.cs" id="1_5pwll"]
 [ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="2_6faa1"]
@@ -43,6 +43,10 @@ Score = 50
 FailPenalty = 50
 OverduePenalty = 25
 
+[sub_resource type="LabelSettings" id="LabelSettings_6irry"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
 [node name="Task" type="Control" node_paths=PackedStringArray("_dragButton")]
 layout_mode = 3
 anchors_preset = 0
@@ -50,7 +54,7 @@ offset_right = 480.0
 offset_bottom = 440.0
 script = ExtResource("1_5pwll")
 Difficulties = Array[Resource]([SubResource("Resource_uimwd"), SubResource("Resource_ljhh6"), SubResource("Resource_a6ge6"), SubResource("Resource_ybhod"), SubResource("Resource_7c00t")])
-_dragButton = NodePath("Top Bar/DragButton")
+_dragButton = NodePath("TopBar/DragButton")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -60,46 +64,66 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Top Bar" type="Control" parent="."]
+[node name="TopBar" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 50.0
+offset_bottom = 64.0
 grow_horizontal = 2
 
-[node name="Background" type="ColorRect" parent="Top Bar"]
+[node name="Background" type="ColorRect" parent="TopBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.835294, 0.835294, 0.835294, 1)
 
-[node name="DragButton" type="Button" parent="Top Bar"]
+[node name="DragButton" type="Button" parent="TopBar"]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 424.0
-offset_bottom = 47.0
+offset_right = 426.0
+offset_bottom = 54.0
 flat = true
 
-[node name="CloseButton" type="Button" parent="Top Bar"]
+[node name="CloseButton" type="Button" parent="TopBar"]
 layout_mode = 0
 offset_left = 435.0
 offset_top = 10.0
 offset_right = 464.0
 offset_bottom = 39.0
 
+[node name="Title" type="Label" parent="TopBar"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 6.0
+offset_right = 425.0
+offset_bottom = 42.0
+text = "Task Name [# POINTS]"
+label_settings = SubResource("LabelSettings_6irry")
+vertical_alignment = 1
+
+[node name="Timer" type="ProgressBar" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 46.0
+offset_bottom = 58.0
+grow_horizontal = 2
+show_percentage = false
+
 [node name="Content" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 50.0
+offset_top = 59.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="button_down" from="Top Bar/DragButton" to="." method="StartDragging"]
-[connection signal="button_up" from="Top Bar/DragButton" to="." method="StopDragging"]
-[connection signal="pressed" from="Top Bar/CloseButton" to="." method="Close"]
+[connection signal="button_down" from="TopBar/DragButton" to="." method="StartDragging"]
+[connection signal="button_up" from="TopBar/DragButton" to="." method="StopDragging"]
+[connection signal="pressed" from="TopBar/CloseButton" to="." method="Close"]
