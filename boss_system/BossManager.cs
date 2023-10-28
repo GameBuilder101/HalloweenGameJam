@@ -45,6 +45,7 @@ public partial class BossManager : Node
 	{
         Instance = this;
         UpdateBossArrivalTimer();
+        SetNewRequiredScore();
     }
 
 	public override void _Process(double delta)
@@ -108,6 +109,11 @@ public partial class BossManager : Node
         }
 
         // Update required score
+        SetNewRequiredScore();
+    }
+
+    public void SetNewRequiredScore()
+    {
         CurrentRequiredScore += random.Next(minAdditionalRequiredScore, maxAdditionalRequiredScore);
         _requiredScoreLabel.Text = "NEXT GOAL: " + CurrentRequiredScore;
     }

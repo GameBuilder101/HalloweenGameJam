@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dw1bjd2q8gdoc"]
+[gd_scene load_steps=13 format=3 uid="uid://dw1bjd2q8gdoc"]
 
 [ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="1_kwyd3"]
 [ext_resource type="PackedScene" uid="uid://cs3yhvd8ve87m" path="res://task_framework/task_list_item.tscn" id="1_wvnim"]
-[ext_resource type="PackedScene" uid="uid://bsi77spgnfmrw" path="res://tasks/test/test_task.tscn" id="3_p5co2"]
 [ext_resource type="Script" path="res://task_framework/TaskManager.cs" id="4_awjuh"]
+[ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="4_qcsp6"]
 [ext_resource type="Script" path="res://boss_system/BossManager.cs" id="4_x3guh"]
 
 [sub_resource type="Gradient" id="Gradient_626ia"]
@@ -18,6 +18,25 @@ font_size = 39
 [sub_resource type="LabelSettings" id="LabelSettings_qnmy5"]
 font_size = 25
 font_color = Color(1, 0.427451, 0.356863, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q8827"]
+font_size = 41
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PackedScene" id="PackedScene_mqved"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 2,
+"conns": PackedInt32Array(3, 0, 27, 26, 2, 0, 0, 4, 0, 27, 28, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("TestTask", "TaskName", "TaskIcon", "Background", "TopBar", "DragButton", "CloseButton", "Title", "Timer", "Content", "Him", "layout_mode", "offset_left", "offset_top", "offset_right", "offset_bottom", "texture", "expand_mode", "TextureRect", "Label", "text", "label_settings", "horizontal_alignment", "PassButton", "Button", "FailButton", "Pass", "pressed", "Fail"),
+"node_count": 5,
+"node_paths": [NodePath("Content")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 2, 1, 1, 2, 2, 0, 1073741824, 0, 18, 262154, -1, 7, 11, 3, 12, 4, 13, 5, 14, 6, 15, 7, 16, 2, 17, 8, 0, 1073741824, 0, 19, 524307, -1, 8, 11, 3, 12, 9, 13, 10, 14, 11, 15, 5, 20, 12, 21, 13, 22, 8, 0, 1073741824, 0, 24, 786455, -1, 6, 11, 3, 12, 14, 13, 15, 14, 16, 15, 17, 20, 18, 0, 1073741824, 0, 24, 1048601, -1, 6, 11, 3, 12, 14, 13, 19, 14, 16, 15, 20, 20, 21, 0),
+"variants": [ExtResource("4_qcsp6"), "Test Task", ExtResource("1_kwyd3"), 0, 37.0, 77.0, 438.0, 149.0, 1, 80.0, 6.0, 411.0, "he  W I D E
+", SubResource("LabelSettings_q8827"), 95.0, 171.0, 374.0, 224.0, "Pass", 259.0, 312.0, "Fail"],
+"version": 3
+}
 
 [sub_resource type="Gradient" id="Gradient_wlntb"]
 colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
@@ -173,7 +192,7 @@ horizontal_alignment = 1
 [node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem")]
 script = ExtResource("4_awjuh")
 _scoreLabel = NodePath("../ScorePanel/Score")
-Tasks = Array[Object]([ExtResource("3_p5co2")])
+Tasks = Array[Object]([SubResource("PackedScene_mqved")])
 _desktop = NodePath("../TaskSpace/Desktop/TaskContainer")
 _laterThreshold = 480.0
 _initialMinTaskArrivalTime = 8.0
@@ -188,7 +207,7 @@ _timerGradient = SubResource("Gradient_wlntb")
 
 [node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite")]
 script = ExtResource("4_x3guh")
-_initialMinBossArrivalTime = 30.0
+_initialMinBossArrivalTime = 45.0
 _initialMaxBossArrivalTime = 45.0
 _laterMinBossArrivalTime = 15.0
 _laterMaxBossArrivalTime = 20.0

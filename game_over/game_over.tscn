@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfpq6ryjvvr4b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u7awo"]
+font_size = 64
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RetryButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -165.0
+offset_top = -380.0
+offset_right = 165.0
+offset_bottom = -327.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Retry"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -165.0
+offset_top = -280.0
+offset_right = 165.0
+offset_bottom = -227.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 99.0
+offset_bottom = 223.0
+grow_horizontal = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_u7awo")
+horizontal_alignment = 1
