@@ -7,14 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://c4icjb2ofo01f" path="res://boss_system/unpaid-intern-boss-mad.png" id="4_vl6ak"]
 [ext_resource type="Script" path="res://boss_system/BossManager.cs" id="4_x3guh"]
 [ext_resource type="Texture2D" uid="uid://bbftu7wopndmg" path="res://task_framework/unpaid-intern-right-side.png" id="5_v4lp8"]
-[ext_resource type="PackedScene" uid="uid://lkw423fr0kko" path="res://tasks/counting/counting_task.tscn" id="5_xj7o5"]
+[ext_resource type="PackedScene" uid="uid://ps8ghl7r0tq7" path="res://tasks/counting/counting_task.tscn" id="5_xj7o5"]
 [ext_resource type="PackedScene" uid="uid://bfpq6ryjvvr4b" path="res://game_over/game_over.tscn" id="6_6rl4b"]
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="6_nelnd"]
 [ext_resource type="PackedScene" uid="uid://csje7y0jm31h8" path="res://tasks/math/math_task.tscn" id="6_u0ekb"]
 [ext_resource type="PackedScene" uid="uid://d2x32vn0pso8w" path="res://tasks/sorting_bins/sorting_bins_task.tscn" id="7_eev2g"]
 [ext_resource type="AudioStream" uid="uid://bjetiq6e31nw1" path="res://audio/New_Task.wav" id="7_o31ms"]
 [ext_resource type="AudioStream" uid="uid://c8tlww5a1ywhj" path="res://audio/Failed_Task.wav" id="8_3alu7"]
-[ext_resource type="PackedScene" uid="uid://cjo8puw152e3f" path="res://tasks/spelling/spelling_task.tscn" id="9_b8g7g"]
+[ext_resource type="PackedScene" uid="uid://c6j70xbifw8oc" path="res://tasks/spelling/spelling_task.tscn" id="9_b8g7g"]
 [ext_resource type="AudioStream" uid="uid://rd3sx21rtof0" path="res://audio/Completed_Task.wav" id="9_whrnb"]
 [ext_resource type="PackedScene" uid="uid://dw6v6br3eoveg" path="res://tasks/typing/typing_task.tscn" id="10_hhrtw"]
 [ext_resource type="AudioStream" uid="uid://by2cex6kmv6ow" path="res://audio/Warning_Audio.wav" id="10_kg5bo"]
@@ -276,10 +276,10 @@ Secret = ExtResource("14_c08ni")
 _desktop = NodePath("../TaskSpace/Desktop")
 _laterThreshold = 480.0
 _initialMinTaskArrivalTime = 6.0
-_initialMaxTaskArrivalTime = 12.0
+_initialMaxTaskArrivalTime = 10.0
 _laterMinTaskArrivalTime = 2.0
-_laterMaxTaskArrivalTime = 8.0
-InitialDifficultyChances = Array[float]([100.0, 20.0, 15.0, 10.0, 5.0, 1.0])
+_laterMaxTaskArrivalTime = 7.0
+InitialDifficultyChances = Array[float]([100.0, 20.0, 15.0, 10.0, 2.0, 1.0])
 LaterDifficultyChances = Array[float]([100.0, 100.0, 100.0, 100.0, 100.0, 50.0])
 _taskList = NodePath("../TaskSpace/ScrollContainer/VBoxContainer")
 _taskListItem = NodePath("../TaskSpace/ScrollContainer/VBoxContainer/TaskListItem")
@@ -297,12 +297,12 @@ _intenseMusic = NodePath("../IntenseMusic")
 
 [node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite", "_angryBossSprite", "_warningAudio")]
 script = ExtResource("4_x3guh")
-_initialMinBossArrivalTime = 40.0
-_initialMaxBossArrivalTime = 45.0
-_laterMinBossArrivalTime = 15.0
-_laterMaxBossArrivalTime = 20.0
-minAdditionalRequiredScore = 30
-maxAdditionalRequiredScore = 70
+_initialMinBossArrivalTime = 45.0
+_initialMaxBossArrivalTime = 50.0
+_laterMinBossArrivalTime = 10.0
+_laterMaxBossArrivalTime = 15.0
+minAdditionalRequiredScore = 45
+maxAdditionalRequiredScore = 75
 _requiredScoreLabel = NodePath("../TaskSpace/RequiredScore")
 _bossSprite = NodePath("../BossSpace/Boss")
 _angryBossSprite = NodePath("../BossSpace/BossAngry")

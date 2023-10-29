@@ -12,27 +12,21 @@
 
 [sub_resource type="Resource" id="Resource_uimwd"]
 script = ExtResource("4_w50hr")
-MinTimeLimit = 15.0
-MaxTimeLimit = 20.0
+MinTimeLimit = 10.0
+MaxTimeLimit = 15.0
 Score = 10
-FailPenalty = 10
-OverduePenalty = 5
 
 [sub_resource type="Resource" id="Resource_ljhh6"]
 script = ExtResource("4_w50hr")
-MinTimeLimit = 20.0
-MaxTimeLimit = 25.0
+MinTimeLimit = 15.0
+MaxTimeLimit = 20.0
 Score = 20
-FailPenalty = 20
-OverduePenalty = 10
 
 [sub_resource type="Resource" id="Resource_a6ge6"]
 script = ExtResource("4_w50hr")
 MinTimeLimit = 25.0
 MaxTimeLimit = 30.0
 Score = 30
-FailPenalty = 30
-OverduePenalty = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5awi1"]
 bg_color = Color(1, 1, 1, 1)

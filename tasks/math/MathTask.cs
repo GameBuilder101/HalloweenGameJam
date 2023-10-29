@@ -45,7 +45,7 @@ public partial class MathTask : Task
 				break;
 			}
 			case 30: {
-				switch (3) {
+				switch (RandomNum.Next(4)) {
 					case 0: {
 						int numerator = randFactor * randFactor * randFactor;
 						latexString = "\\frac[" + numerator + "][{0}]";
@@ -75,7 +75,7 @@ public partial class MathTask : Task
 				break;
 			}
 			case 50: {
-				switch (3) {
+				switch (RandomNum.Next(4)) {
 					case 0: {
 						latexString = "\\frac[2520][{0}]";
 						answer = 2520 / randFactor;

@@ -8,27 +8,21 @@
 
 [sub_resource type="Resource" id="Resource_3r8p2"]
 script = ExtResource("4_k4cxa")
-MinTimeLimit = 15.0
-MaxTimeLimit = 20.0
+MinTimeLimit = 8.0
+MaxTimeLimit = 15.0
 Score = 10
-FailPenalty = 10
-OverduePenalty = 5
 
 [sub_resource type="Resource" id="Resource_xhe1d"]
 script = ExtResource("4_k4cxa")
-MinTimeLimit = 20.0
-MaxTimeLimit = 25.0
+MinTimeLimit = 15.0
+MaxTimeLimit = 20.0
 Score = 30
-FailPenalty = 20
-OverduePenalty = 20
 
 [sub_resource type="Resource" id="Resource_gdmcp"]
 script = ExtResource("4_k4cxa")
-MinTimeLimit = 60.0
-MaxTimeLimit = 80.0
+MinTimeLimit = 20.0
+MaxTimeLimit = 30.0
 Score = 50
-FailPenalty = 60
-OverduePenalty = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_2cage"]
 font = ExtResource("5_8hpej")

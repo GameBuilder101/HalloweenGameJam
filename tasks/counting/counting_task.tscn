@@ -1,9 +1,40 @@
-[gd_scene load_steps=13 format=3 uid="uid://ps8ghl7r0tq7"]
+[gd_scene load_steps=19 format=3 uid="uid://ps8ghl7r0tq7"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_w7n6h"]
 [ext_resource type="Script" path="res://tasks/counting/CountingTask.cs" id="2_b7crn"]
 [ext_resource type="Texture2D" uid="uid://b4frqpj17rhon" path="res://tasks/counting/unpaid-intern-icon-counting.png" id="3_fswuq"]
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="4_1dfn5"]
+[ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="4_o7iu2"]
+
+[sub_resource type="Resource" id="Resource_2hm4b"]
+script = ExtResource("4_o7iu2")
+MinTimeLimit = 5.0
+MaxTimeLimit = 7.0
+Score = 10
+
+[sub_resource type="Resource" id="Resource_by0mg"]
+script = ExtResource("4_o7iu2")
+MinTimeLimit = 7.0
+MaxTimeLimit = 9.0
+Score = 20
+
+[sub_resource type="Resource" id="Resource_a36ji"]
+script = ExtResource("4_o7iu2")
+MinTimeLimit = 9.0
+MaxTimeLimit = 11.0
+Score = 30
+
+[sub_resource type="Resource" id="Resource_h7u5y"]
+script = ExtResource("4_o7iu2")
+MinTimeLimit = 11.0
+MaxTimeLimit = 13.0
+Score = 40
+
+[sub_resource type="Resource" id="Resource_smghp"]
+script = ExtResource("4_o7iu2")
+MinTimeLimit = 13.0
+MaxTimeLimit = 17.0
+Score = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_x3puj"]
 font = ExtResource("4_1dfn5")
@@ -93,6 +124,7 @@ _yellowColor = Color(1, 0.960784, 0.407843, 1)
 _blueColor = Color(0, 0.74902, 0.952941, 1)
 TaskName = "Counting"
 TaskIcon = ExtResource("3_fswuq")
+Difficulties = Array[Resource]([SubResource("Resource_2hm4b"), SubResource("Resource_by0mg"), SubResource("Resource_a36ji"), SubResource("Resource_h7u5y"), SubResource("Resource_smghp")])
 
 [node name="Label" type="Label" parent="Content" index="0"]
 layout_mode = 0
