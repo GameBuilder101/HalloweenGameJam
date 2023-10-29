@@ -1,25 +1,32 @@
 using Godot;
+using System;
 
-[GlobalClass]
-public partial class TypingTask : Task
-{
-    public override void _Ready()
-    {
-        base._Ready();
-        GD.Print(_currentDifficultyIndex); // Use the _currentDifficultyIndex to get the difficulty. 0 is the lowest and 4 is the highest.
-        RandomNum.Next(5); // Use this for random numbers
-    }
+public partial class TypingTask : Task {
 
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-        if (true)
-        {
-            Pass();
-        }
-        else
-        {
-            Fail();
-        }
-    }
+	[Export]
+	private TextEdit textEditor;
+	[Export]
+	private Label givenText;
+	
+	public override void SetDifficulty(int index) {
+		base.SetDifficulty(index);
+
+		string[] wordBank = ((TypingDifficulty) Difficulties[index]
+				).WordBank.Split("\\");
+		givenText.Text = wordBank[RandomNum.Next(wordBank.Length)];
+	}
+
+	public void Submit() {
+		string given = givenText.Text.Replace(" ", "").Replace(
+			"\n", "").Replace("\t", "");
+		string input = textEditor.Text.Replace(" ", "").Replace(
+			"\n", "").Replace("\t", "");
+
+		if (string.Equals(given, input,
+				StringComparison.CurrentCultureIgnoreCase)) {
+			Pass();
+		} else {
+			Fail();
+		}
+	}
 }

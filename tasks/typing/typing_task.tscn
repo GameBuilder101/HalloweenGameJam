@@ -1,10 +1,72 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw6v6br3eoveg"]
+[gd_scene load_steps=9 format=3 uid="uid://dftabau6c785o"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_ajkk6"]
 [ext_resource type="Script" path="res://tasks/typing/TypingTask.cs" id="2_nu6i6"]
 [ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="3_h7ecq"]
+[ext_resource type="Script" path="res://tasks/typing/TypingDifficulty.cs" id="4_e886t"]
 
-[node name="TypingTask" instance=ExtResource("1_ajkk6")]
+[sub_resource type="Resource" id="Resource_i4t70"]
+script = ExtResource("4_e886t")
+WordBank = "Where is Joe?\\You're fired.\\What is 1+1?\\Hey Janet!\\Send the memo.\\I need my coffee."
+MinTimeLimit = 15.0
+MaxTimeLimit = 20.0
+Score = 10
+FailPenalty = 5
+OverduePenalty = 5
+
+[sub_resource type="Resource" id="Resource_bsxje"]
+script = ExtResource("4_e886t")
+WordBank = "Company paperclips are not for personal use.\\Don't speak to me until I've had my morning coffee.\\HR wants to speak with you.\\You need to come in 15 minutes early, every day.\\You are expected to work unpaid overtime.\\Joe doesn't even buy anything here.\\Did you see the game last night?\\Did you send that memo yet?\\What does Janet even do here?\\Oh, and on your first day, too, that sucks.\\I'm your boss, I think I know that 1+1=3."
+MinTimeLimit = 45.0
+MaxTimeLimit = 60.0
+Score = 30
+FailPenalty = 20
+OverduePenalty = 30
+
+[sub_resource type="Resource" id="Resource_pvfbk"]
+script = ExtResource("4_e886t")
+WordBank = "He W I D E\\The coffee machine has been broken for weeks now, Janet!\\Joe won customer of the week for 3 years now.\\Oh, corporate corruption is entirely normal.\\The umpire really screwed up like, every other call.\\Now, I'm not a sports guy myself, but I don't think he's all that good.\\Hey, can you un-send that memo, corporate is mad at me.\\HR said I didn't give proper notice, so you're re-hired, I suppose.\\Well, if 1+1=2, then how would you explain quantum physics, intern?\\My wife is kinda getting restless now that the kids are out.\\Yeah, I'm trying to get more hobbies but this town just isn't great for child-free adults, y'know?\\The fact is that this algorithm performs significantly slower in all reasonable use cases.\\Are you TRYING to ruin this company, Jeremy?  Re-hire that intern!\\So, my wife has informed me that 1+1 does in fact equal 2.\\Don't get too full of yourself just because you got one thing correct.\\Hey, do you want to see the paperclip castle I've been making in the closet?\\HR said it was something about the food you're making during break, something about microwaves?\\I'm fairly certain it's illegal to require us to come in early.\\Yeah, well you come in on time and see what happens.\\I need to get back home on time and see the kids for once.\\I don't think I've seen my little one in... 3 years?\\Ok, I'm not getting paid anyways.   (Wait, I said that one...)"
+MinTimeLimit = 60.0
+MaxTimeLimit = 75.0
+Score = 50
+FailPenalty = 60
+OverduePenalty = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_moiws"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="TypingTask" node_paths=PackedStringArray("textEditor", "givenText") instance=ExtResource("1_ajkk6")]
 script = ExtResource("2_nu6i6")
+textEditor = NodePath("Content/TextEdit")
+givenText = NodePath("Content/Label")
 TaskName = "Typing"
 TaskIcon = ExtResource("3_h7ecq")
+Difficulties = Array[Resource]([SubResource("Resource_i4t70"), SubResource("Resource_bsxje"), SubResource("Resource_pvfbk")])
+
+[node name="TextEdit" type="TextEdit" parent="Content" index="0"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 182.0
+offset_right = 445.0
+offset_bottom = 309.0
+placeholder_text = "Copy the above text here!"
+
+[node name="SubmitButton" type="Button" parent="Content" index="1"]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 330.0
+offset_right = 261.0
+offset_bottom = 361.0
+text = "Submit"
+
+[node name="Label" type="Label" parent="Content" index="2"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 46.0
+offset_right = 444.0
+offset_bottom = 175.0
+label_settings = SubResource("LabelSettings_moiws")
+autowrap_mode = 3
+justification_flags = 131
+
+[connection signal="pressed" from="Content/SubmitButton" to="." method="Submit"]
