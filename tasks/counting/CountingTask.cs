@@ -26,6 +26,13 @@ public partial class CountingTask : Task
     [Export]
     private double _difficultyMultiplier;
 
+    [Export]
+    private Color _redColor;
+    [Export]
+    private Color _yellowColor;
+    [Export]
+    private Color _blueColor;
+
     public override void _Ready()
     {
         base._Ready();
@@ -58,13 +65,13 @@ public partial class CountingTask : Task
             switch (randColor)
             {
                 case 0:
-                    ((StyleBoxFlat)_balls[i].GetThemeStylebox("panel")).BgColor = Color.Color8(255, 0, 0);
+                    ((StyleBoxFlat)_balls[i].GetThemeStylebox("panel")).BgColor = _redColor;
                     break;
                 case 1:
-                    ((StyleBoxFlat)_balls[i].GetThemeStylebox("panel")).BgColor = Color.Color8(0, 255, 0);
+                    ((StyleBoxFlat)_balls[i].GetThemeStylebox("panel")).BgColor = _yellowColor;
                     break;
                 case 2:
-                    ((StyleBoxFlat)_balls[i].GetThemeStylebox("panel")).BgColor = Color.Color8(0, 0, 255);
+                    ((StyleBoxFlat)_balls[i].GetThemeStylebox("panel")).BgColor = _blueColor;
                     break;
             }
 
@@ -88,7 +95,7 @@ public partial class CountingTask : Task
                 _label.Text = "Count the RED balls";
                 break;
             case 1:
-                _label.Text = "Count the GREEN balls";
+                _label.Text = "Count the YELLOW balls";
                 break;
             case 2:
                 _label.Text = "Count the BLUE balls";

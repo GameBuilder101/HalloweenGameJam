@@ -6,7 +6,7 @@ public partial class MathTask : Task
 	[Export]
 	private LaTeX display;
 	[Export]
-	private TextEdit textInput;
+	private LineEdit textInput;
 
 	private int answer;
 
