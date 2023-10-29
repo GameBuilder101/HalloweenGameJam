@@ -1,19 +1,71 @@
-[gd_scene load_steps=11 format=3 uid="uid://dw1bjd2q8gdoc"]
+[gd_scene load_steps=27 format=3 uid="uid://dw1bjd2q8gdoc"]
 
-[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="1_kwyd3"]
-[ext_resource type="PackedScene" uid="uid://cs3yhvd8ve87m" path="res://task_framework/task_list_item.tscn" id="1_wvnim"]
+[ext_resource type="Texture2D" uid="uid://dsgmgxwk7fpyr" path="res://boss_system/unpaid-intern-left-side-bkgd.png" id="1_8xt1m"]
 [ext_resource type="Texture2D" uid="uid://cjdk5204olwlw" path="res://boss_system/unpaid-intern-left-side.png" id="2_266s1"]
+[ext_resource type="Texture2D" uid="uid://co2fi2w4b5y1n" path="res://boss_system/unpaid-intern-boss-ok.png" id="2_xfdb5"]
 [ext_resource type="Script" path="res://task_framework/TaskManager.cs" id="4_awjuh"]
+[ext_resource type="Texture2D" uid="uid://c4icjb2ofo01f" path="res://boss_system/unpaid-intern-boss-mad.png" id="4_vl6ak"]
 [ext_resource type="Script" path="res://boss_system/BossManager.cs" id="4_x3guh"]
+[ext_resource type="Texture2D" uid="uid://bbftu7wopndmg" path="res://task_framework/unpaid-intern-right-side.png" id="5_v4lp8"]
+[ext_resource type="PackedScene" uid="uid://lkw423fr0kko" path="res://tasks/counting/counting_task.tscn" id="5_xj7o5"]
 [ext_resource type="PackedScene" uid="uid://bfpq6ryjvvr4b" path="res://game_over/game_over.tscn" id="6_6rl4b"]
+[ext_resource type="PackedScene" uid="uid://rndei5k0jabx" path="res://tasks/math/math_task.tscn" id="6_u0ekb"]
+[ext_resource type="PackedScene" uid="uid://d2x32vn0pso8w" path="res://tasks/sorting_bins/sorting_bins_task.tscn" id="7_eev2g"]
 [ext_resource type="PackedScene" uid="uid://7kjnl7gto07y" path="res://tasks/sorting_dates/date_manager.tscn" id="8_70djv"]
+[ext_resource type="PackedScene" uid="uid://cjo8puw152e3f" path="res://tasks/spelling/spelling_task.tscn" id="9_b8g7g"]
+[ext_resource type="PackedScene" uid="uid://dw6v6br3eoveg" path="res://tasks/typing/typing_task.tscn" id="10_hhrtw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1yqu"]
 font_size = 39
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qnmy5"]
-font_size = 25
-font_color = Color(1, 0.427451, 0.356863, 1)
+font_size = 28
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lyad3"]
+font_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2lu1"]
+bg_color = Color(0.94902, 0.94902, 0.94902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgtc4"]
+bg_color = Color(0.796078, 0.796078, 0.796078, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eulgd"]
+bg_color = Color(0.627451, 0.627451, 0.627451, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_68tpo"]
+font_size = 19
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_062fh"]
+font_size = 26
+font_color = Color(0.156863, 0.301961, 0.596078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1hqo"]
+bg_color = Color(0.796078, 0.796078, 0.796078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ux5bd"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2dlyf"]
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_wlntb"]
 colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
@@ -27,154 +79,170 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BossSpace" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 619.0
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Background" type="Sprite2D" parent="BossSpace"]
+position = Vector2(960, 540)
+texture = ExtResource("1_8xt1m")
 
 [node name="Boss" type="Sprite2D" parent="BossSpace"]
-position = Vector2(311, 565.64)
-scale = Vector2(2.85156, 2.98438)
-texture = ExtResource("1_kwyd3")
+position = Vector2(960, 540)
+texture = ExtResource("2_xfdb5")
+offset = Vector2(0, 200)
 
-[node name="Wall" type="Sprite2D" parent="BossSpace"]
+[node name="Intern" type="Sprite2D" parent="BossSpace"]
 position = Vector2(960, 540)
 texture = ExtResource("2_266s1")
-offset = Vector2(-16.355, 0)
+
+[node name="BossAngry" type="Sprite2D" parent="BossSpace"]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("4_vl6ak")
 
 [node name="TaskSpace" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1236.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Background" type="ColorRect" parent="TaskSpace"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Desktop" type="Control" parent="TaskSpace"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 28.0
-offset_top = 56.0
-offset_right = 814.0
-offset_bottom = -40.0
-grow_vertical = 2
-
-[node name="Background" type="ColorRect" parent="TaskSpace/Desktop"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.396078, 0.686275, 0.701961, 1)
-
-[node name="TaskContainer" type="Control" parent="TaskSpace/Desktop"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TaskList" type="Control" parent="TaskSpace"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -399.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Background" type="ColorRect" parent="TaskSpace/TaskList"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.2, 0.2, 0.2, 1)
-
-[node name="ScrollContainer" type="ScrollContainer" parent="TaskSpace/TaskList"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -170.5
-offset_top = -497.0
-offset_right = 175.5
-offset_bottom = 489.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TaskSpace/TaskList/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TaskListItem" parent="TaskSpace/TaskList/ScrollContainer/VBoxContainer" instance=ExtResource("1_wvnim")]
-visible = false
-layout_mode = 2
-
-[node name="ScorePanel" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 57.0
-offset_top = -176.0
-offset_right = 557.0
-offset_bottom = -50.0
-grow_vertical = 0
-
-[node name="Background" type="ColorRect" parent="ScorePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.607843)
-
-[node name="Score" type="Label" parent="ScorePanel"]
+[node name="Background" type="TextureRect" parent="TaskSpace"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 13.0
-offset_right = 492.0
-offset_bottom = 70.0
-text = "SCORE: ####"
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("5_v4lp8")
+
+[node name="Score" type="Label" parent="TaskSpace"]
+layout_mode = 0
+offset_left = 1473.0
+offset_top = 116.0
+offset_right = 1862.0
+offset_bottom = 228.0
+text = "SCORE: "
 label_settings = SubResource("LabelSettings_y1yqu")
 horizontal_alignment = 1
 
-[node name="RequiredScore" type="Label" parent="ScorePanel"]
+[node name="RequiredScore" type="Label" parent="TaskSpace"]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 73.0
-offset_right = 481.0
-offset_bottom = 115.0
-text = "QUOTA: ####"
+offset_left = 1473.0
+offset_top = 170.0
+offset_right = 1862.0
+offset_bottom = 228.0
+text = "QUOTA:"
 label_settings = SubResource("LabelSettings_qnmy5")
 horizontal_alignment = 1
 
+[node name="Label" type="Label" parent="TaskSpace"]
+layout_mode = 0
+offset_left = 1490.0
+offset_top = 58.0
+offset_right = 1862.0
+offset_bottom = 97.0
+text = "work.exe"
+label_settings = SubResource("LabelSettings_lyad3")
+vertical_alignment = 1
+
+[node name="Desktop" type="Control" parent="TaskSpace"]
+anchors_preset = 0
+offset_left = 733.0
+offset_top = 53.0
+offset_right = 1450.0
+offset_bottom = 1020.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TaskSpace"]
+layout_mode = 1
+offset_left = 1487.0
+offset_top = 249.0
+offset_right = 1848.0
+offset_bottom = 996.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskSpace/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TaskListItem" type="Control" parent="TaskSpace/ScrollContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="TaskSpace/ScrollContainer/VBoxContainer/TaskListItem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_o2lu1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hgtc4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_eulgd")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o2lu1")
+alignment = 0
+
+[node name="Name" type="Label" parent="TaskSpace/ScrollContainer/VBoxContainer/TaskListItem/Button"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 343.0
+offset_bottom = 70.0
+text = "Task Name"
+label_settings = SubResource("LabelSettings_68tpo")
+
+[node name="Points" type="Label" parent="TaskSpace/ScrollContainer/VBoxContainer/TaskListItem/Button"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 343.0
+offset_bottom = 70.0
+text = "[ POINTS]"
+label_settings = SubResource("LabelSettings_062fh")
+vertical_alignment = 2
+
+[node name="Timer" type="ProgressBar" parent="TaskSpace/ScrollContainer/VBoxContainer/TaskListItem/Button"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -32.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_b1hqo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ux5bd")
+show_percentage = false
+
+[node name="TimerLabel" type="Label" parent="TaskSpace/ScrollContainer/VBoxContainer/TaskListItem/Button"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0:30"
+label_settings = SubResource("LabelSettings_2dlyf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="TaskSpace/ScrollContainer/VBoxContainer/TaskListItem/Button"]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 11.0
+offset_right = 350.0
+offset_bottom = 72.0
+expand_mode = 1
+
 [node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem")]
 script = ExtResource("4_awjuh")
-_scoreLabel = NodePath("../ScorePanel/Score")
-Tasks = Array[Object]([ExtResource("8_70djv")])
-_desktop = NodePath("../TaskSpace/Desktop/TaskContainer")
+_scoreLabel = NodePath("../TaskSpace/Score")
+Tasks = Array[Object]([ExtResource("5_xj7o5"), ExtResource("6_u0ekb"), ExtResource("7_eev2g"), ExtResource("8_70djv"), ExtResource("9_b8g7g"), ExtResource("10_hhrtw")])
+_desktop = NodePath("../TaskSpace/Desktop")
 _laterThreshold = 480.0
 _initialMinTaskArrivalTime = 8.0
 _initialMaxTaskArrivalTime = 15.0
@@ -182,8 +250,8 @@ _laterMinTaskArrivalTime = 5.0
 _laterMaxTaskArrivalTime = 10.0
 InitialDifficultyChances = Array[float]([100.0, 20.0, 15.0, 10.0, 5.0, 1.0])
 LaterDifficultyChances = Array[float]([100.0, 100.0, 100.0, 100.0, 100.0, 50.0])
-_taskList = NodePath("../TaskSpace/TaskList/ScrollContainer/VBoxContainer")
-_taskListItem = NodePath("../TaskSpace/TaskList/ScrollContainer/VBoxContainer/TaskListItem")
+_taskList = NodePath("../TaskSpace/ScrollContainer/VBoxContainer")
+_taskListItem = NodePath("../TaskSpace/ScrollContainer/VBoxContainer/TaskListItem")
 _timerGradient = SubResource("Gradient_wlntb")
 
 [node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite")]
@@ -194,7 +262,7 @@ _laterMinBossArrivalTime = 15.0
 _laterMaxBossArrivalTime = 20.0
 minAdditionalRequiredScore = 30
 maxAdditionalRequiredScore = 80
-_requiredScoreLabel = NodePath("../ScorePanel/RequiredScore")
+_requiredScoreLabel = NodePath("../TaskSpace/RequiredScore")
 _bossSprite = NodePath("../BossSpace/Boss")
 _bossPeekOffset = -80.0
 _bossPeekAnimationDuration = 1.0

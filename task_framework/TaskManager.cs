@@ -85,11 +85,11 @@ public partial class TaskManager : Node
             activeTaskListItem.GetNode<ProgressBar>("Button/Timer").Value = progress * 100.0;
             activeTaskListItem.GetNode<Label>("Button/TimerLabel").Text =
                 Math.Floor(_activeTasks[i].CurrentTime / 60.0) + ":" + (_activeTasks[i].CurrentTime % 60.0).ToString("00");
-            ((StyleBoxFlat)((Control)activeTaskListItem).GetThemeStylebox("fill", "")).BgColor = _timerGradient.Sample((float)progress);
+            ((StyleBoxFlat)activeTaskListItem.GetNode<ProgressBar>("Button/Timer").GetThemeStylebox("fill")).BgColor = _timerGradient.Sample((float)progress);
             i++;
         }
 
-        _scoreLabel.Text = "Score: " + currentScore;
+        _scoreLabel.Text = "SCORE: " + currentScore;
     }
 
     public void AssignTask()
