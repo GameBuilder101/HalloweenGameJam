@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsi77spgnfmrw"]
+[gd_scene load_steps=11 format=3 uid="uid://bsi77spgnfmrw"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_u8bfg"]
 [ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://tasks/test/icon.svg" id="2_jc4xe"]
@@ -18,8 +18,47 @@ font = ExtResource("3_d2dvs")
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Theme" id="Theme_u4o3s"]
+default_font = ExtResource("3_d2dvs")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21m1m"]
+bg_color = Color(0.278431, 0.54902, 0.74902, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7x3dv"]
+bg_color = Color(0.223529, 0.470588, 0.65098, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvl4g"]
+bg_color = Color(0.188235, 0.411765, 0.572549, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="TestTask" instance=ExtResource("1_u8bfg")]
-TaskName = "Test Task"
+TaskName = "W I D E"
 TaskIcon = ExtResource("2_jc4xe")
 Difficulties = Array[Resource]([SubResource("Resource_oarr7")])
 
@@ -63,6 +102,10 @@ offset_right = 139.5
 offset_bottom = 66.825
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_u4o3s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_21m1m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7x3dv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nvl4g")
 text = "True"
 
 [node name="FailButton" type="Button" parent="Content" index="3"]
@@ -78,6 +121,10 @@ offset_right = 139.5
 offset_bottom = 150.79
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_u4o3s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_21m1m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7x3dv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nvl4g")
 text = "False"
 
 [connection signal="pressed" from="Content/PassButton" to="." method="Pass"]
