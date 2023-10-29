@@ -60,7 +60,17 @@ public partial class TaskManager : Node
 	[Export]
 	private Gradient _timerGradient;
 
-	Random random = new Random();
+	[Export]
+	private Sprite2D _taskCorrectIndicator;
+	[Export]
+	private Texture2D _taskPassIcon;
+    [Export]
+    private Texture2D _taskFailIcon;
+    [Export]
+	private double _correctIndicatorAnimDuration;
+    private double _correctIndicatorAnimTime = -1.0;
+
+    Random random = new Random();
 
 	public override void _Ready()
 	{
@@ -90,6 +100,19 @@ public partial class TaskManager : Node
 		}
 
 		_scoreLabel.Text = "SCORE: " + currentScore;
+
+		// Correct indicator animaions
+		if (_correctIndicatorAnimTime >= 0.0)
+		{
+			float progress = (float)(_correctIndicatorAnimTime / _correctIndicatorAnimDuration);
+            // Fade out the indicator
+            _taskCorrectIndicator.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f - progress);
+			// Move the indicator up
+			_taskCorrectIndicator.Offset = new Vector2(0.0f, progress * -100.0f);
+			_correctIndicatorAnimTime += delta;
+			if (_correctIndicatorAnimTime >= _correctIndicatorAnimDuration)
+                StopCorrectIndicatorAnim();
+        }
 	}
 
 	public void AssignTask()
@@ -141,7 +164,7 @@ public partial class TaskManager : Node
 			Lerp(_initialMaxTaskArrivalTime, _laterMaxTaskArrivalTime, LaterPercent) * random.NextDouble();
 	}
 
-	public void RemoveTask(Task task)
+	public void RemoveTask(Task task, TaskPassedState state = TaskPassedState.Overdue)
 	{
 		int index = _activeTasks.IndexOf(task);
 		_activeTasks[index].QueueFree();
@@ -151,10 +174,37 @@ public partial class TaskManager : Node
 
 		if (_activeTasks.Count <= 0)
 			TaskArrivalTimer = 1.0; // Add a small delay instead of immediately assigning a new task
+
+		if (state == TaskPassedState.Pass)
+		{
+            _taskCorrectIndicator.Texture = _taskPassIcon;
+			StartCorrectIndicatorAnim();
+        }
+		else if (state == TaskPassedState.Fail)
+		{
+			_taskCorrectIndicator.Texture = _taskFailIcon;
+            StartCorrectIndicatorAnim();
+        }
 	}
+
+	private void StartCorrectIndicatorAnim()
+	{
+        _correctIndicatorAnimTime = 0.0;
+		// Move to the cursor
+		_taskCorrectIndicator.Position = _taskCorrectIndicator.GetViewport().GetMousePosition();
+		_taskCorrectIndicator.Visible = true;
+    }
+
+	private void StopCorrectIndicatorAnim()
+	{
+        _correctIndicatorAnimTime = -1.0;
+        _taskCorrectIndicator.Visible = false;
+    }
 
 	private double Lerp(double a, double b, double t)
 	{
 		return a + (b - a) * t;
 	}
 }
+
+public enum TaskPassedState { Pass, Fail, Overdue }

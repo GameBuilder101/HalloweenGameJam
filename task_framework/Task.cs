@@ -102,19 +102,19 @@ public partial class Task : Control
 	public virtual void Pass()
 	{
 		TaskManager.Instance.currentScore += CurrentDifficulty.Score;
-		TaskManager.Instance.RemoveTask(this);
+		TaskManager.Instance.RemoveTask(this, TaskPassedState.Pass);
 	}
 
 	public virtual void Fail()
 	{
 		TaskManager.Instance.currentScore -= CurrentDifficulty.FailPenalty;
-		TaskManager.Instance.RemoveTask(this);
+		TaskManager.Instance.RemoveTask(this, TaskPassedState.Fail);
 	}
 
 	protected virtual void Overdue()
 	{
 		TaskManager.Instance.currentScore -= CurrentDifficulty.OverduePenalty;
-		TaskManager.Instance.RemoveTask(this);
+		TaskManager.Instance.RemoveTask(this, TaskPassedState.Overdue);
 	}
 
 	public void StartDragging()
