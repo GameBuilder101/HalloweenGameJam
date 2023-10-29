@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dw1bjd2q8gdoc"]
+[gd_scene load_steps=34 format=3 uid="uid://dw1bjd2q8gdoc"]
 
 [ext_resource type="Texture2D" uid="uid://dsgmgxwk7fpyr" path="res://boss_system/unpaid-intern-left-side-bkgd.png" id="1_8xt1m"]
 [ext_resource type="Texture2D" uid="uid://cjdk5204olwlw" path="res://boss_system/unpaid-intern-left-side.png" id="2_266s1"]
@@ -12,12 +12,16 @@
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="6_nelnd"]
 [ext_resource type="PackedScene" uid="uid://rndei5k0jabx" path="res://tasks/math/math_task.tscn" id="6_u0ekb"]
 [ext_resource type="PackedScene" uid="uid://d2x32vn0pso8w" path="res://tasks/sorting_bins/sorting_bins_task.tscn" id="7_eev2g"]
+[ext_resource type="AudioStream" uid="uid://dwl8hf52s338a" path="res://audio/New_Task.wav" id="7_o31ms"]
+[ext_resource type="AudioStream" uid="uid://rsc36rx20k4s" path="res://audio/Failed_Task.wav" id="8_3alu7"]
 [ext_resource type="PackedScene" uid="uid://cjo8puw152e3f" path="res://tasks/spelling/spelling_task.tscn" id="9_b8g7g"]
-[ext_resource type="PackedScene" uid="uid://dw6v6br3eoveg" path="res://tasks/typing/typing_task.tscn" id="10_hhrtw"]
-[ext_resource type="PackedScene" uid="uid://pmiuq16dp2v6" path="res://tasks/sorting_dates/dates_task.tscn" id="11_0ty82"]
+[ext_resource type="AudioStream" uid="uid://kch5f2mqeye4" path="res://audio/Completed_Task.wav" id="9_whrnb"]
+[ext_resource type="PackedScene" uid="uid://dftabau6c785o" path="res://tasks/typing/typing_task.tscn" id="10_hhrtw"]
+[ext_resource type="AudioStream" uid="uid://cceuq1vuy1ogl" path="res://audio/Warning_Audio.wav" id="10_kg5bo"]
+[ext_resource type="PackedScene" path="res://tasks/sorting_dates/dates_task.tscn" id="11_0ty82"]
 [ext_resource type="Texture2D" uid="uid://c5g4a2y03jxd2" path="res://task_framework/unpaid-intern-notif-check.png" id="14_xbqtm"]
 [ext_resource type="Texture2D" uid="uid://ljjrhk42n2eo" path="res://task_framework/unpaid-intern-notif-x.png" id="15_hnfmi"]
-[ext_resource type="AudioStream" uid="uid://c21yuwjmxfxv3" path="res://audio/Unpaid_Intern_Bossy_Nova.wav" id="16_3a1al"]
+[ext_resource type="AudioStream" uid="uid://bs3wony0h2ss5" path="res://audio/Unpaid_Intern_Bossy_Nova.wav" id="16_3a1al"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1yqu"]
 font = ExtResource("6_nelnd")
@@ -244,10 +248,22 @@ offset_right = 350.0
 offset_bottom = 72.0
 expand_mode = 1
 
+[node name="NewTaskAudio" type="AudioStreamPlayer" parent="TaskSpace"]
+stream = ExtResource("7_o31ms")
+
+[node name="FailedTaskAudio" type="AudioStreamPlayer" parent="TaskSpace"]
+stream = ExtResource("8_3alu7")
+
+[node name="CorrectTaskAudio" type="AudioStreamPlayer" parent="TaskSpace"]
+stream = ExtResource("9_whrnb")
+
+[node name="WarningAudio" type="AudioStreamPlayer" parent="TaskSpace"]
+stream = ExtResource("10_kg5bo")
+
 [node name="CorrectIndicator" type="Sprite2D" parent="."]
 visible = false
 
-[node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem")]
+[node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem", "_taskCorrectIndicator", "_newTaskAudio", "_failedTaskAudio", "_correctTaskAudio", "_warningAudio")]
 script = ExtResource("4_awjuh")
 _scoreLabel = NodePath("../TaskSpace/Score")
 Tasks = Array[Object]([ExtResource("5_xj7o5"), ExtResource("6_u0ekb"), ExtResource("7_eev2g"), ExtResource("11_0ty82"), ExtResource("9_b8g7g"), ExtResource("10_hhrtw")])
@@ -262,9 +278,14 @@ LaterDifficultyChances = Array[float]([100.0, 100.0, 100.0, 100.0, 100.0, 50.0])
 _taskList = NodePath("../TaskSpace/ScrollContainer/VBoxContainer")
 _taskListItem = NodePath("../TaskSpace/ScrollContainer/VBoxContainer/TaskListItem")
 _timerGradient = SubResource("Gradient_dnrd4")
+_taskCorrectIndicator = NodePath("../CorrectIndicator")
 _taskPassIcon = ExtResource("14_xbqtm")
 _taskFailIcon = ExtResource("15_hnfmi")
 _correctIndicatorAnimDuration = 1.0
+_newTaskAudio = NodePath("../TaskSpace/NewTaskAudio")
+_failedTaskAudio = NodePath("../TaskSpace/FailedTaskAudio")
+_correctTaskAudio = NodePath("../TaskSpace/CorrectTaskAudio")
+_warningAudio = NodePath("../TaskSpace/WarningAudio")
 
 [node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite", "_angryBossSprite")]
 script = ExtResource("4_x3guh")

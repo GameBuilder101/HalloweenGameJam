@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+
 public partial class TaskManager : Node
 {
 	public static TaskManager Instance { get; private set; }
@@ -72,6 +73,14 @@ public partial class TaskManager : Node
 	private double _correctIndicatorAnimDuration;
 	private double _correctIndicatorAnimTime = -1.0;
 
+	[Export]
+	private AudioStreamPlayer _newTaskAudio;
+	[Export]
+	private AudioStreamPlayer _failedTaskAudio;
+	[Export]
+	private AudioStreamPlayer _correctTaskAudio;
+	[Export]
+	private AudioStreamPlayer _warningAudio;
 	Random random = new Random();
 
 	public override void _Ready()
@@ -127,6 +136,8 @@ public partial class TaskManager : Node
 			task = (Task)Tasks[random.Next(Tasks.Count)].Instantiate();
 		}
 		_desktop.AddChild(task);
+		// Plays the sound effect
+		_newTaskAudio.Play();
 		// Move the task to a random position
 		task.Position = new Vector2((float)random.NextDouble() * (((Control)_desktop).Size.X - task.Size.X),
 			(float)random.NextDouble() * (((Control)_desktop).Size.Y - task.Size.Y));
@@ -185,11 +196,15 @@ public partial class TaskManager : Node
 		if (state == TaskPassedState.Pass)
 		{
 			_taskCorrectIndicator.Texture = _taskPassIcon;
+			// Plays the sound effect
+			_correctTaskAudio.Play();
 			StartCorrectIndicatorAnim();
 		}
 		else if (state == TaskPassedState.Fail)
 		{
 			_taskCorrectIndicator.Texture = _taskFailIcon;
+			// Plays the sound effect
+			_failedTaskAudio.Play();
 			StartCorrectIndicatorAnim();
 		}
 	}
@@ -197,6 +212,7 @@ public partial class TaskManager : Node
 	private void StartCorrectIndicatorAnim()
 	{
 		_correctIndicatorAnimTime = 0.0;
+		
 		// Move to the cursor
 		_taskCorrectIndicator.Position = _taskCorrectIndicator.GetViewport().GetMousePosition();
 		_taskCorrectIndicator.Visible = true;
