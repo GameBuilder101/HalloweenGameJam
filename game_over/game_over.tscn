@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game_over/GameOver.cs" id="1_o1cfb"]
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="2_ta2x2"]
-[ext_resource type="AudioStream" uid="uid://dkns16tq4bf8q" path="res://audio/Unpaid_Intern_Pink_Slip_Jingle.wav" id="3_pehc4"]
+[ext_resource type="AudioStream" uid="uid://dus8jcbxtryg3" path="res://audio/Unpaid_Intern_Pink_Slip_Jingle.wav" id="3_pehc4"]
 
 [sub_resource type="Theme" id="Theme_evdx6"]
 default_font = ExtResource("2_ta2x2")

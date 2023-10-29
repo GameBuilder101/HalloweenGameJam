@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://mo144gkinbv7"]
+[gd_scene load_steps=8 format=3 uid="uid://mo144gkinbv7"]
 
 [ext_resource type="Script" path="res://title_screen/TitleScreen.cs" id="1_i6ly2"]
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="2_gaf8i"]
+[ext_resource type="AudioStream" uid="uid://5wpkjppxjiak" path="res://audio/Unpaid_Intern_First_Day.wav" id="3_q1d0x"]
 
 [sub_resource type="Theme" id="Theme_evdx6"]
 default_font = ExtResource("2_gaf8i")
@@ -19,7 +20,7 @@ font = ExtResource("2_gaf8i")
 font_size = 22
 font_color = Color(0.415686, 0.415686, 0.415686, 1)
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" node_paths=PackedStringArray("_FirstTheme")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,6 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i6ly2")
+_FirstTheme = NodePath("FirstDay")
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 1
@@ -101,5 +103,9 @@ label_settings = SubResource("LabelSettings_3ka2c")
 horizontal_alignment = 2
 vertical_alignment = 2
 
+[node name="FirstDay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q1d0x")
+
 [connection signal="pressed" from="PlayButton" to="." method="Play"]
 [connection signal="pressed" from="QuitButton" to="." method="Quit"]
+[connection signal="finished" from="FirstDay" to="." method="_on_first_day_finished"]
