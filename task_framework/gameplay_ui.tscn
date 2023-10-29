@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://lkw423fr0kko" path="res://tasks/counting/counting_task.tscn" id="5_xj7o5"]
 [ext_resource type="PackedScene" uid="uid://bfpq6ryjvvr4b" path="res://game_over/game_over.tscn" id="6_6rl4b"]
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="6_nelnd"]
-[ext_resource type="PackedScene" uid="uid://rndei5k0jabx" path="res://tasks/math/math_task.tscn" id="6_u0ekb"]
+[ext_resource type="PackedScene" uid="uid://csje7y0jm31h8" path="res://tasks/math/math_task.tscn" id="6_u0ekb"]
 [ext_resource type="PackedScene" uid="uid://d2x32vn0pso8w" path="res://tasks/sorting_bins/sorting_bins_task.tscn" id="7_eev2g"]
 [ext_resource type="AudioStream" uid="uid://bjetiq6e31nw1" path="res://audio/New_Task.wav" id="7_o31ms"]
 [ext_resource type="AudioStream" uid="uid://c8tlww5a1ywhj" path="res://audio/Failed_Task.wav" id="8_3alu7"]

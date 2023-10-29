@@ -82,15 +82,15 @@ public partial class TaskManager : Node
 	[Export]
 	private AudioStreamPlayer _warningAudio;
 
-    [Export]
-    private AudioStreamPlayer _normalMusic;
-    [Export]
-    private AudioStreamPlayer _intenseMusic;
+	[Export]
+	private AudioStreamPlayer _normalMusic;
+	[Export]
+	private AudioStreamPlayer _intenseMusic;
 	[Export]
 	private int _intenseMusicThreshold = 5;
 	private double _transitionIntenseMusicTime = -1.0;
 
-    Random random = new Random();
+	Random random = new Random();
 
 	public override void _Ready()
 	{
@@ -135,7 +135,7 @@ public partial class TaskManager : Node
 		}
 
 		if (_activeTasks.Count >= _intenseMusicThreshold && _transitionIntenseMusicTime < 0.0 && !_intenseMusic.Playing)
-            _transitionIntenseMusicTime = 0.0;
+			_transitionIntenseMusicTime = 0.0;
 		if (_transitionIntenseMusicTime >= 0.0)
 		{
 			_transitionIntenseMusicTime += delta;
@@ -150,9 +150,9 @@ public partial class TaskManager : Node
 		if (!_intenseMusic.Playing && !_normalMusic.Playing)
 		{
 			_normalMusic.VolumeDb = 0.0f;
-            _normalMusic.Play();
-        }
-    }
+			_normalMusic.Play();
+		}
+	}
 
 	public void AssignTask()
 	{
