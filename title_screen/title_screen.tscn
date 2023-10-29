@@ -1,24 +1,87 @@
-[gd_scene load_steps=8 format=3 uid="uid://mo144gkinbv7"]
+[gd_scene load_steps=14 format=3 uid="uid://mo144gkinbv7"]
 
 [ext_resource type="Script" path="res://title_screen/TitleScreen.cs" id="1_i6ly2"]
+[ext_resource type="Texture2D" uid="uid://d1w7mdpg1etpe" path="res://title_screen/title-bkgd.png" id="2_8dbi4"]
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="2_gaf8i"]
 [ext_resource type="AudioStream" uid="uid://5wpkjppxjiak" path="res://audio/Unpaid_Intern_First_Day.wav" id="3_q1d0x"]
+[ext_resource type="Texture2D" uid="uid://dfg1qd1icyym2" path="res://title_screen/unpaid-intern-logo.png" id="4_tg7ka"]
 
 [sub_resource type="Theme" id="Theme_evdx6"]
 default_font = ExtResource("2_gaf8i")
+default_font_size = 25
 
-[sub_resource type="LabelSettings" id="LabelSettings_u7awo"]
-font = ExtResource("2_gaf8i")
-font_size = 102
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtefl"]
+bg_color = Color(0.607843, 0.921569, 0.313726, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="LabelSettings" id="LabelSettings_rjdgr"]
-font = ExtResource("2_gaf8i")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ebsq"]
+bg_color = Color(0.490196, 0.752941, 0.239216, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lx48y"]
+bg_color = Color(0.988235, 0.670588, 0.65098, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ief1q"]
+bg_color = Color(0.984314, 0.568627, 0.552941, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxyvu"]
+bg_color = Color(0.972549, 0.439216, 0.431373, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_0mo4m"]
 font_size = 31
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.298039)
+shadow_offset = Vector2(4.43, 3.96)
 
-[sub_resource type="LabelSettings" id="LabelSettings_3ka2c"]
-font = ExtResource("2_gaf8i")
-font_size = 22
-font_color = Color(0.415686, 0.415686, 0.415686, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_k404y"]
+font_size = 21
+font_color = Color(0.835294, 0.835294, 0.835294, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="TitleScreen" type="Control" node_paths=PackedStringArray("_FirstTheme")]
 layout_mode = 3
@@ -30,6 +93,11 @@ grow_vertical = 2
 script = ExtResource("1_i6ly2")
 _FirstTheme = NodePath("FirstDay")
 
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_8dbi4")
+
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -37,13 +105,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -165.0
-offset_top = -280.0
-offset_right = 165.0
-offset_bottom = -227.0
+offset_left = -564.0
+offset_top = -322.0
+offset_right = -234.0
+offset_bottom = -256.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_evdx6")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dtefl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ebsq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7ebsq")
 text = "Play"
 
 [node name="QuitButton" type="Button" parent="."]
@@ -53,25 +129,22 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -165.0
-offset_top = -180.0
-offset_right = 165.0
-offset_bottom = -127.0
+offset_left = -564.0
+offset_top = -215.0
+offset_right = -234.0
+offset_bottom = -155.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_evdx6")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_lx48y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ief1q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qxyvu")
 text = "Quit"
-
-[node name="GameOverLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 99.0
-offset_bottom = 223.0
-grow_horizontal = 2
-text = "UNPAID INTERN"
-label_settings = SubResource("LabelSettings_u7awo")
-horizontal_alignment = 1
 
 [node name="DescriptionLabel" type="Label" parent="."]
 layout_mode = 1
@@ -80,28 +153,36 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -140.0
-offset_right = 300.0
-offset_bottom = 60.0
+offset_left = -702.0
+offset_top = -96.0
+offset_right = -102.0
+offset_bottom = 139.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Complete tasks to gain points. If you miss the deadline or get the task wrong, you lose points. Keep up with your point quota to not make your boss upset!"
-label_settings = SubResource("LabelSettings_rjdgr")
+label_settings = SubResource("LabelSettings_0mo4m")
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1476.0
-offset_top = 953.0
-offset_right = 1874.0
-offset_bottom = 1039.0
+offset_left = 28.0
+offset_top = 965.0
+offset_right = 426.0
+offset_bottom = 1051.0
 text = "Comic Helvetic Light font
 by Alexander Pravdin"
-label_settings = SubResource("LabelSettings_3ka2c")
-horizontal_alignment = 2
+label_settings = SubResource("LabelSettings_k404y")
 vertical_alignment = 2
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 10.0
+offset_right = 932.0
+offset_bottom = 455.0
+texture = ExtResource("4_tg7ka")
+expand_mode = 1
 
 [node name="FirstDay" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_q1d0x")

@@ -1,12 +1,73 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfpq6ryjvvr4b"]
+[gd_scene load_steps=14 format=3 uid="uid://bfpq6ryjvvr4b"]
 
 [ext_resource type="Script" path="res://game_over/GameOver.cs" id="1_o1cfb"]
 [ext_resource type="Texture2D" uid="uid://d1w7mdpg1etpe" path="res://title_screen/title-bkgd.png" id="2_o7k27"]
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="2_ta2x2"]
-[ext_resource type="AudioStream" uid="uid://dus8jcbxtryg3" path="res://audio/Unpaid_Intern_Pink_Slip_Jingle.wav" id="3_pehc4"]
+[ext_resource type="AudioStream" uid="uid://dkns16tq4bf8q" path="res://audio/Unpaid_Intern_Pink_Slip_Jingle.wav" id="3_pehc4"]
 
 [sub_resource type="Theme" id="Theme_evdx6"]
 default_font = ExtResource("2_ta2x2")
+default_font_size = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtefl"]
+bg_color = Color(0.607843, 0.921569, 0.313726, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ebsq"]
+bg_color = Color(0.490196, 0.752941, 0.239216, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lx48y"]
+bg_color = Color(0.988235, 0.670588, 0.65098, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ief1q"]
+bg_color = Color(0.984314, 0.568627, 0.552941, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxyvu"]
+bg_color = Color(0.972549, 0.439216, 0.431373, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_u7awo"]
 font = ExtResource("2_ta2x2")
@@ -22,6 +83,10 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rjdgr"]
 font_size = 31
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.298039)
+shadow_offset = Vector2(4.43, 3.96)
 
 [node name="GameOver" type="Control" node_paths=PackedStringArray("_scoreLabel")]
 layout_mode = 3
@@ -46,13 +111,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -165.0
-offset_top = -280.0
-offset_right = 165.0
-offset_bottom = -227.0
+offset_left = -564.0
+offset_top = -403.0
+offset_right = -234.0
+offset_bottom = -343.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_evdx6")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dtefl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ebsq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7ebsq")
 text = "Retry"
 
 [node name="QuitButton" type="Button" parent="."]
@@ -62,13 +135,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -165.0
-offset_top = -180.0
-offset_right = 165.0
-offset_bottom = -127.0
+offset_left = -564.0
+offset_top = -296.0
+offset_right = -234.0
+offset_bottom = -236.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_evdx6")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_lx48y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ief1q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qxyvu")
 text = "Quit"
 
 [node name="GameOverLabel" type="Label" parent="."]
@@ -102,10 +183,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -140.0
-offset_right = 300.0
-offset_bottom = 60.0
+offset_left = -702.0
+offset_top = -214.0
+offset_right = -102.0
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "You failed to meet your quota before the boss arrived! He was unsatisfied with your performence and now you're fired!"
