@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dw1bjd2q8gdoc"]
+[gd_scene load_steps=36 format=3 uid="uid://dw1bjd2q8gdoc"]
 
 [ext_resource type="Texture2D" uid="uid://dsgmgxwk7fpyr" path="res://boss_system/unpaid-intern-left-side-bkgd.png" id="1_8xt1m"]
 [ext_resource type="Texture2D" uid="uid://cjdk5204olwlw" path="res://boss_system/unpaid-intern-left-side.png" id="2_266s1"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dw6v6br3eoveg" path="res://tasks/typing/typing_task.tscn" id="10_hhrtw"]
 [ext_resource type="AudioStream" uid="uid://by2cex6kmv6ow" path="res://audio/Warning_Audio.wav" id="10_kg5bo"]
 [ext_resource type="PackedScene" uid="uid://pmiuq16dp2v6" path="res://tasks/sorting_dates/dates_task.tscn" id="11_0ty82"]
+[ext_resource type="PackedScene" uid="uid://bsi77spgnfmrw" path="res://tasks/test/test_task.tscn" id="14_c08ni"]
 [ext_resource type="Texture2D" uid="uid://c5g4a2y03jxd2" path="res://task_framework/unpaid-intern-notif-check.png" id="14_xbqtm"]
 [ext_resource type="Texture2D" uid="uid://ljjrhk42n2eo" path="res://task_framework/unpaid-intern-notif-x.png" id="15_hnfmi"]
 [ext_resource type="AudioStream" uid="uid://c21yuwjmxfxv3" path="res://audio/Unpaid_Intern_Bossy_Nova.wav" id="16_3a1al"]
@@ -271,6 +272,7 @@ visible = false
 script = ExtResource("4_awjuh")
 _scoreLabel = NodePath("../TaskSpace/Score")
 Tasks = Array[Object]([ExtResource("5_xj7o5"), ExtResource("6_u0ekb"), ExtResource("7_eev2g"), ExtResource("11_0ty82"), ExtResource("9_b8g7g"), ExtResource("10_hhrtw")])
+Secret = ExtResource("14_c08ni")
 _desktop = NodePath("../TaskSpace/Desktop")
 _laterThreshold = 480.0
 _initialMinTaskArrivalTime = 6.0
