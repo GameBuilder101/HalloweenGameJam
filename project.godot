@@ -19,11 +19,16 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 
 [dotnet]
 
 project/assembly_name="HalloweenGameJam"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GodoTeX/plugin.cfg")
 
 [rendering]
 
