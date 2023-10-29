@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bsi77spgnfmrw"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_u8bfg"]
-[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="2_jc4xe"]
+[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://tasks/test/icon.svg" id="2_jc4xe"]
 [ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="3_0yfa4"]
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="3_d2dvs"]
 
