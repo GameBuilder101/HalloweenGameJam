@@ -54,8 +54,8 @@ public partial class DatesTask : Task
 		base.SetDifficulty(index);
 
 		int max_files = CurrentDifficulty.Score / 5 + 1;
-		if (max_files > 10) {
-			max_files = 10;
+		if (max_files > 7) {
+			max_files = 7;
 		}
 		files = new File[max_files];
 		filesLength = max_files;

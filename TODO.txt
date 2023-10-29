@@ -1,4 +1,0 @@
-TODO
-- MM / DD / YYYY instead of MM/DD/YYYY
-- make tasks go to a random spot on the computer screen instead of always in the top left corner
-- Add checkmark/x at the cursor when the player gets a task right/wrong

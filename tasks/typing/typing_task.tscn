@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dw6v6br3eoveg"]
+[gd_scene load_steps=17 format=3 uid="uid://dw6v6br3eoveg"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_ajkk6"]
 [ext_resource type="Script" path="res://tasks/typing/TypingTask.cs" id="2_nu6i6"]
 [ext_resource type="Texture2D" uid="uid://dw00i32uli2jx" path="res://tasks/typing/unpaid-intern-icon-typing.png" id="3_huje2"]
 [ext_resource type="Script" path="res://tasks/typing/TypingDifficulty.cs" id="4_e886t"]
+[ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="5_h6ahp"]
 
 [sub_resource type="Resource" id="Resource_i4t70"]
 script = ExtResource("4_e886t")
@@ -32,41 +33,149 @@ Score = 50
 FailPenalty = 60
 OverduePenalty = 50
 
-[sub_resource type="LabelSettings" id="LabelSettings_moiws"]
+[sub_resource type="LabelSettings" id="LabelSettings_uprbh"]
+font = ExtResource("5_h6ahp")
+font_size = 22
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_moiws"]
+font = ExtResource("5_h6ahp")
+font_size = 17
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_dthte"]
+default_font = ExtResource("5_h6ahp")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eono5"]
+bg_color = Color(0.403922, 0.403922, 0.403922, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6d5q8"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qkyb"]
+bg_color = Color(0.607843, 0.921569, 0.313726, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fr4uj"]
+bg_color = Color(0.509804, 0.784314, 0.247059, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dl7j2"]
+bg_color = Color(0.439216, 0.67451, 0.215686, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="TypingTask" node_paths=PackedStringArray("textEditor", "givenText") instance=ExtResource("1_ajkk6")]
 script = ExtResource("2_nu6i6")
 textEditor = NodePath("Content/TextEdit")
-givenText = NodePath("Content/Label")
+givenText = NodePath("Content/Text")
 TaskName = "Typing"
 TaskIcon = ExtResource("3_huje2")
 Difficulties = Array[Resource]([SubResource("Resource_i4t70"), SubResource("Resource_bsxje"), SubResource("Resource_pvfbk")])
 
-[node name="TextEdit" type="TextEdit" parent="Content" index="0"]
-layout_mode = 0
-offset_left = 37.0
-offset_top = 182.0
-offset_right = 445.0
-offset_bottom = 309.0
-placeholder_text = "Copy the above text here!"
+[node name="Label" type="Label" parent="Content" index="0"]
+offset_top = 7.0
+offset_right = 480.0
+offset_bottom = 53.0
+text = "Copy the text"
+label_settings = SubResource("LabelSettings_uprbh")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="SubmitButton" type="Button" parent="Content" index="1"]
-layout_mode = 0
-offset_left = 198.0
-offset_top = 330.0
-offset_right = 261.0
-offset_bottom = 361.0
-text = "Submit"
-
-[node name="Label" type="Label" parent="Content" index="2"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 46.0
-offset_right = 444.0
-offset_bottom = 175.0
+[node name="Text" type="Label" parent="Content" index="1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -132.5
+offset_right = 203.0
+offset_bottom = -6.5
+grow_horizontal = 2
+grow_vertical = 2
 label_settings = SubResource("LabelSettings_moiws")
 autowrap_mode = 3
 justification_flags = 131
+
+[node name="TextEdit" type="TextEdit" parent="Content" index="2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = 7.22
+offset_right = 204.0
+offset_bottom = 134.22
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_dthte")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eono5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_6d5q8")
+placeholder_text = "Copy the above text here"
+wrap_mode = 1
+
+[node name="SubmitButton" type="Button" parent="Content" index="3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -46.28
+offset_right = 43.0
+offset_bottom = -15.28
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_dthte")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4qkyb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fr4uj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dl7j2")
+text = "Submit"
 
 [connection signal="pressed" from="Content/SubmitButton" to="." method="Submit"]

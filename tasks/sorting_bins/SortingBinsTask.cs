@@ -17,6 +17,15 @@ public partial class SortingBinsTask : Task
     private int _sortedPapers;
 
     [Export]
+    private Color _redColor;
+    [Export]
+    private Color _yellowColor;
+    [Export]
+    private Color _greenColor;
+    [Export]
+    private Color _blueColor;
+
+    [Export]
     private int _minPaperCount;
     [Export]
     private int _maxPaperCount;
@@ -91,19 +100,19 @@ public partial class SortingBinsTask : Task
             switch (RandomNum.Next(index + 2)) // Assign the paper a random color depending on how many bins are avaliable
             {
                 case 0:
-                    ((ColorRect)_papers[i]).Color = Color.Color8(255, 0, 0);
+                    _papers[i].SelfModulate = _redColor;
                     button.Text = "1";
                     break;
                 case 1:
-                    ((ColorRect)_papers[i]).Color = Color.Color8(255, 255, 0);
+                    _papers[i].SelfModulate = _yellowColor;
                     button.Text = "2";
                     break;
                 case 2:
-                    ((ColorRect)_papers[i]).Color = Color.Color8(0, 255, 0);
+                    _papers[i].SelfModulate = _greenColor;
                     button.Text = "3";
                     break;
                 case 3:
-                    ((ColorRect)_papers[i]).Color = Color.Color8(0, 0, 255);
+                    _papers[i].SelfModulate = _blueColor;
                     button.Text = "4";
                     break;
             }

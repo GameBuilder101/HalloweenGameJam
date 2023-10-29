@@ -247,7 +247,7 @@ expand_mode = 1
 [node name="CorrectIndicator" type="Sprite2D" parent="."]
 visible = false
 
-[node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem")]
+[node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem", "_taskCorrectIndicator")]
 script = ExtResource("4_awjuh")
 _scoreLabel = NodePath("../TaskSpace/Score")
 Tasks = Array[Object]([ExtResource("5_xj7o5"), ExtResource("6_u0ekb"), ExtResource("7_eev2g"), ExtResource("11_0ty82"), ExtResource("9_b8g7g"), ExtResource("10_hhrtw")])
@@ -262,6 +262,7 @@ LaterDifficultyChances = Array[float]([100.0, 100.0, 100.0, 100.0, 100.0, 50.0])
 _taskList = NodePath("../TaskSpace/ScrollContainer/VBoxContainer")
 _taskListItem = NodePath("../TaskSpace/ScrollContainer/VBoxContainer/TaskListItem")
 _timerGradient = SubResource("Gradient_dnrd4")
+_taskCorrectIndicator = NodePath("../CorrectIndicator")
 _taskPassIcon = ExtResource("14_xbqtm")
 _taskFailIcon = ExtResource("15_hnfmi")
 _correctIndicatorAnimDuration = 1.0
