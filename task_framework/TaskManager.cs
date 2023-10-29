@@ -15,6 +15,8 @@ public partial class TaskManager : Node
 
 	[Export]
 	public Godot.Collections.Array<PackedScene> Tasks { get; private set; }
+	[Export]
+	private PackedScene Secret;
 	private List<Task> _activeTasks;
 	[Export]
 	private Node _desktop;
@@ -64,13 +66,13 @@ public partial class TaskManager : Node
 	private Sprite2D _taskCorrectIndicator;
 	[Export]
 	private Texture2D _taskPassIcon;
-    [Export]
-    private Texture2D _taskFailIcon;
-    [Export]
+	[Export]
+	private Texture2D _taskFailIcon;
+	[Export]
 	private double _correctIndicatorAnimDuration;
-    private double _correctIndicatorAnimTime = -1.0;
+	private double _correctIndicatorAnimTime = -1.0;
 
-    Random random = new Random();
+	Random random = new Random();
 
 	public override void _Ready()
 	{
@@ -105,20 +107,25 @@ public partial class TaskManager : Node
 		if (_correctIndicatorAnimTime >= 0.0)
 		{
 			float progress = (float)(_correctIndicatorAnimTime / _correctIndicatorAnimDuration);
-            // Fade out the indicator
-            _taskCorrectIndicator.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f - progress);
+			// Fade out the indicator
+			_taskCorrectIndicator.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f - progress);
 			// Move the indicator up
 			_taskCorrectIndicator.Offset = new Vector2(0.0f, progress * -100.0f);
 			_correctIndicatorAnimTime += delta;
 			if (_correctIndicatorAnimTime >= _correctIndicatorAnimDuration)
-                StopCorrectIndicatorAnim();
-        }
+				StopCorrectIndicatorAnim();
+		}
 	}
 
 	public void AssignTask()
 	{
 		// Add a new task
-		Task task = (Task)Tasks[random.Next(Tasks.Count)].Instantiate();
+		Task task;
+		if (random.Next(1000) == 0) {
+			task = (Task) Secret.Instantiate();
+		} else {
+			task = (Task)Tasks[random.Next(Tasks.Count)].Instantiate();
+		}
 		_desktop.AddChild(task);
 		// Move the task to a random position
 		task.Position = new Vector2((float)random.NextDouble() * (((Control)_desktop).Size.X - task.Size.X),
@@ -177,29 +184,29 @@ public partial class TaskManager : Node
 
 		if (state == TaskPassedState.Pass)
 		{
-            _taskCorrectIndicator.Texture = _taskPassIcon;
+			_taskCorrectIndicator.Texture = _taskPassIcon;
 			StartCorrectIndicatorAnim();
-        }
+		}
 		else if (state == TaskPassedState.Fail)
 		{
 			_taskCorrectIndicator.Texture = _taskFailIcon;
-            StartCorrectIndicatorAnim();
-        }
+			StartCorrectIndicatorAnim();
+		}
 	}
 
 	private void StartCorrectIndicatorAnim()
 	{
-        _correctIndicatorAnimTime = 0.0;
+		_correctIndicatorAnimTime = 0.0;
 		// Move to the cursor
 		_taskCorrectIndicator.Position = _taskCorrectIndicator.GetViewport().GetMousePosition();
 		_taskCorrectIndicator.Visible = true;
-    }
+	}
 
 	private void StopCorrectIndicatorAnim()
 	{
-        _correctIndicatorAnimTime = -1.0;
-        _taskCorrectIndicator.Visible = false;
-    }
+		_correctIndicatorAnimTime = -1.0;
+		_taskCorrectIndicator.Visible = false;
+	}
 
 	private double Lerp(double a, double b, double t)
 	{
