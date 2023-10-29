@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dftabau6c785o"]
+[gd_scene load_steps=9 format=3 uid="uid://dw6v6br3eoveg"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_ajkk6"]
 [ext_resource type="Script" path="res://tasks/typing/TypingTask.cs" id="2_nu6i6"]
-[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="3_h7ecq"]
+[ext_resource type="Texture2D" uid="uid://dw00i32uli2jx" path="res://tasks/typing/unpaid-intern-icon-typing.png" id="3_huje2"]
 [ext_resource type="Script" path="res://tasks/typing/TypingDifficulty.cs" id="4_e886t"]
 
 [sub_resource type="Resource" id="Resource_i4t70"]
@@ -40,7 +40,7 @@ script = ExtResource("2_nu6i6")
 textEditor = NodePath("Content/TextEdit")
 givenText = NodePath("Content/Label")
 TaskName = "Typing"
-TaskIcon = ExtResource("3_h7ecq")
+TaskIcon = ExtResource("3_huje2")
 Difficulties = Array[Resource]([SubResource("Resource_i4t70"), SubResource("Resource_bsxje"), SubResource("Resource_pvfbk")])
 
 [node name="TextEdit" type="TextEdit" parent="Content" index="0"]

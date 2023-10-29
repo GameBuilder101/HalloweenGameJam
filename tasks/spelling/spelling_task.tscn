@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cjo8puw152e3f"]
+[gd_scene load_steps=23 format=3 uid="uid://cjo8puw152e3f"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_fvxjj"]
 [ext_resource type="Script" path="res://tasks/spelling/SpellingTask.cs" id="2_jt0jx"]
 [ext_resource type="Script" path="res://tasks/spelling/SpellingTaskWord.cs" id="3_cfy22"]
 [ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="3_i50k6"]
 [ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="4_fckwy"]
+[ext_resource type="Texture2D" uid="uid://s4erihvqomkf" path="res://tasks/spelling/unpaid-intern-icon-spelling.png" id="5_vc2mo"]
 
 [sub_resource type="Resource" id="Resource_ma3fx"]
 script = ExtResource("3_cfy22")
@@ -130,7 +131,7 @@ _diff0Words = Array[Resource]([SubResource("Resource_ma3fx"), SubResource("Resou
 _diff1Words = Array[Resource]([SubResource("Resource_63okh"), SubResource("Resource_knxus"), SubResource("Resource_ckpiy"), SubResource("Resource_3calw")])
 _diff2Words = Array[Resource]([SubResource("Resource_0u5s1"), SubResource("Resource_yf0jb"), SubResource("Resource_6t0v8"), SubResource("Resource_rh7ys")])
 TaskName = "Spelling"
-TaskIcon = ExtResource("3_i50k6")
+TaskIcon = ExtResource("5_vc2mo")
 Difficulties = Array[Resource]([SubResource("Resource_uimwd"), SubResource("Resource_ljhh6"), SubResource("Resource_a6ge6")])
 
 [node name="CheckButton" type="Button" parent="Content" index="0"]

@@ -130,6 +130,7 @@ public partial class TaskManager : Node
         taskListItem.GetNode<Label>("Button/Name").Text = task.TaskName;
         taskListItem.GetNode<Label>("Button/Points").Text = "[" + task.CurrentDifficulty.Score + " POINTS]";
         taskListItem.GetNode<TextureRect>("Button/Icon").Texture = task.TaskIcon;
+        taskListItem.GetNode<ProgressBar>("Button/Timer").AddThemeStyleboxOverride("fill", new StyleBoxFlat());
         _activeTaskListItems.Add(taskListItem);
 
         // Reset timer

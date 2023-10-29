@@ -30,7 +30,9 @@ public partial class BossManager : Node
     [Export]
     private Sprite2D _bossSprite;
     [Export]
-    private float _bossPeekOffset = -100.0f;
+    private Sprite2D _angryBossSprite;
+    [Export]
+    private float _bossNonPeekOffset = 200.0f;
     [Export]
     private double _bossPeekAnimationDuration;
     [Export]
@@ -38,6 +40,10 @@ public partial class BossManager : Node
     public double CurrentBossPeekTime { get; private set; } = -1.0; // Negative when not peeking
     public bool BossPeeking { get { return CurrentBossPeekTime >= 0.0; } }
     private bool _performedBossCheck;
+
+    [Export]
+    private double _failTimerDuration;
+    private double _failTimer = -1.0;
 
     [Export]
     private PackedScene _gameOverScene;
@@ -61,16 +67,23 @@ public partial class BossManager : Node
         if (BossPeeking)
         {
             if (CurrentBossPeekTime <= _bossPeekAnimationDuration) // Move boss up
-                _bossSprite.Offset = new Vector2(0.0f, (float)Lerp(0.0, _bossPeekOffset, CurrentBossPeekTime));
+                _bossSprite.Offset = new Vector2(0.0f, (float)Lerp(_bossNonPeekOffset, 0.0, CurrentBossPeekTime));
             else if (CurrentBossPeekTime >= _bossPeekDuration - _bossPeekAnimationDuration) // Move boss down
             {
-                _bossSprite.Offset = new Vector2(0.0f, (float)Lerp(0.0, _bossPeekOffset, _bossPeekDuration - CurrentBossPeekTime));
+                _bossSprite.Offset = new Vector2(0.0f, (float)Lerp(_bossNonPeekOffset, 0.0, _bossPeekDuration - CurrentBossPeekTime));
                 BossCheck();
             }
 
             CurrentBossPeekTime += delta;
             if (CurrentBossPeekTime >= _bossPeekDuration)
                 StopBossPeekAnimation();
+        }
+
+        if (_failTimer >= 0.0)
+        {
+            _failTimer += delta;
+            if (_failTimer >= _failTimerDuration)
+                FinishFailTimer();
         }
     }
 
@@ -106,11 +119,7 @@ public partial class BossManager : Node
 
         // Check if the player failed
         if (TaskManager.Instance.currentScore < CurrentRequiredScore)
-        {
-            GameOver.finalScore = TaskManager.Instance.currentScore;
-            GetTree().ChangeSceneToPacked(_gameOverScene);
-            return;
-        }
+            StartFailTimer();
 
         // Update required score
         SetNewRequiredScore();
@@ -120,6 +129,20 @@ public partial class BossManager : Node
     {
         CurrentRequiredScore += random.Next(minAdditionalRequiredScore, maxAdditionalRequiredScore);
         _requiredScoreLabel.Text = "QUOTA: " + CurrentRequiredScore;
+    }
+
+    public void StartFailTimer()
+    {
+        _bossSprite.Visible = false;
+        _angryBossSprite.Visible = true;
+        _failTimer = 0.0;
+    }
+
+    public void FinishFailTimer()
+    {
+        _failTimer = -1.0;
+        GameOver.finalScore = TaskManager.Instance.currentScore;
+        GetTree().ChangeSceneToPacked(_gameOverScene);
     }
 
     private double Lerp(double a, double b, double t)

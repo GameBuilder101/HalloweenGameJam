@@ -51,12 +51,12 @@ public partial class Task : Control
 		if (!Visible)
 			return;
 
-		Vector2 mousePos = GetViewport().GetMousePosition();
-		Vector2 maxPos = ((Control)GetParent()).Size - Size;
-
         if (IsDragging)
 		{
-			Position = _dragStartPos + (mousePos - _dragStartMousePos);
+            Vector2 mousePos = GetViewport().GetMousePosition();
+            Vector2 maxPos = ((Control)GetParent()).Size - Size;
+
+            Position = _dragStartPos + (mousePos - _dragStartMousePos);
 
 			if (Position.X < 0.0f)
 				Position = new Vector2(0.0f, Position.Y);

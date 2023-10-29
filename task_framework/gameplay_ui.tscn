@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dw1bjd2q8gdoc"]
+[gd_scene load_steps=26 format=3 uid="uid://dw1bjd2q8gdoc"]
 
 [ext_resource type="Texture2D" uid="uid://dsgmgxwk7fpyr" path="res://boss_system/unpaid-intern-left-side-bkgd.png" id="1_8xt1m"]
 [ext_resource type="Texture2D" uid="uid://cjdk5204olwlw" path="res://boss_system/unpaid-intern-left-side.png" id="2_266s1"]
@@ -60,9 +60,6 @@ font_color = Color(0.156863, 0.301961, 0.596078, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1hqo"]
 bg_color = Color(0.796078, 0.796078, 0.796078, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ux5bd"]
-bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2dlyf"]
 font_color = Color(0, 0, 0, 1)
@@ -213,7 +210,6 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_b1hqo")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ux5bd")
 show_percentage = false
 
 [node name="TimerLabel" type="Label" parent="TaskSpace/ScrollContainer/VBoxContainer/TaskListItem/Button"]
@@ -244,17 +240,17 @@ _scoreLabel = NodePath("../TaskSpace/Score")
 Tasks = Array[Object]([ExtResource("5_xj7o5"), ExtResource("6_u0ekb"), ExtResource("7_eev2g"), ExtResource("8_70djv"), ExtResource("9_b8g7g"), ExtResource("10_hhrtw")])
 _desktop = NodePath("../TaskSpace/Desktop")
 _laterThreshold = 480.0
-_initialMinTaskArrivalTime = 8.0
-_initialMaxTaskArrivalTime = 15.0
-_laterMinTaskArrivalTime = 5.0
-_laterMaxTaskArrivalTime = 10.0
+_initialMinTaskArrivalTime = 6.0
+_initialMaxTaskArrivalTime = 12.0
+_laterMinTaskArrivalTime = 2.0
+_laterMaxTaskArrivalTime = 8.0
 InitialDifficultyChances = Array[float]([100.0, 20.0, 15.0, 10.0, 5.0, 1.0])
 LaterDifficultyChances = Array[float]([100.0, 100.0, 100.0, 100.0, 100.0, 50.0])
 _taskList = NodePath("../TaskSpace/ScrollContainer/VBoxContainer")
 _taskListItem = NodePath("../TaskSpace/ScrollContainer/VBoxContainer/TaskListItem")
 _timerGradient = SubResource("Gradient_wlntb")
 
-[node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite")]
+[node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite", "_angryBossSprite")]
 script = ExtResource("4_x3guh")
 _initialMinBossArrivalTime = 40.0
 _initialMaxBossArrivalTime = 45.0
@@ -264,7 +260,8 @@ minAdditionalRequiredScore = 30
 maxAdditionalRequiredScore = 80
 _requiredScoreLabel = NodePath("../TaskSpace/RequiredScore")
 _bossSprite = NodePath("../BossSpace/Boss")
-_bossPeekOffset = -80.0
+_angryBossSprite = NodePath("../BossSpace/BossAngry")
 _bossPeekAnimationDuration = 1.0
 _bossPeekDuration = 3.0
+_failTimerDuration = 2.0
 _gameOverScene = ExtResource("6_6rl4b")

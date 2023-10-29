@@ -37,7 +37,7 @@ offset_left = 95.0
 offset_top = 171.0
 offset_right = 374.0
 offset_bottom = 224.0
-text = "Pass"
+text = "True"
 
 [node name="FailButton" type="Button" parent="Content" index="3"]
 layout_mode = 0
@@ -45,7 +45,7 @@ offset_left = 95.0
 offset_top = 259.0
 offset_right = 374.0
 offset_bottom = 312.0
-text = "Fail"
+text = "False"
 
 [connection signal="pressed" from="Content/PassButton" to="." method="Pass"]
 [connection signal="pressed" from="Content/FailButton" to="." method="Fail"]

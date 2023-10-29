@@ -1,10 +1,163 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2x32vn0pso8w"]
+[gd_scene load_steps=9 format=3 uid="uid://d2x32vn0pso8w"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_17njm"]
 [ext_resource type="Script" path="res://tasks/sorting_bins/SortingBinsTask.cs" id="2_n0iye"]
-[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="3_sdsi7"]
+[ext_resource type="Texture2D" uid="uid://d4kcp5h6xwng4" path="res://tasks/sorting_bins/unpaid-intern-icon-sorting-objects.png" id="3_6gwng"]
+[ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="4_w50hr"]
 
-[node name="SortingBinsTask" instance=ExtResource("1_17njm")]
+[sub_resource type="Resource" id="Resource_uimwd"]
+script = ExtResource("4_w50hr")
+MinTimeLimit = 15.0
+MaxTimeLimit = 20.0
+Score = 10
+FailPenalty = 10
+OverduePenalty = 5
+
+[sub_resource type="Resource" id="Resource_ljhh6"]
+script = ExtResource("4_w50hr")
+MinTimeLimit = 20.0
+MaxTimeLimit = 25.0
+Score = 20
+FailPenalty = 20
+OverduePenalty = 10
+
+[sub_resource type="Resource" id="Resource_a6ge6"]
+script = ExtResource("4_w50hr")
+MinTimeLimit = 25.0
+MaxTimeLimit = 30.0
+Score = 30
+FailPenalty = 30
+OverduePenalty = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_7b1tm"]
+font_size = 31
+font_color = Color(0, 0, 0, 1)
+
+[node name="SortingBinsTask" node_paths=PackedStringArray("_bins", "_paperSpawnRegion", "_paperRegion", "_paper") instance=ExtResource("1_17njm")]
 script = ExtResource("2_n0iye")
+_bins = [NodePath("Content/RedBin"), NodePath("Content/YellowBin"), NodePath("Content/GreenBin"), NodePath("Content/BlueBin")]
+_paperSpawnRegion = NodePath("Content/PaperSpawnRegion")
+_paperRegion = NodePath("Content/PaperRegion")
+_paper = NodePath("Content/PaperRegion/Paper")
+_minPaperCount = 4
+_maxPaperCount = 6
+_difficultyMultiplier = 1.25
 TaskName = "Bin Sorting"
-TaskIcon = ExtResource("3_sdsi7")
+TaskIcon = ExtResource("3_6gwng")
+Difficulties = Array[Resource]([SubResource("Resource_uimwd"), SubResource("Resource_ljhh6"), SubResource("Resource_a6ge6")])
+
+[node name="PaperSpawnRegion" type="Control" parent="Content" index="0"]
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 25.0
+offset_right = 418.0
+offset_bottom = 160.0
+
+[node name="PaperRegion" type="Control" parent="Content" index="1"]
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 25.0
+offset_right = 455.0
+offset_bottom = 352.0
+
+[node name="Paper" type="ColorRect" parent="Content/PaperRegion" index="0"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Content/PaperRegion/Paper" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+text = "1"
+flat = true
+
+[node name="RedBin" type="ColorRect" parent="Content" index="2"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 206.0
+offset_right = 128.0
+offset_bottom = 326.0
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Content/RedBin" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_7b1tm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YellowBin" type="ColorRect" parent="Content" index="3"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 205.0
+offset_right = 238.0
+offset_bottom = 325.0
+color = Color(1, 1, 0, 1)
+
+[node name="Label" type="Label" parent="Content/YellowBin" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+label_settings = SubResource("LabelSettings_7b1tm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GreenBin" type="ColorRect" parent="Content" index="4"]
+visible = false
+layout_mode = 0
+offset_left = 258.0
+offset_top = 206.0
+offset_right = 339.0
+offset_bottom = 326.0
+color = Color(0, 1, 0, 1)
+
+[node name="Label" type="Label" parent="Content/GreenBin" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_7b1tm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlueBin" type="ColorRect" parent="Content" index="5"]
+visible = false
+layout_mode = 0
+offset_left = 366.0
+offset_top = 205.0
+offset_right = 447.0
+offset_bottom = 325.0
+color = Color(0, 0, 1, 1)
+
+[node name="Label" type="Label" parent="Content/BlueBin" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "4"
+label_settings = SubResource("LabelSettings_7b1tm")
+horizontal_alignment = 1
+vertical_alignment = 1
