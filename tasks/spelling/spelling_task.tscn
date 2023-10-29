@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cjo8puw152e3f"]
+[gd_scene load_steps=41 format=3 uid="uid://c6j70xbifw8oc"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_fvxjj"]
 [ext_resource type="Script" path="res://tasks/spelling/SpellingTask.cs" id="2_jt0jx"]
@@ -271,3 +271,4 @@ grow_vertical = 2
 expand_mode = 1
 
 [connection signal="pressed" from="Content/CheckButton" to="." method="Check"]
+[connection signal="text_submitted" from="Content/CharacterEdit" to="." method="Check"]

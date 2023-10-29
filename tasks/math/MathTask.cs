@@ -121,4 +121,9 @@ public partial class MathTask : Task
 			Fail();
 		}
 	}
+	
+	private void Submit(string new_text)
+	{
+		Submit();
+	}
 }
