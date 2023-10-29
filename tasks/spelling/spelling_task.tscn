@@ -1,0 +1,182 @@
+[gd_scene load_steps=22 format=3 uid="uid://cjo8puw152e3f"]
+
+[ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_fvxjj"]
+[ext_resource type="Script" path="res://tasks/spelling/SpellingTask.cs" id="2_jt0jx"]
+[ext_resource type="Script" path="res://tasks/spelling/SpellingTaskWord.cs" id="3_cfy22"]
+[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="3_i50k6"]
+[ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="4_fckwy"]
+
+[sub_resource type="Resource" id="Resource_ma3fx"]
+script = ExtResource("3_cfy22")
+left = "p"
+target = "a"
+right = "per"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_o251r"]
+script = ExtResource("3_cfy22")
+left = "bor"
+target = "e"
+right = "d"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_q322k"]
+script = ExtResource("3_cfy22")
+left = "b"
+target = "ui"
+right = "lding"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_ueyj1"]
+script = ExtResource("3_cfy22")
+left = "int"
+target = "e"
+right = "rn"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_63okh"]
+script = ExtResource("3_cfy22")
+left = "vac"
+target = "uu"
+right = "m"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_knxus"]
+script = ExtResource("3_cfy22")
+left = "unp"
+target = "ai"
+right = "d"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_ckpiy"]
+script = ExtResource("3_cfy22")
+left = "man"
+target = "ag"
+right = "er"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_3calw"]
+script = ExtResource("3_cfy22")
+left = "he w"
+target = "i"
+right = "de"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_0u5s1"]
+script = ExtResource("3_cfy22")
+left = "adie"
+target = "u"
+right = ""
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_yf0jb"]
+script = ExtResource("3_cfy22")
+left = "amat"
+target = "e"
+right = "ur"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_6t0v8"]
+script = ExtResource("3_cfy22")
+left = "ex"
+target = "hi"
+right = "lerated"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_rh7ys"]
+script = ExtResource("3_cfy22")
+left = "f"
+target = "ire"
+right = "d"
+image = ExtResource("3_i50k6")
+
+[sub_resource type="Resource" id="Resource_uimwd"]
+script = ExtResource("4_fckwy")
+MinTimeLimit = 15.0
+MaxTimeLimit = 20.0
+Score = 10
+FailPenalty = 10
+OverduePenalty = 5
+
+[sub_resource type="Resource" id="Resource_ljhh6"]
+script = ExtResource("4_fckwy")
+MinTimeLimit = 20.0
+MaxTimeLimit = 25.0
+Score = 20
+FailPenalty = 20
+OverduePenalty = 10
+
+[sub_resource type="Resource" id="Resource_a6ge6"]
+script = ExtResource("4_fckwy")
+MinTimeLimit = 25.0
+MaxTimeLimit = 30.0
+Score = 30
+FailPenalty = 30
+OverduePenalty = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_fyts1"]
+line_spacing = 0.0
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[node name="SpellingTask" node_paths=PackedStringArray("_checkButton", "_image", "_characterEdit", "_leftLabel", "_rightLabel") instance=ExtResource("1_fvxjj")]
+script = ExtResource("2_jt0jx")
+_checkButton = NodePath("Content/CheckButton")
+_image = NodePath("Content/Image")
+_characterEdit = NodePath("Content/CharacterEdit")
+_leftLabel = NodePath("Content/LeftLabel")
+_rightLabel = NodePath("Content/RightLabel")
+_diff0Words = Array[Resource]([SubResource("Resource_ma3fx"), SubResource("Resource_o251r"), SubResource("Resource_q322k"), SubResource("Resource_ueyj1")])
+_diff1Words = Array[Resource]([SubResource("Resource_63okh"), SubResource("Resource_knxus"), SubResource("Resource_ckpiy"), SubResource("Resource_3calw")])
+_diff2Words = Array[Resource]([SubResource("Resource_0u5s1"), SubResource("Resource_yf0jb"), SubResource("Resource_6t0v8"), SubResource("Resource_rh7ys")])
+TaskName = "Spelling"
+TaskIcon = ExtResource("3_i50k6")
+Difficulties = Array[Resource]([SubResource("Resource_uimwd"), SubResource("Resource_ljhh6"), SubResource("Resource_a6ge6")])
+
+[node name="CheckButton" type="Button" parent="Content" index="0"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 327.0
+offset_right = 325.0
+offset_bottom = 360.0
+text = "Check (0/3)"
+
+[node name="LeftLabel" type="Label" parent="Content" index="1"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 238.0
+offset_right = 164.0
+offset_bottom = 296.0
+text = "C"
+label_settings = SubResource("LabelSettings_fyts1")
+horizontal_alignment = 2
+
+[node name="RightLabel" type="Label" parent="Content" index="2"]
+layout_mode = 0
+offset_left = 311.0
+offset_top = 237.0
+offset_right = 417.0
+offset_bottom = 295.0
+text = "T"
+label_settings = SubResource("LabelSettings_fyts1")
+
+[node name="CharacterEdit" type="LineEdit" parent="Content" index="3"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 228.0
+offset_right = 298.0
+offset_bottom = 291.0
+theme_override_font_sizes/font_size = 30
+text = "A"
+alignment = 1
+max_length = 4
+
+[node name="Image" type="TextureRect" parent="Content" index="4"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 35.0
+offset_right = 328.0
+offset_bottom = 215.0
+texture = ExtResource("3_i50k6")
+
+[connection signal="pressed" from="Content/CheckButton" to="." method="Check"]
