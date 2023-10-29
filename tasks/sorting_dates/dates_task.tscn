@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://pmiuq16dp2v6"]
+[gd_scene load_steps=19 format=3 uid="uid://pmiuq16dp2v6"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_rbu7n"]
 [ext_resource type="Script" path="res://tasks/sorting_dates/DatesTask.cs" id="2_a8iqi"]
 [ext_resource type="Texture2D" uid="uid://bxqm81vq1x1kw" path="res://tasks/sorting_dates/unpaid-intern-icon-sorting-dates.png" id="3_pnpkg"]
 [ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="4_k4cxa"]
+[ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="5_8hpej"]
 
 [sub_resource type="Resource" id="Resource_3r8p2"]
 script = ExtResource("4_k4cxa")
@@ -29,8 +30,104 @@ Score = 50
 FailPenalty = 60
 OverduePenalty = 50
 
-[sub_resource type="Gradient" id="Gradient_oegmk"]
-colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_2cage"]
+font = ExtResource("5_8hpej")
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dj6vo"]
+font = ExtResource("5_8hpej")
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_72ge4"]
+default_font = ExtResource("5_8hpej")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_621d3"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bss5v"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.529412, 0.529412, 0.529412, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g50t7"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.486275, 0.486275, 0.486275, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_dthte"]
+default_font = ExtResource("5_8hpej")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qkyb"]
+bg_color = Color(0.607843, 0.921569, 0.313726, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fr4uj"]
+bg_color = Color(0.509804, 0.784314, 0.247059, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dl7j2"]
+bg_color = Color(0.439216, 0.67451, 0.215686, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="Task" node_paths=PackedStringArray("filesList") instance=ExtResource("1_rbu7n")]
 script = ExtResource("2_a8iqi")
@@ -38,44 +135,69 @@ filesList = NodePath("Content/ItemList")
 TaskName = "File Sorting"
 TaskIcon = ExtResource("3_pnpkg")
 Difficulties = Array[Resource]([SubResource("Resource_3r8p2"), SubResource("Resource_xhe1d"), SubResource("Resource_gdmcp")])
-_timerGradient = SubResource("Gradient_oegmk")
 
-[node name="Label" type="Label" parent="Content" index="0"]
-layout_mode = 0
-offset_top = -1.0
-offset_right = 481.0
-offset_bottom = 30.0
+[node name="EarlierLabel" type="Label" parent="Content" index="0"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 14.0
+offset_bottom = 41.0
+grow_horizontal = 2
 theme_type_variation = &"HeaderSmall"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Earlier"
+label_settings = SubResource("LabelSettings_2cage")
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="Content/Label" index="0"]
+[node name="LaterLabel" type="Label" parent="Content" index="1"]
 layout_mode = 0
 offset_left = -1.0
-offset_top = 312.0
+offset_top = 304.0
 offset_right = 480.0
-offset_bottom = 343.0
+offset_bottom = 331.0
 theme_type_variation = &"HeaderSmall"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Later"
+label_settings = SubResource("LabelSettings_dj6vo")
 horizontal_alignment = 1
 
-[node name="ItemList" type="ItemList" parent="Content" index="1"]
+[node name="ItemList" type="ItemList" parent="Content" index="2"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 26.0
-offset_right = 472.0
-offset_bottom = 311.0
+offset_left = 21.0
+offset_top = 44.0
+offset_right = 459.0
+offset_bottom = 294.0
+theme = SubResource("Theme_72ge4")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_621d3")
+theme_override_styles/focus = SubResource("StyleBoxFlat_621d3")
+theme_override_styles/hovered = SubResource("StyleBoxFlat_bss5v")
+theme_override_styles/selected = SubResource("StyleBoxFlat_g50t7")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_g50t7")
 allow_search = false
 
-[node name="SubmitButton" type="Button" parent="Content" index="2"]
-layout_mode = 0
-offset_left = 209.0
-offset_top = 340.0
-offset_right = 272.0
-offset_bottom = 371.0
+[node name="SubmitButton" type="Button" parent="Content" index="3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -44.755
+offset_right = 52.0
+offset_bottom = -13.755
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_dthte")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4qkyb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fr4uj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dl7j2")
 action_mode = 0
 text = "Submit"
 

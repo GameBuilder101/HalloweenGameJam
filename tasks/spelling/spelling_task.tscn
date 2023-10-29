@@ -1,10 +1,9 @@
-[gd_scene load_steps=42 format=3 uid="uid://cjo8puw152e3f"]
+[gd_scene load_steps=41 format=3 uid="uid://cjo8puw152e3f"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_fvxjj"]
 [ext_resource type="Script" path="res://tasks/spelling/SpellingTask.cs" id="2_jt0jx"]
 [ext_resource type="Texture2D" uid="uid://b4l1exonubj7k" path="res://tasks/spelling/unpaid-intern-image-paper.png" id="3_3vw5c"]
 [ext_resource type="Script" path="res://tasks/spelling/SpellingTaskWord.cs" id="3_cfy22"]
-[ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="3_i50k6"]
 [ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="4_fckwy"]
 [ext_resource type="Texture2D" uid="uid://dw77txr85cpoo" path="res://tasks/spelling/unpaid-intern-image-board.png" id="5_ukvn1"]
 [ext_resource type="Texture2D" uid="uid://s4erihvqomkf" path="res://tasks/spelling/unpaid-intern-icon-spelling.png" id="5_vc2mo"]
@@ -269,7 +268,6 @@ offset_right = 95.0
 offset_bottom = 25.9251
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_i50k6")
 expand_mode = 1
 
 [connection signal="pressed" from="Content/CheckButton" to="." method="Check"]
