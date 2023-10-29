@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dw1bjd2q8gdoc"]
+[gd_scene load_steps=28 format=3 uid="uid://dw1bjd2q8gdoc"]
 
 [ext_resource type="Texture2D" uid="uid://dsgmgxwk7fpyr" path="res://boss_system/unpaid-intern-left-side-bkgd.png" id="1_8xt1m"]
 [ext_resource type="Texture2D" uid="uid://cjdk5204olwlw" path="res://boss_system/unpaid-intern-left-side.png" id="2_266s1"]
@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://rndei5k0jabx" path="res://tasks/math/math_task.tscn" id="6_u0ekb"]
 [ext_resource type="PackedScene" uid="uid://d2x32vn0pso8w" path="res://tasks/sorting_bins/sorting_bins_task.tscn" id="7_eev2g"]
 [ext_resource type="PackedScene" uid="uid://cjo8puw152e3f" path="res://tasks/spelling/spelling_task.tscn" id="9_b8g7g"]
-[ext_resource type="PackedScene" uid="uid://dw6v6br3eoveg" path="res://tasks/typing/typing_task.tscn" id="10_hhrtw"]
-[ext_resource type="PackedScene" uid="uid://pmiuq16dp2v6" path="res://tasks/sorting_dates/dates_task.tscn" id="11_0ty82"]
+[ext_resource type="PackedScene" uid="uid://dftabau6c785o" path="res://tasks/typing/typing_task.tscn" id="10_hhrtw"]
+[ext_resource type="PackedScene" path="res://tasks/sorting_dates/dates_task.tscn" id="11_0ty82"]
+[ext_resource type="AudioStream" uid="uid://bs3wony0h2ss5" path="res://audio/Unpaid_Intern_Bossy_Nova.wav" id="16_3a1al"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1yqu"]
 font = ExtResource("6_nelnd")
@@ -257,7 +258,7 @@ _taskList = NodePath("../TaskSpace/ScrollContainer/VBoxContainer")
 _taskListItem = NodePath("../TaskSpace/ScrollContainer/VBoxContainer/TaskListItem")
 _timerGradient = SubResource("Gradient_dnrd4")
 
-[node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite", "_angryBossSprite")]
+[node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite")]
 script = ExtResource("4_x3guh")
 _initialMinBossArrivalTime = 40.0
 _initialMaxBossArrivalTime = 45.0
@@ -267,8 +268,15 @@ minAdditionalRequiredScore = 30
 maxAdditionalRequiredScore = 80
 _requiredScoreLabel = NodePath("../TaskSpace/RequiredScore")
 _bossSprite = NodePath("../BossSpace/Boss")
-_angryBossSprite = NodePath("../BossSpace/BossAngry")
 _bossPeekAnimationDuration = 1.0
 _bossPeekDuration = 3.0
-_failTimerDuration = 2.0
 _gameOverScene = ExtResource("6_6rl4b")
+
+[node name="Audio" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("16_3a1al")
+autoplay = true

@@ -9,10 +9,10 @@ public partial class Task : Control
 {
 	[Export]
 	public string TaskName { get; private set; }
-    [Export]
-    public Texture2D TaskIcon { get; private set; }
+	[Export]
+	public Texture2D TaskIcon { get; private set; }
 
-    [Export]
+	[Export]
 	public Godot.Collections.Array<Resource> Difficulties { get; private set; }
 	protected int _currentDifficultyIndex;
 	public TaskDifficulty CurrentDifficulty { get { return (TaskDifficulty)Difficulties[_currentDifficultyIndex]; } }
@@ -27,9 +27,9 @@ public partial class Task : Control
 	private Vector2 _dragStartPos;
 	private Vector2 _dragStartMousePos;
 
-    [Export]
-    private Label _titleLabel;
-    [Export]
+	[Export]
+	private Label _titleLabel;
+	[Export]
 	private ProgressBar _timerBar;
 	private StyleBoxFlat _timerBarStyleBox;
 	[Export]
@@ -47,30 +47,30 @@ public partial class Task : Control
 	{
 		CurrentTime -= delta;
 		if (IsOverdue)
-            Overdue();
+			Overdue();
 		if (!Visible)
 			return;
 
-        if (IsDragging)
+		if (IsDragging)
 		{
-            Vector2 mousePos = GetViewport().GetMousePosition();
-            Vector2 maxPos = ((Control)GetParent()).Size - Size;
+			Vector2 mousePos = GetViewport().GetMousePosition();
+			Vector2 maxPos = ((Control)GetParent()).Size - Size;
 
-            Position = _dragStartPos + (mousePos - _dragStartMousePos);
+			Position = _dragStartPos + (mousePos - _dragStartMousePos);
 
 			if (Position.X < 0.0f)
 				Position = new Vector2(0.0f, Position.Y);
 			else if (Position.X > maxPos.X)
 				Position = new Vector2(maxPos.X, Position.Y);
-            if (Position.Y < 0.0f)
-                Position = new Vector2(Position.X, 0.0f);
-            else if (Position.Y > maxPos.Y)
-                Position = new Vector2(Position.X, maxPos.Y);
-        }
+			if (Position.Y < 0.0f)
+				Position = new Vector2(Position.X, 0.0f);
+			else if (Position.Y > maxPos.Y)
+				Position = new Vector2(Position.X, maxPos.Y);
+		}
 
-        _timerBar.Value = CurrentTime / TimeLimit * 100.0;
+		_timerBar.Value = CurrentTime / TimeLimit * 100.0;
 		_timerBarStyleBox.BgColor = _timerGradient.Sample((float)(CurrentTime / TimeLimit));
-    }
+	}
 
 	public virtual void SetDifficulty(int index)
 	{
@@ -107,15 +107,15 @@ public partial class Task : Control
 
 	public virtual void Fail()
 	{
-        TaskManager.Instance.currentScore -= CurrentDifficulty.FailPenalty;
-        TaskManager.Instance.RemoveTask(this);
-    }
+		TaskManager.Instance.currentScore -= CurrentDifficulty.FailPenalty;
+		TaskManager.Instance.RemoveTask(this);
+	}
 
 	protected virtual void Overdue()
 	{
-        TaskManager.Instance.currentScore -= CurrentDifficulty.OverduePenalty;
-        TaskManager.Instance.RemoveTask(this);
-    }
+		TaskManager.Instance.currentScore -= CurrentDifficulty.OverduePenalty;
+		TaskManager.Instance.RemoveTask(this);
+	}
 
 	public void StartDragging()
 	{
@@ -123,11 +123,11 @@ public partial class Task : Control
 		_dragStartPos = Position;
 		_dragStartMousePos = GetViewport().GetMousePosition();
 		// Move the task to the top
-        GetParent().MoveChild(this, GetParent().GetChildCount() - 1);
+		GetParent().MoveChild(this, GetParent().GetChildCount() - 1);
 	}
 
 	public void StopDragging()
 	{
-        IsDragging = false;
-    }
+		IsDragging = false;
+	}
 }

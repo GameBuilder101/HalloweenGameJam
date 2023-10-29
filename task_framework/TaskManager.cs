@@ -4,157 +4,157 @@ using System.Collections.Generic;
 
 public partial class TaskManager : Node
 {
-    public static TaskManager Instance { get; private set; }
+	public static TaskManager Instance { get; private set; }
 
-    /// <summary>
-    /// The player's current score.
-    /// </summary>
-    public int currentScore;
-    [Export]
-    private Label _scoreLabel;
+	/// <summary>
+	/// The player's current score.
+	/// </summary>
+	public int currentScore;
+	[Export]
+	private Label _scoreLabel;
 
-    [Export]
-    public Godot.Collections.Array<PackedScene> Tasks { get; private set; }
-    private List<Task> _activeTasks;
-    [Export]
-    private Node _desktop;
+	[Export]
+	public Godot.Collections.Array<PackedScene> Tasks { get; private set; }
+	private List<Task> _activeTasks;
+	[Export]
+	private Node _desktop;
 
-    public double TotalTime { get; private set; }
-    public double TaskArrivalTimer { get; private set; }
-    [Export]
-    public int maxTasks = 10; // Add a cap so there's not a crazy stupid amount of tasks at once
-    /// <summary>
-    /// "Later" is just how long it takes till the cap on task arrival time is reached.
-    /// </summary>
-    [Export]
-    private double _laterThreshold;
-    public double LaterPercent
-    {
-        get
-        {
-            if (TotalTime > _laterThreshold)
-                return 1.0;
-            return TotalTime / _laterThreshold;
-        }
-    }
+	public double TotalTime { get; private set; }
+	public double TaskArrivalTimer { get; private set; }
+	[Export]
+	public int maxTasks = 10; // Add a cap so there's not a crazy stupid amount of tasks at once
+	/// <summary>
+	/// "Later" is just how long it takes till the cap on task arrival time is reached.
+	/// </summary>
+	[Export]
+	private double _laterThreshold;
+	public double LaterPercent
+	{
+		get
+		{
+			if (TotalTime > _laterThreshold)
+				return 1.0;
+			return TotalTime / _laterThreshold;
+		}
+	}
 
-    [Export]
-    private double _initialMinTaskArrivalTime;
-    [Export]
-    private double _initialMaxTaskArrivalTime;
-    [Export]
-    private double _laterMinTaskArrivalTime;
-    [Export]
-    private double _laterMaxTaskArrivalTime;
+	[Export]
+	private double _initialMinTaskArrivalTime;
+	[Export]
+	private double _initialMaxTaskArrivalTime;
+	[Export]
+	private double _laterMinTaskArrivalTime;
+	[Export]
+	private double _laterMaxTaskArrivalTime;
 
-    [Export]
-    public Godot.Collections.Array<double> InitialDifficultyChances { get; private set; }
-    [Export]
-    public Godot.Collections.Array<double> LaterDifficultyChances { get; private set; }
+	[Export]
+	public Godot.Collections.Array<double> InitialDifficultyChances { get; private set; }
+	[Export]
+	public Godot.Collections.Array<double> LaterDifficultyChances { get; private set; }
 
-    [Export]
-    private Node _taskList;
-    private List<Node> _activeTaskListItems;
-    [Export]
-    private Node _taskListItem;
-    [Export]
-    private Gradient _timerGradient;
+	[Export]
+	private Node _taskList;
+	private List<Node> _activeTaskListItems;
+	[Export]
+	private Node _taskListItem;
+	[Export]
+	private Gradient _timerGradient;
 
-    Random random = new Random();
+	Random random = new Random();
 
-    public override void _Ready()
-    {
-        Instance = this;
-        _activeTasks = new List<Task>();
-        _activeTaskListItems = new List<Node>();
+	public override void _Ready()
+	{
+		Instance = this;
+		_activeTasks = new List<Task>();
+		_activeTaskListItems = new List<Node>();
 
-        TaskArrivalTimer = 3.0; // Give an initial first task delay
-    }
+		TaskArrivalTimer = 3.0; // Give an initial first task delay
+	}
 
-    public override void _Process(double delta)
-    {
-        TotalTime += delta;
-        TaskArrivalTimer -= delta;
-        if (TaskArrivalTimer <= 0.0 && _activeTasks.Count < maxTasks)
-            AssignTask();
+	public override void _Process(double delta)
+	{
+		TotalTime += delta;
+		TaskArrivalTimer -= delta;
+		if (TaskArrivalTimer <= 0.0 && _activeTasks.Count < maxTasks)
+			AssignTask();
 
-        int i = 0;
-        foreach (Node activeTaskListItem in _activeTaskListItems)
-        {
-            double progress = _activeTasks[i].CurrentTime / _activeTasks[i].TimeLimit;
-            activeTaskListItem.GetNode<ProgressBar>("Button/Timer").Value = progress * 100.0;
-            activeTaskListItem.GetNode<Label>("Button/TimerLabel").Text =
-                Math.Floor(_activeTasks[i].CurrentTime / 60.0) + ":" + (_activeTasks[i].CurrentTime % 60.0).ToString("00");
-            ((StyleBoxFlat)activeTaskListItem.GetNode<ProgressBar>("Button/Timer").GetThemeStylebox("fill")).BgColor = _timerGradient.Sample((float)progress);
-            i++;
-        }
+		int i = 0;
+		foreach (Node activeTaskListItem in _activeTaskListItems)
+		{
+			double progress = _activeTasks[i].CurrentTime / _activeTasks[i].TimeLimit;
+			activeTaskListItem.GetNode<ProgressBar>("Button/Timer").Value = progress * 100.0;
+			activeTaskListItem.GetNode<Label>("Button/TimerLabel").Text =
+				Math.Floor(_activeTasks[i].CurrentTime / 60.0) + ":" + (_activeTasks[i].CurrentTime % 60.0).ToString("00");
+			((StyleBoxFlat)activeTaskListItem.GetNode<ProgressBar>("Button/Timer").GetThemeStylebox("fill")).BgColor = _timerGradient.Sample((float)progress);
+			i++;
+		}
 
-        _scoreLabel.Text = "SCORE: " + currentScore;
-    }
+		_scoreLabel.Text = "SCORE: " + currentScore;
+	}
 
-    public void AssignTask()
-    {
-        // Add a new task
-        Task task = (Task)Tasks[random.Next(Tasks.Count)].Instantiate();
-        _desktop.AddChild(task);
-        // Move the task to a random position
-        task.Position = new Vector2((float)random.NextDouble() * (((Control)_desktop).Size.X - task.Size.X),
-            (float)random.NextDouble() * (((Control)_desktop).Size.Y - task.Size.Y));
-        task.Close();
-        _activeTasks.Add(task);
+	public void AssignTask()
+	{
+		// Add a new task
+		Task task = (Task)Tasks[random.Next(Tasks.Count)].Instantiate();
+		_desktop.AddChild(task);
+		// Move the task to a random position
+		task.Position = new Vector2((float)random.NextDouble() * (((Control)_desktop).Size.X - task.Size.X),
+			(float)random.NextDouble() * (((Control)_desktop).Size.Y - task.Size.Y));
+		task.Close();
+		_activeTasks.Add(task);
 
-        // DIFFICULTY MATH ---------------------
-        // Calculate total weight
-        double totalWeight = 0.0;
-        for (int i = 0; i < task.Difficulties.Count; i++)
-            totalWeight += Lerp(InitialDifficultyChances[i], LaterDifficultyChances[i], LaterPercent);
-        // Get random weight
-        double randomWeight = random.NextDouble() * totalWeight;
-        totalWeight = 0.0;
-        int difficultyIndex = 0;
-        // Find which difficulty that random weight falls under
-        for (int i = 0; i < task.Difficulties.Count; i++)
-        {
-            totalWeight += Lerp(InitialDifficultyChances[i], LaterDifficultyChances[i], LaterPercent);
-            if (randomWeight < totalWeight)
-            {
-                difficultyIndex = i;
-                break;
-            }
-        }
-        // Set the difficulty
-        task.SetDifficulty(difficultyIndex);
+		// DIFFICULTY MATH ---------------------
+		// Calculate total weight
+		double totalWeight = 0.0;
+		for (int i = 0; i < task.Difficulties.Count; i++)
+			totalWeight += Lerp(InitialDifficultyChances[i], LaterDifficultyChances[i], LaterPercent);
+		// Get random weight
+		double randomWeight = random.NextDouble() * totalWeight;
+		totalWeight = 0.0;
+		int difficultyIndex = 0;
+		// Find which difficulty that random weight falls under
+		for (int i = 0; i < task.Difficulties.Count; i++)
+		{
+			totalWeight += Lerp(InitialDifficultyChances[i], LaterDifficultyChances[i], LaterPercent);
+			if (randomWeight < totalWeight)
+			{
+				difficultyIndex = i;
+				break;
+			}
+		}
+		// Set the difficulty
+		task.SetDifficulty(difficultyIndex);
 
-        // Add the task list item
-        Node taskListItem = _taskListItem.Duplicate();
-        _taskList.AddChild(taskListItem);
-        ((Control)taskListItem).Visible = true;
-        taskListItem.GetNode<Button>("Button").Pressed += delegate { task.Open(); };
-        taskListItem.GetNode<Label>("Button/Name").Text = task.TaskName;
-        taskListItem.GetNode<Label>("Button/Points").Text = "[" + task.CurrentDifficulty.Score + " POINTS]";
-        taskListItem.GetNode<TextureRect>("Button/Icon").Texture = task.TaskIcon;
-        taskListItem.GetNode<ProgressBar>("Button/Timer").AddThemeStyleboxOverride("fill", new StyleBoxFlat());
-        _activeTaskListItems.Add(taskListItem);
+		// Add the task list item
+		Node taskListItem = _taskListItem.Duplicate();
+		_taskList.AddChild(taskListItem);
+		((Control)taskListItem).Visible = true;
+		taskListItem.GetNode<Button>("Button").Pressed += delegate { task.Open(); };
+		taskListItem.GetNode<Label>("Button/Name").Text = task.TaskName;
+		taskListItem.GetNode<Label>("Button/Points").Text = "[" + task.CurrentDifficulty.Score + " POINTS]";
+		taskListItem.GetNode<TextureRect>("Button/Icon").Texture = task.TaskIcon;
+		taskListItem.GetNode<ProgressBar>("Button/Timer").AddThemeStyleboxOverride("fill", new StyleBoxFlat());
+		_activeTaskListItems.Add(taskListItem);
 
-        // Reset timer
-        TaskArrivalTimer = Lerp(_initialMinTaskArrivalTime, _laterMinTaskArrivalTime, LaterPercent) +
-            Lerp(_initialMaxTaskArrivalTime, _laterMaxTaskArrivalTime, LaterPercent) * random.NextDouble();
-    }
+		// Reset timer
+		TaskArrivalTimer = Lerp(_initialMinTaskArrivalTime, _laterMinTaskArrivalTime, LaterPercent) +
+			Lerp(_initialMaxTaskArrivalTime, _laterMaxTaskArrivalTime, LaterPercent) * random.NextDouble();
+	}
 
-    public void RemoveTask(Task task)
-    {
-        int index = _activeTasks.IndexOf(task);
-        _activeTasks[index].QueueFree();
-        _activeTaskListItems[index].QueueFree();
-        _activeTasks.RemoveAt(index);
-        _activeTaskListItems.RemoveAt(index);
+	public void RemoveTask(Task task)
+	{
+		int index = _activeTasks.IndexOf(task);
+		_activeTasks[index].QueueFree();
+		_activeTaskListItems[index].QueueFree();
+		_activeTasks.RemoveAt(index);
+		_activeTaskListItems.RemoveAt(index);
 
-        if (_activeTasks.Count <= 0)
-            TaskArrivalTimer = 1.0; // Add a small delay instead of immediately assigning a new task
-    }
+		if (_activeTasks.Count <= 0)
+			TaskArrivalTimer = 1.0; // Add a small delay instead of immediately assigning a new task
+	}
 
-    private double Lerp(double a, double b, double t)
-    {
-        return a + (b - a) * t;
-    }
+	private double Lerp(double a, double b, double t)
+	{
+		return a + (b - a) * t;
+	}
 }

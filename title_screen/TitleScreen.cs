@@ -11,13 +11,13 @@ public partial class TitleScreen : Control
 	{
 	}
 
-    public void Play()
-    {
-        GetTree().ChangeSceneToFile("res://task_framework/gameplay_ui.tscn");
-    }
+	public void Play()
+	{
+		GetTree().ChangeSceneToFile("res://task_framework/gameplay_ui.tscn");
+	}
 
-    public void Quit()
-    {
-        GetTree().Quit();
-    }
+	public void Quit()
+	{
+		GetTree().Quit();
+	}
 }
