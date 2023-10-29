@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://lkw423fr0kko"]
+[gd_scene load_steps=13 format=3 uid="uid://lkw423fr0kko"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_w7n6h"]
 [ext_resource type="Script" path="res://tasks/counting/CountingTask.cs" id="2_b7crn"]
 [ext_resource type="Texture2D" uid="uid://b4frqpj17rhon" path="res://tasks/counting/unpaid-intern-icon-counting.png" id="3_fswuq"]
+[ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="4_1dfn5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x3puj"]
-font_size = 20
+font = ExtResource("4_1dfn5")
+font_size = 22
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yh3jg"]
@@ -15,8 +17,66 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_color = Color(0, 0, 0, 0.27451)
-shadow_size = 8
-shadow_offset = Vector2(3.775, 5.17)
+shadow_size = 1
+shadow_offset = Vector2(3.405, 3.735)
+
+[sub_resource type="Theme" id="Theme_dthte"]
+default_font = ExtResource("4_1dfn5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eono5"]
+bg_color = Color(0.498039, 0.498039, 0.498039, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6d5q8"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qkyb"]
+bg_color = Color(0.607843, 0.921569, 0.313726, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fr4uj"]
+bg_color = Color(0.509804, 0.784314, 0.247059, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dl7j2"]
+bg_color = Color(0.439216, 0.67451, 0.215686, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="CountingTask" node_paths=PackedStringArray("_label", "_numberInput", "_ballRegion", "_ball") instance=ExtResource("1_w7n6h")]
 script = ExtResource("2_b7crn")
@@ -27,12 +87,16 @@ _ball = NodePath("Content/BallRegion/Ball")
 _minBallCount = 6
 _maxBallCount = 8
 _difficultyMultiplier = 1.5
+_redColor = Color(0.94902, 0.423529, 0.309804, 1)
+_yellowColor = Color(1, 0.960784, 0.407843, 1)
+_blueColor = Color(0, 0.74902, 0.952941, 1)
 TaskName = "Counting"
 TaskIcon = ExtResource("3_fswuq")
 
 [node name="Label" type="Label" parent="Content" index="0"]
 layout_mode = 0
-offset_right = 478.0
+offset_top = 7.0
+offset_right = 480.0
 offset_bottom = 53.0
 text = "Count the  balls"
 label_settings = SubResource("LabelSettings_x3puj")
@@ -44,7 +108,7 @@ anchors_preset = 0
 offset_left = 26.0
 offset_top = 53.0
 offset_right = 427.0
-offset_bottom = 246.0
+offset_bottom = 230.0
 
 [node name="Ball" type="Panel" parent="Content/BallRegion" index="0"]
 visible = false
@@ -54,21 +118,48 @@ offset_bottom = 30.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yh3jg")
 
 [node name="NumberInput" type="LineEdit" parent="Content" index="2"]
-layout_mode = 0
-offset_left = 208.0
-offset_top = 282.0
-offset_right = 275.063
-offset_bottom = 330.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.531
+offset_top = -102.32
+offset_right = 34.5315
+offset_bottom = -54.32
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_dthte")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eono5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_6d5q8")
+placeholder_text = "##"
 alignment = 1
 max_length = 2
 virtual_keyboard_type = 2
 
 [node name="CheckButton" type="Button" parent="Content" index="3"]
-layout_mode = 0
-offset_left = 184.0
-offset_top = 336.0
-offset_right = 301.0
-offset_bottom = 367.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.5
+offset_top = -46.81
+offset_right = 58.5
+offset_bottom = -11.81
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_dthte")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4qkyb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fr4uj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dl7j2")
 text = "Check"
 
 [connection signal="pressed" from="Content/CheckButton" to="." method="Check"]

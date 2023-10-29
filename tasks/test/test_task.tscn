@@ -1,50 +1,83 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsi77spgnfmrw"]
+[gd_scene load_steps=7 format=3 uid="uid://bsi77spgnfmrw"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_u8bfg"]
 [ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="2_jc4xe"]
+[ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="3_0yfa4"]
+[ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="3_d2dvs"]
+
+[sub_resource type="Resource" id="Resource_oarr7"]
+script = ExtResource("3_0yfa4")
+MinTimeLimit = 3.0
+MaxTimeLimit = 3.0
+Score = 20
+FailPenalty = 20
+OverduePenalty = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_q8827"]
-font_size = 41
+font = ExtResource("3_d2dvs")
+font_size = 32
 font_color = Color(0, 0, 0, 1)
 
 [node name="TestTask" instance=ExtResource("1_u8bfg")]
 TaskName = "Test Task"
 TaskIcon = ExtResource("2_jc4xe")
+Difficulties = Array[Resource]([SubResource("Resource_oarr7")])
 
 [node name="Him" type="TextureRect" parent="Content" index="0"]
-layout_mode = 0
-offset_left = 37.0
-offset_top = 77.0
-offset_right = 438.0
-offset_bottom = 149.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.5
+offset_top = -106.215
+offset_right = 200.5
+offset_bottom = -34.2149
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_jc4xe")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Content" index="1"]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 6.0
-offset_right = 411.0
-offset_bottom = 77.0
-text = "he  W I D E
+offset_top = 14.0
+offset_right = 480.0
+offset_bottom = 60.0
+text = "he W I D E
 "
 label_settings = SubResource("LabelSettings_q8827")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PassButton" type="Button" parent="Content" index="2"]
-layout_mode = 0
-offset_left = 95.0
-offset_top = 171.0
-offset_right = 374.0
-offset_bottom = 224.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = 13.825
+offset_right = 139.5
+offset_bottom = 66.825
+grow_horizontal = 2
+grow_vertical = 2
 text = "True"
 
 [node name="FailButton" type="Button" parent="Content" index="3"]
-layout_mode = 0
-offset_left = 95.0
-offset_top = 259.0
-offset_right = 374.0
-offset_bottom = 312.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = 97.79
+offset_right = 139.5
+offset_bottom = 150.79
+grow_horizontal = 2
+grow_vertical = 2
 text = "False"
 
 [connection signal="pressed" from="Content/PassButton" to="." method="Pass"]

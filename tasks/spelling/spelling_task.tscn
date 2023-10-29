@@ -1,95 +1,107 @@
-[gd_scene load_steps=23 format=3 uid="uid://cjo8puw152e3f"]
+[gd_scene load_steps=35 format=3 uid="uid://cjo8puw152e3f"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_fvxjj"]
 [ext_resource type="Script" path="res://tasks/spelling/SpellingTask.cs" id="2_jt0jx"]
+[ext_resource type="Texture2D" uid="uid://b4l1exonubj7k" path="res://tasks/spelling/unpaid-intern-image-paper.png" id="3_3vw5c"]
 [ext_resource type="Script" path="res://tasks/spelling/SpellingTaskWord.cs" id="3_cfy22"]
 [ext_resource type="Texture2D" uid="uid://dwam5mt7dgxdj" path="res://icon.svg" id="3_i50k6"]
 [ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="4_fckwy"]
+[ext_resource type="Texture2D" uid="uid://dw77txr85cpoo" path="res://tasks/spelling/unpaid-intern-image-board.png" id="5_ukvn1"]
 [ext_resource type="Texture2D" uid="uid://s4erihvqomkf" path="res://tasks/spelling/unpaid-intern-icon-spelling.png" id="5_vc2mo"]
+[ext_resource type="Texture2D" uid="uid://djv2334ypash0" path="res://tasks/spelling/unpaid-intern-image-building.png" id="6_n8uxu"]
+[ext_resource type="Texture2D" uid="uid://cncappa22uwjy" path="res://tasks/spelling/unpaid-intern-image-intern.png" id="7_sp3gn"]
+[ext_resource type="Texture2D" uid="uid://bbxm6t54rvfxs" path="res://tasks/spelling/unpaid-intern-image-vacuum.png" id="8_r7s0a"]
+[ext_resource type="Texture2D" uid="uid://u8po8b0o7ch5" path="res://tasks/spelling/unpaid-intern-image-unpaid.png" id="9_dep7e"]
+[ext_resource type="Texture2D" uid="uid://d3gnov6jwxdpb" path="res://tasks/spelling/unpaid-intern-image-boss.png" id="10_c32ry"]
+[ext_resource type="Texture2D" uid="uid://clvs5y6wtxor" path="res://tasks/spelling/unpaid-intern-image-coffee.png" id="11_appvo"]
+[ext_resource type="Texture2D" uid="uid://dxi2mj6yxw5mu" path="res://tasks/spelling/unpaid-intern-image-fired.png" id="11_ebqsk"]
+[ext_resource type="Texture2D" uid="uid://c44q5dlv8nmq" path="res://tasks/spelling/unpaid-intern-image-field.png" id="12_f5l3g"]
+[ext_resource type="Texture2D" uid="uid://dpko74vo7rjlk" path="res://tasks/spelling/unpaid-intern-image-misspell.png" id="13_l6g2e"]
+[ext_resource type="Texture2D" uid="uid://cflkn6n3upk63" path="res://tasks/spelling/unpaid-intern-image-weather.png" id="14_8xx42"]
 
 [sub_resource type="Resource" id="Resource_ma3fx"]
 script = ExtResource("3_cfy22")
 left = "p"
 target = "a"
 right = "per"
-image = ExtResource("3_i50k6")
+image = ExtResource("3_3vw5c")
 
 [sub_resource type="Resource" id="Resource_o251r"]
 script = ExtResource("3_cfy22")
-left = "bor"
-target = "e"
-right = "d"
-image = ExtResource("3_i50k6")
+left = "b"
+target = "oa"
+right = "rd"
+image = ExtResource("5_ukvn1")
 
 [sub_resource type="Resource" id="Resource_q322k"]
 script = ExtResource("3_cfy22")
 left = "b"
 target = "ui"
 right = "lding"
-image = ExtResource("3_i50k6")
+image = ExtResource("6_n8uxu")
 
 [sub_resource type="Resource" id="Resource_ueyj1"]
 script = ExtResource("3_cfy22")
 left = "int"
 target = "e"
 right = "rn"
-image = ExtResource("3_i50k6")
+image = ExtResource("7_sp3gn")
 
 [sub_resource type="Resource" id="Resource_63okh"]
 script = ExtResource("3_cfy22")
 left = "vac"
 target = "uu"
 right = "m"
-image = ExtResource("3_i50k6")
+image = ExtResource("8_r7s0a")
 
 [sub_resource type="Resource" id="Resource_knxus"]
 script = ExtResource("3_cfy22")
 left = "unp"
 target = "ai"
 right = "d"
-image = ExtResource("3_i50k6")
+image = ExtResource("9_dep7e")
 
 [sub_resource type="Resource" id="Resource_ckpiy"]
 script = ExtResource("3_cfy22")
-left = "man"
-target = "ag"
-right = "er"
-image = ExtResource("3_i50k6")
+left = "b"
+target = "os"
+right = "s"
+image = ExtResource("10_c32ry")
 
 [sub_resource type="Resource" id="Resource_3calw"]
 script = ExtResource("3_cfy22")
-left = "he w"
-target = "i"
-right = "de"
-image = ExtResource("3_i50k6")
+left = "coff"
+target = "ee"
+right = ""
+image = ExtResource("11_appvo")
 
 [sub_resource type="Resource" id="Resource_0u5s1"]
 script = ExtResource("3_cfy22")
-left = "adie"
-target = "u"
-right = ""
-image = ExtResource("3_i50k6")
+left = "f"
+target = "ie"
+right = "ld"
+image = ExtResource("12_f5l3g")
 
 [sub_resource type="Resource" id="Resource_yf0jb"]
 script = ExtResource("3_cfy22")
-left = "amat"
-target = "e"
-right = "ur"
-image = ExtResource("3_i50k6")
+left = "mi"
+target = "ss"
+right = "pell"
+image = ExtResource("13_l6g2e")
 
 [sub_resource type="Resource" id="Resource_6t0v8"]
 script = ExtResource("3_cfy22")
-left = "ex"
-target = "hi"
-right = "lerated"
-image = ExtResource("3_i50k6")
+left = "w"
+target = "ea"
+right = "ther"
+image = ExtResource("14_8xx42")
 
 [sub_resource type="Resource" id="Resource_rh7ys"]
 script = ExtResource("3_cfy22")
 left = "f"
 target = "ire"
 right = "d"
-image = ExtResource("3_i50k6")
+image = ExtResource("11_ebqsk")
 
 [sub_resource type="Resource" id="Resource_uimwd"]
 script = ExtResource("4_fckwy")
@@ -179,5 +191,6 @@ offset_top = 35.0
 offset_right = 328.0
 offset_bottom = 215.0
 texture = ExtResource("3_i50k6")
+expand_mode = 1
 
 [connection signal="pressed" from="Content/CheckButton" to="." method="Check"]
