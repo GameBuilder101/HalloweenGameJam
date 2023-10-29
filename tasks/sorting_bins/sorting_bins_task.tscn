@@ -1,9 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2x32vn0pso8w"]
+[gd_scene load_steps=16 format=3 uid="uid://d2x32vn0pso8w"]
 
 [ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_17njm"]
 [ext_resource type="Script" path="res://tasks/sorting_bins/SortingBinsTask.cs" id="2_n0iye"]
 [ext_resource type="Texture2D" uid="uid://d4kcp5h6xwng4" path="res://tasks/sorting_bins/unpaid-intern-icon-sorting-objects.png" id="3_6gwng"]
 [ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="4_w50hr"]
+[ext_resource type="Texture2D" uid="uid://b41iau4hpwm5i" path="res://tasks/sorting_bins/unpaid-intern-bin-red.png" id="5_n8qln"]
+[ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="6_n55xb"]
+[ext_resource type="Texture2D" uid="uid://l28rhbbqtofw" path="res://tasks/sorting_bins/unpaid-intern-bin-yellow.png" id="7_u5i2m"]
+[ext_resource type="Texture2D" uid="uid://cj26ckhb4redn" path="res://tasks/sorting_bins/unpaid-intern-bin-green.png" id="8_l0yas"]
+[ext_resource type="Texture2D" uid="uid://cw03x57w7bhfn" path="res://tasks/sorting_bins/unpaid-intern-bin-blue.png" id="9_mywp7"]
 
 [sub_resource type="Resource" id="Resource_uimwd"]
 script = ExtResource("4_w50hr")
@@ -29,8 +34,18 @@ Score = 30
 FailPenalty = 30
 OverduePenalty = 15
 
-[sub_resource type="LabelSettings" id="LabelSettings_7b1tm"]
-font_size = 31
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5awi1"]
+bg_color = Color(1, 1, 1, 1)
+shadow_color = Color(0, 0, 0, 0.290196)
+shadow_size = 1
+shadow_offset = Vector2(4.46, 4.385)
+
+[sub_resource type="Theme" id="Theme_4kh7h"]
+default_font = ExtResource("6_n55xb")
+
+[sub_resource type="LabelSettings" id="LabelSettings_vaj7l"]
+font = ExtResource("6_n55xb")
+font_size = 40
 font_color = Color(0, 0, 0, 1)
 
 [node name="SortingBinsTask" node_paths=PackedStringArray("_bins", "_paperSpawnRegion", "_paperRegion", "_paper") instance=ExtResource("1_17njm")]
@@ -39,6 +54,10 @@ _bins = [NodePath("Content/RedBin"), NodePath("Content/YellowBin"), NodePath("Co
 _paperSpawnRegion = NodePath("Content/PaperSpawnRegion")
 _paperRegion = NodePath("Content/PaperRegion")
 _paper = NodePath("Content/PaperRegion/Paper")
+_redColor = Color(0.94902, 0.423529, 0.309804, 1)
+_yellowColor = Color(0.94902, 0.847059, 0.309804, 1)
+_greenColor = Color(0.603922, 0.898039, 0.356863, 1)
+_blueColor = Color(0.333333, 0.678431, 0.921569, 1)
 _minPaperCount = 4
 _maxPaperCount = 6
 _difficultyMultiplier = 1.25
@@ -58,13 +77,14 @@ anchors_preset = 0
 offset_left = 24.0
 offset_top = 25.0
 offset_right = 455.0
-offset_bottom = 352.0
+offset_bottom = 353.0
 
-[node name="Paper" type="ColorRect" parent="Content/PaperRegion" index="0"]
+[node name="Paper" type="Panel" parent="Content/PaperRegion" index="0"]
 visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5awi1")
 
 [node name="Button" type="Button" parent="Content/PaperRegion/Paper" index="0"]
 layout_mode = 1
@@ -73,6 +93,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_4kh7h")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -80,84 +101,94 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 text = "1"
 flat = true
 
-[node name="RedBin" type="ColorRect" parent="Content" index="2"]
+[node name="RedBin" type="TextureRect" parent="Content" index="2"]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 206.0
-offset_right = 128.0
-offset_bottom = 326.0
-color = Color(1, 0, 0, 1)
+offset_left = 28.0
+offset_top = 241.0
+offset_right = 126.0
+offset_bottom = 339.0
+texture = ExtResource("5_n8qln")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="Content/RedBin" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 9.165
+offset_bottom = 9.165
 grow_horizontal = 2
 grow_vertical = 2
 text = "1"
-label_settings = SubResource("LabelSettings_7b1tm")
+label_settings = SubResource("LabelSettings_vaj7l")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="YellowBin" type="ColorRect" parent="Content" index="3"]
+[node name="YellowBin" type="TextureRect" parent="Content" index="3"]
 layout_mode = 0
-offset_left = 157.0
-offset_top = 205.0
-offset_right = 238.0
-offset_bottom = 325.0
-color = Color(1, 1, 0, 1)
+offset_left = 136.125
+offset_top = 241.0
+offset_right = 234.125
+offset_bottom = 339.0
+texture = ExtResource("7_u5i2m")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="Content/YellowBin" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 9.165
+offset_bottom = 9.165
 grow_horizontal = 2
 grow_vertical = 2
 text = "2"
-label_settings = SubResource("LabelSettings_7b1tm")
+label_settings = SubResource("LabelSettings_vaj7l")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GreenBin" type="ColorRect" parent="Content" index="4"]
-visible = false
+[node name="GreenBin" type="TextureRect" parent="Content" index="4"]
 layout_mode = 0
-offset_left = 258.0
-offset_top = 206.0
-offset_right = 339.0
-offset_bottom = 326.0
-color = Color(0, 1, 0, 1)
+offset_left = 244.425
+offset_top = 241.0
+offset_right = 342.425
+offset_bottom = 339.0
+texture = ExtResource("8_l0yas")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="Content/GreenBin" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 9.165
+offset_bottom = 9.165
 grow_horizontal = 2
 grow_vertical = 2
 text = "3"
-label_settings = SubResource("LabelSettings_7b1tm")
+label_settings = SubResource("LabelSettings_vaj7l")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BlueBin" type="ColorRect" parent="Content" index="5"]
-visible = false
+[node name="BlueBin" type="TextureRect" parent="Content" index="5"]
 layout_mode = 0
-offset_left = 366.0
-offset_top = 205.0
-offset_right = 447.0
-offset_bottom = 325.0
-color = Color(0, 0, 1, 1)
+offset_left = 351.975
+offset_top = 241.0
+offset_right = 449.975
+offset_bottom = 339.0
+texture = ExtResource("9_mywp7")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="Content/BlueBin" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 9.165
+offset_bottom = 9.165
 grow_horizontal = 2
 grow_vertical = 2
 text = "4"
-label_settings = SubResource("LabelSettings_7b1tm")
+label_settings = SubResource("LabelSettings_vaj7l")
 horizontal_alignment = 1
 vertical_alignment = 1
