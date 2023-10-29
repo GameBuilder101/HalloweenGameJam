@@ -107,13 +107,13 @@ public partial class Task : Control
 
 	public virtual void Fail()
 	{
-		TaskManager.Instance.currentScore -= CurrentDifficulty.FailPenalty;
+		TaskManager.Instance.currentScore -= CurrentDifficulty.Score + CurrentDifficulty.Score / 2;
 		TaskManager.Instance.RemoveTask(this, TaskPassedState.Fail);
 	}
 
 	protected virtual void Overdue()
 	{
-		TaskManager.Instance.currentScore -= CurrentDifficulty.OverduePenalty;
+		TaskManager.Instance.currentScore -= CurrentDifficulty.Score / 2;
 		TaskManager.Instance.RemoveTask(this, TaskPassedState.Overdue);
 	}
 
