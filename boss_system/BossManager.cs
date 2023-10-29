@@ -48,6 +48,10 @@ public partial class BossManager : Node
     [Export]
     private PackedScene _gameOverScene;
 
+    [Export]
+    private AudioStreamPlayer _warningAudio;
+    private bool _playedWarningAudio;
+
     Random random = new Random();
 
     public override void _Ready()
@@ -61,7 +65,12 @@ public partial class BossManager : Node
 	{
         base._Process(delta);
         BossArrivalTimer -= delta;
-        if (BossArrivalTimer <= 0.0)
+        if (BossArrivalTimer <= 5.0 && !_playedWarningAudio)
+        {
+            _warningAudio.Play();
+            _playedWarningAudio = true;
+        }
+        else if (BossArrivalTimer <= 0.0)
             ArriveBoss();
 
         if (BossPeeking)
@@ -98,6 +107,7 @@ public partial class BossManager : Node
         // Update arrival timer
         BossArrivalTimer = Lerp(_initialMinBossArrivalTime, _laterMinBossArrivalTime, TaskManager.Instance.LaterPercent) +
             random.NextDouble() * Lerp(_laterMinBossArrivalTime, _laterMaxBossArrivalTime, TaskManager.Instance.LaterPercent);
+        _playedWarningAudio = false;
     }
 
     public void StartBossPeekAnimation()
@@ -127,7 +137,7 @@ public partial class BossManager : Node
 
     public void SetNewRequiredScore()
     {
-        CurrentRequiredScore += random.Next(minAdditionalRequiredScore, maxAdditionalRequiredScore);
+        CurrentRequiredScore = TaskManager.Instance.currentScore + random.Next(minAdditionalRequiredScore, maxAdditionalRequiredScore);
         _requiredScoreLabel.Text = "QUOTA: " + CurrentRequiredScore;
     }
 
