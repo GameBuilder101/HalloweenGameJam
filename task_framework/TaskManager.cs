@@ -97,6 +97,9 @@ public partial class TaskManager : Node
         // Add a new task
         Task task = (Task)Tasks[random.Next(Tasks.Count)].Instantiate();
         _desktop.AddChild(task);
+        // Move the task to a random position
+        task.Position = new Vector2((float)random.NextDouble() * (((Control)_desktop).Size.X - task.Size.X),
+            (float)random.NextDouble() * (((Control)_desktop).Size.Y - task.Size.Y));
         task.Close();
         _activeTasks.Add(task);
 

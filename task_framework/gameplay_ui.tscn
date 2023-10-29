@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dw1bjd2q8gdoc"]
+[gd_scene load_steps=27 format=3 uid="uid://dw1bjd2q8gdoc"]
 
 [ext_resource type="Texture2D" uid="uid://dsgmgxwk7fpyr" path="res://boss_system/unpaid-intern-left-side-bkgd.png" id="1_8xt1m"]
 [ext_resource type="Texture2D" uid="uid://cjdk5204olwlw" path="res://boss_system/unpaid-intern-left-side.png" id="2_266s1"]
@@ -9,22 +9,26 @@
 [ext_resource type="Texture2D" uid="uid://bbftu7wopndmg" path="res://task_framework/unpaid-intern-right-side.png" id="5_v4lp8"]
 [ext_resource type="PackedScene" uid="uid://lkw423fr0kko" path="res://tasks/counting/counting_task.tscn" id="5_xj7o5"]
 [ext_resource type="PackedScene" uid="uid://bfpq6ryjvvr4b" path="res://game_over/game_over.tscn" id="6_6rl4b"]
+[ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="6_nelnd"]
 [ext_resource type="PackedScene" uid="uid://rndei5k0jabx" path="res://tasks/math/math_task.tscn" id="6_u0ekb"]
 [ext_resource type="PackedScene" uid="uid://d2x32vn0pso8w" path="res://tasks/sorting_bins/sorting_bins_task.tscn" id="7_eev2g"]
-[ext_resource type="PackedScene" uid="uid://7kjnl7gto07y" path="res://tasks/sorting_dates/date_manager.tscn" id="8_70djv"]
 [ext_resource type="PackedScene" uid="uid://cjo8puw152e3f" path="res://tasks/spelling/spelling_task.tscn" id="9_b8g7g"]
 [ext_resource type="PackedScene" uid="uid://dw6v6br3eoveg" path="res://tasks/typing/typing_task.tscn" id="10_hhrtw"]
+[ext_resource type="PackedScene" uid="uid://pmiuq16dp2v6" path="res://tasks/sorting_dates/dates_task.tscn" id="11_0ty82"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1yqu"]
-font_size = 39
+font = ExtResource("6_nelnd")
+font_size = 42
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qnmy5"]
+font = ExtResource("6_nelnd")
 font_size = 28
-font_color = Color(1, 0, 0, 1)
+font_color = Color(0.898039, 0.25098, 0.270588, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lyad3"]
-font_size = 20
+font = ExtResource("6_nelnd")
+font_size = 19
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2lu1"]
 bg_color = Color(0.94902, 0.94902, 0.94902, 1)
@@ -51,10 +55,12 @@ border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_68tpo"]
+font = ExtResource("6_nelnd")
 font_size = 19
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_062fh"]
+font = ExtResource("6_nelnd")
 font_size = 26
 font_color = Color(0.156863, 0.301961, 0.596078, 1)
 
@@ -62,10 +68,11 @@ font_color = Color(0.156863, 0.301961, 0.596078, 1)
 bg_color = Color(0.796078, 0.796078, 0.796078, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2dlyf"]
+font = ExtResource("6_nelnd")
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Gradient" id="Gradient_wlntb"]
-colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
+[sub_resource type="Gradient" id="Gradient_dnrd4"]
+colors = PackedColorArray(0.898039, 0.25098, 0.270588, 1, 0.607843, 0.921569, 0.313726, 1)
 
 [node name="GameplayUI" type="Control"]
 layout_mode = 3
@@ -115,7 +122,7 @@ texture = ExtResource("5_v4lp8")
 [node name="Score" type="Label" parent="TaskSpace"]
 layout_mode = 0
 offset_left = 1473.0
-offset_top = 116.0
+offset_top = 123.0
 offset_right = 1862.0
 offset_bottom = 228.0
 text = "SCORE: "
@@ -125,7 +132,7 @@ horizontal_alignment = 1
 [node name="RequiredScore" type="Label" parent="TaskSpace"]
 layout_mode = 0
 offset_left = 1473.0
-offset_top = 170.0
+offset_top = 174.0
 offset_right = 1862.0
 offset_bottom = 228.0
 text = "QUOTA:"
@@ -181,7 +188,7 @@ alignment = 0
 [node name="Name" type="Label" parent="TaskSpace/ScrollContainer/VBoxContainer/TaskListItem/Button"]
 layout_mode = 0
 offset_left = 15.0
-offset_top = 10.0
+offset_top = 15.0
 offset_right = 343.0
 offset_bottom = 70.0
 text = "Task Name"
@@ -237,7 +244,7 @@ expand_mode = 1
 [node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem")]
 script = ExtResource("4_awjuh")
 _scoreLabel = NodePath("../TaskSpace/Score")
-Tasks = Array[Object]([ExtResource("5_xj7o5"), ExtResource("6_u0ekb"), ExtResource("7_eev2g"), ExtResource("8_70djv"), ExtResource("9_b8g7g"), ExtResource("10_hhrtw")])
+Tasks = Array[Object]([ExtResource("5_xj7o5"), ExtResource("6_u0ekb"), ExtResource("7_eev2g"), ExtResource("11_0ty82"), ExtResource("9_b8g7g"), ExtResource("10_hhrtw")])
 _desktop = NodePath("../TaskSpace/Desktop")
 _laterThreshold = 480.0
 _initialMinTaskArrivalTime = 6.0
@@ -248,7 +255,7 @@ InitialDifficultyChances = Array[float]([100.0, 20.0, 15.0, 10.0, 5.0, 1.0])
 LaterDifficultyChances = Array[float]([100.0, 100.0, 100.0, 100.0, 100.0, 50.0])
 _taskList = NodePath("../TaskSpace/ScrollContainer/VBoxContainer")
 _taskListItem = NodePath("../TaskSpace/ScrollContainer/VBoxContainer/TaskListItem")
-_timerGradient = SubResource("Gradient_wlntb")
+_timerGradient = SubResource("Gradient_dnrd4")
 
 [node name="BossManager" type="Node" parent="." node_paths=PackedStringArray("_requiredScoreLabel", "_bossSprite", "_angryBossSprite")]
 script = ExtResource("4_x3guh")

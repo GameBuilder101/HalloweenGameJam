@@ -1,14 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfpq6ryjvvr4b"]
+[gd_scene load_steps=7 format=3 uid="uid://bfpq6ryjvvr4b"]
 
 [ext_resource type="Script" path="res://game_over/GameOver.cs" id="1_o1cfb"]
+[ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="2_ta2x2"]
+
+[sub_resource type="Theme" id="Theme_evdx6"]
+default_font = ExtResource("2_ta2x2")
 
 [sub_resource type="LabelSettings" id="LabelSettings_u7awo"]
+font = ExtResource("2_ta2x2")
 font_size = 102
 
 [sub_resource type="LabelSettings" id="LabelSettings_i0xpq"]
+font = ExtResource("2_ta2x2")
 font_size = 51
 
 [sub_resource type="LabelSettings" id="LabelSettings_rjdgr"]
+font = ExtResource("2_ta2x2")
 font_size = 31
 
 [node name="GameOver" type="Control" node_paths=PackedStringArray("_scoreLabel")]
@@ -34,6 +41,7 @@ offset_right = 165.0
 offset_bottom = -227.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = SubResource("Theme_evdx6")
 text = "Retry"
 
 [node name="QuitButton" type="Button" parent="."]
@@ -49,6 +57,7 @@ offset_right = 165.0
 offset_bottom = -127.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = SubResource("Theme_evdx6")
 text = "Quit"
 
 [node name="GameOverLabel" type="Label" parent="."]
@@ -69,7 +78,7 @@ anchor_right = 1.0
 offset_top = 225.0
 offset_bottom = 346.0
 grow_horizontal = 2
-text = "Final Score: ####"
+text = "Final Score: "
 label_settings = SubResource("LabelSettings_i0xpq")
 horizontal_alignment = 1
 

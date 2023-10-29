@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://pmiuq16dp2v6"]
+
+[ext_resource type="PackedScene" uid="uid://b2edm0805f3g" path="res://task_framework/task_template.tscn" id="1_rbu7n"]
+[ext_resource type="Script" path="res://tasks/sorting_dates/DatesTask.cs" id="2_a8iqi"]
+[ext_resource type="Texture2D" uid="uid://bxqm81vq1x1kw" path="res://tasks/sorting_dates/unpaid-intern-icon-sorting-dates.png" id="3_pnpkg"]
+[ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="4_k4cxa"]
+
+[sub_resource type="Resource" id="Resource_3r8p2"]
+script = ExtResource("4_k4cxa")
+MinTimeLimit = 15.0
+MaxTimeLimit = 20.0
+Score = 10
+FailPenalty = 10
+OverduePenalty = 5
+
+[sub_resource type="Resource" id="Resource_xhe1d"]
+script = ExtResource("4_k4cxa")
+MinTimeLimit = 20.0
+MaxTimeLimit = 25.0
+Score = 30
+FailPenalty = 20
+OverduePenalty = 20
+
+[sub_resource type="Resource" id="Resource_gdmcp"]
+script = ExtResource("4_k4cxa")
+MinTimeLimit = 60.0
+MaxTimeLimit = 80.0
+Score = 50
+FailPenalty = 60
+OverduePenalty = 50
+
+[sub_resource type="Gradient" id="Gradient_oegmk"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
+
+[node name="Task" node_paths=PackedStringArray("filesList") instance=ExtResource("1_rbu7n")]
+script = ExtResource("2_a8iqi")
+filesList = NodePath("Content/ItemList")
+TaskName = "File Sorting"
+TaskIcon = ExtResource("3_pnpkg")
+Difficulties = Array[Resource]([SubResource("Resource_3r8p2"), SubResource("Resource_xhe1d"), SubResource("Resource_gdmcp")])
+_timerGradient = SubResource("Gradient_oegmk")
+
+[node name="Label" type="Label" parent="Content" index="0"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 481.0
+offset_bottom = 30.0
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Earlier"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Content/Label" index="0"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 312.0
+offset_right = 480.0
+offset_bottom = 343.0
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Later"
+horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="Content" index="1"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 472.0
+offset_bottom = 311.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+allow_search = false
+
+[node name="SubmitButton" type="Button" parent="Content" index="2"]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 340.0
+offset_right = 272.0
+offset_bottom = 371.0
+action_mode = 0
+text = "Submit"
+
+[connection signal="pressed" from="Content/SubmitButton" to="." method="Submit"]

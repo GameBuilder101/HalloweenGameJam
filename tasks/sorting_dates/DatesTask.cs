@@ -67,7 +67,7 @@ public partial class DatesTask : Task
 				day = RandomNum.Next(32) + 1
 			};
 			filesList.AddItem(string.Format(
-				"{0}/{1}/{2}",
+				"{0} / {1} / {2}",
 				files[i].month,
 				files[i].day,
 				files[i].year

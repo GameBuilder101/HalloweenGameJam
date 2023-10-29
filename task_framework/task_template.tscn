@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2edm0805f3g"]
+[gd_scene load_steps=23 format=3 uid="uid://b2edm0805f3g"]
 
 [ext_resource type="Script" path="res://task_framework/Task.cs" id="1_5pwll"]
 [ext_resource type="Script" path="res://task_framework/TaskDifficulty.cs" id="2_6faa1"]
+[ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="3_a7uuu"]
 
 [sub_resource type="Resource" id="Resource_uimwd"]
 script = ExtResource("2_6faa1")
@@ -44,11 +45,79 @@ FailPenalty = 50
 OverduePenalty = 25
 
 [sub_resource type="Gradient" id="Gradient_dnrd4"]
-colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
+colors = PackedColorArray(0.898039, 0.25098, 0.270588, 1, 0.607843, 0.921569, 0.313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yyh11"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xg8vj"]
+bg_color = Color(0.156863, 0.301961, 0.596078, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a6eja"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkl4h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5bmsu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aerpc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0leg"]
+
+[sub_resource type="Theme" id="Theme_84yhh"]
+default_font = ExtResource("3_a7uuu")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7iwt"]
+bg_color = Color(0.898039, 0.25098, 0.270588, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2np28"]
+bg_color = Color(0.819608, 0.203922, 0.227451, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mq4ks"]
+bg_color = Color(0.733333, 0.164706, 0.192157, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_6irry"]
-font_size = 18
-font_color = Color(0, 0, 0, 1)
+font = ExtResource("3_a7uuu")
+font_size = 19
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knfst"]
+bg_color = Color(0.105882, 0.219608, 0.454902, 1)
 
 [node name="Task" type="Control" node_paths=PackedStringArray("_dragButton", "_titleLabel", "_timerBar")]
 layout_mode = 3
@@ -62,13 +131,14 @@ _titleLabel = NodePath("TopBar/Title")
 _timerBar = NodePath("TopBar/Timer")
 _timerGradient = SubResource("Gradient_dnrd4")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yyh11")
 
 [node name="TopBar" type="Control" parent="."]
 layout_mode = 1
@@ -77,15 +147,14 @@ anchor_right = 1.0
 offset_bottom = 64.0
 grow_horizontal = 2
 
-[node name="Background" type="ColorRect" parent="TopBar"]
+[node name="Background" type="Panel" parent="TopBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.835294, 0.835294, 0.835294, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_xg8vj")
 
 [node name="DragButton" type="Button" parent="TopBar"]
 layout_mode = 0
@@ -93,21 +162,32 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = 426.0
 offset_bottom = 54.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a6eja")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tkl4h")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5bmsu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_aerpc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_r0leg")
 flat = true
 
 [node name="CloseButton" type="Button" parent="TopBar"]
 layout_mode = 0
-offset_left = 435.0
-offset_top = 10.0
-offset_right = 464.0
-offset_bottom = 39.0
+offset_left = 432.0
+offset_top = 12.0
+offset_right = 467.0
+offset_bottom = 40.0
+theme = SubResource("Theme_84yhh")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7iwt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2np28")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mq4ks")
+text = "X"
 
 [node name="Title" type="Label" parent="TopBar"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 6.0
-offset_right = 425.0
-offset_bottom = 42.0
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 426.0
+offset_bottom = 45.0
 text = "Task Name [# POINTS]"
 label_settings = SubResource("LabelSettings_6irry")
 vertical_alignment = 1
@@ -116,9 +196,12 @@ vertical_alignment = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = 5.0
 offset_top = 46.0
-offset_bottom = 58.0
+offset_right = -5.0
+offset_bottom = 59.0
 grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_knfst")
 show_percentage = false
 
 [node name="Content" type="Control" parent="."]

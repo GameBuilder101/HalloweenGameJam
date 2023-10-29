@@ -134,7 +134,7 @@ public partial class SortingBinsTask : Task
     {
         if (_draggingPaper == null)
             return;
-        GD.Print(targetLabel);
+
         if (_draggingPaper.GetNode<Button>("Button").Text != targetLabel) // If not the correct paper type
         {
             Fail();

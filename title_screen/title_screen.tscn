@@ -1,12 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://mo144gkinbv7"]
+[gd_scene load_steps=7 format=3 uid="uid://mo144gkinbv7"]
 
 [ext_resource type="Script" path="res://title_screen/TitleScreen.cs" id="1_i6ly2"]
+[ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="2_gaf8i"]
+
+[sub_resource type="Theme" id="Theme_evdx6"]
+default_font = ExtResource("2_gaf8i")
 
 [sub_resource type="LabelSettings" id="LabelSettings_u7awo"]
+font = ExtResource("2_gaf8i")
 font_size = 102
 
 [sub_resource type="LabelSettings" id="LabelSettings_rjdgr"]
+font = ExtResource("2_gaf8i")
 font_size = 31
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ka2c"]
+font = ExtResource("2_gaf8i")
+font_size = 22
+font_color = Color(0.415686, 0.415686, 0.415686, 1)
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -30,6 +41,7 @@ offset_right = 165.0
 offset_bottom = -227.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = SubResource("Theme_evdx6")
 text = "Play"
 
 [node name="QuitButton" type="Button" parent="."]
@@ -45,6 +57,7 @@ offset_right = 165.0
 offset_bottom = -127.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = SubResource("Theme_evdx6")
 text = "Quit"
 
 [node name="GameOverLabel" type="Label" parent="."]
@@ -75,6 +88,18 @@ text = "Complete tasks to gain points. If you miss the deadline or get the task 
 label_settings = SubResource("LabelSettings_rjdgr")
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1476.0
+offset_top = 953.0
+offset_right = 1874.0
+offset_bottom = 1039.0
+text = "Comic Helvetic Light font
+by Alexander Pravdin"
+label_settings = SubResource("LabelSettings_3ka2c")
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [connection signal="pressed" from="PlayButton" to="." method="Play"]
 [connection signal="pressed" from="QuitButton" to="." method="Quit"]
