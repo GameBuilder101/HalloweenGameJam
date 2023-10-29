@@ -106,7 +106,6 @@ public partial class MathTask : Task
 
 		string formattedString = string.Format(latexString, randFactor).Replace(
 				'[', '{').Replace(']', '}');
-		GD.Print(formattedString);
 		display.LatexExpression = formattedString;
 		display.Render();
 	}
