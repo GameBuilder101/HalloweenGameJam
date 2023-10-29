@@ -41,6 +41,10 @@ font_color = Color(0, 0, 0, 1)
 default_font = ExtResource("5_h6ahp")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eono5"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
 bg_color = Color(0.403922, 0.403922, 0.403922, 1)
 border_width_left = 4
 border_width_top = 4
@@ -53,6 +57,11 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6d5q8"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.392157, 0.392157, 0.392157, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -144,6 +153,10 @@ offset_bottom = 134.22
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_dthte")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_eono5")
 theme_override_styles/focus = SubResource("StyleBoxFlat_6d5q8")
 placeholder_text = "Copy the above text here"
