@@ -12,15 +12,6 @@
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="6_nelnd"]
 [ext_resource type="PackedScene" uid="uid://csje7y0jm31h8" path="res://tasks/math/math_task.tscn" id="6_u0ekb"]
 [ext_resource type="PackedScene" uid="uid://d2x32vn0pso8w" path="res://tasks/sorting_bins/sorting_bins_task.tscn" id="7_eev2g"]
-<<<<<<< HEAD
-[ext_resource type="AudioStream" uid="uid://dwl8hf52s338a" path="res://audio/New_Task.wav" id="7_o31ms"]
-[ext_resource type="AudioStream" uid="uid://rsc36rx20k4s" path="res://audio/Failed_Task.wav" id="8_3alu7"]
-[ext_resource type="PackedScene" uid="uid://c6j70xbifw8oc" path="res://tasks/spelling/spelling_task.tscn" id="9_b8g7g"]
-[ext_resource type="AudioStream" uid="uid://kch5f2mqeye4" path="res://audio/Completed_Task.wav" id="9_whrnb"]
-[ext_resource type="PackedScene" uid="uid://dftabau6c785o" path="res://tasks/typing/typing_task.tscn" id="10_hhrtw"]
-[ext_resource type="AudioStream" uid="uid://cceuq1vuy1ogl" path="res://audio/Warning_Audio.wav" id="10_kg5bo"]
-[ext_resource type="PackedScene" path="res://tasks/sorting_dates/dates_task.tscn" id="11_0ty82"]
-=======
 [ext_resource type="AudioStream" uid="uid://bjetiq6e31nw1" path="res://audio/New_Task.wav" id="7_o31ms"]
 [ext_resource type="AudioStream" uid="uid://c8tlww5a1ywhj" path="res://audio/Failed_Task.wav" id="8_3alu7"]
 [ext_resource type="PackedScene" uid="uid://cjo8puw152e3f" path="res://tasks/spelling/spelling_task.tscn" id="9_b8g7g"]
@@ -29,7 +20,6 @@
 [ext_resource type="AudioStream" uid="uid://by2cex6kmv6ow" path="res://audio/Warning_Audio.wav" id="10_kg5bo"]
 [ext_resource type="PackedScene" uid="uid://pmiuq16dp2v6" path="res://tasks/sorting_dates/dates_task.tscn" id="11_0ty82"]
 [ext_resource type="PackedScene" uid="uid://bsi77spgnfmrw" path="res://tasks/test/test_task.tscn" id="14_c08ni"]
->>>>>>> 3ea28ffdd0145ae3b54a26430a490c72e9b5fda0
 [ext_resource type="Texture2D" uid="uid://c5g4a2y03jxd2" path="res://task_framework/unpaid-intern-notif-check.png" id="14_xbqtm"]
 [ext_resource type="Texture2D" uid="uid://ljjrhk42n2eo" path="res://task_framework/unpaid-intern-notif-x.png" id="15_hnfmi"]
 [ext_resource type="AudioStream" uid="uid://c21yuwjmxfxv3" path="res://audio/Unpaid_Intern_Bossy_Nova.wav" id="16_3a1al"]

@@ -1,17 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfpq6ryjvvr4b"]
+[gd_scene load_steps=9 format=3 uid="uid://bfpq6ryjvvr4b"]
 
 [ext_resource type="Script" path="res://game_over/GameOver.cs" id="1_o1cfb"]
+[ext_resource type="Texture2D" uid="uid://d1w7mdpg1etpe" path="res://title_screen/title-bkgd.png" id="2_o7k27"]
 [ext_resource type="FontFile" uid="uid://bo5kiu3j50xir" path="res://main_font.otf" id="2_ta2x2"]
-[ext_resource type="AudioStream" uid="uid://dus8jcbxtryg3" path="res://audio/Unpaid_Intern_Pink_Slip_Jingle.wav" id="3_pehc4"]
+[ext_resource type="AudioStream" uid="uid://dkns16tq4bf8q" path="res://audio/Unpaid_Intern_Pink_Slip_Jingle.wav" id="3_pehc4"]
 
 [sub_resource type="Theme" id="Theme_evdx6"]
 default_font = ExtResource("2_ta2x2")
 
 [sub_resource type="LabelSettings" id="LabelSettings_u7awo"]
-font_size = 102
+font = ExtResource("2_ta2x2")
+font_size = 115
+outline_size = 24
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_i0xpq"]
+font = ExtResource("2_ta2x2")
 font_size = 51
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rjdgr"]
 font_size = 31
@@ -25,6 +32,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o1cfb")
 _scoreLabel = NodePath("FinalScoreLabel")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_o7k27")
 
 [node name="RetryButton" type="Button" parent="."]
 layout_mode = 1
@@ -63,6 +76,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 99.0
+offset_right = -785.0
 offset_bottom = 223.0
 grow_horizontal = 2
 text = "GAME OVER"
@@ -74,6 +88,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 225.0
+offset_right = -790.0
 offset_bottom = 346.0
 grow_horizontal = 2
 text = "Final Score: "
