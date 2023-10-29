@@ -263,7 +263,11 @@ stream = ExtResource("10_kg5bo")
 [node name="CorrectIndicator" type="Sprite2D" parent="."]
 visible = false
 
+<<<<<<< HEAD
 [node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem", "_taskCorrectIndicator", "_newTaskAudio", "_failedTaskAudio", "_correctTaskAudio", "_warningAudio")]
+=======
+[node name="TaskManager" type="Node" parent="." node_paths=PackedStringArray("_scoreLabel", "_desktop", "_taskList", "_taskListItem", "_taskCorrectIndicator")]
+>>>>>>> 38cd3b17c95741fee6acf9a0d14ef9497a4330fe
 script = ExtResource("4_awjuh")
 _scoreLabel = NodePath("../TaskSpace/Score")
 Tasks = Array[Object]([ExtResource("5_xj7o5"), ExtResource("6_u0ekb"), ExtResource("7_eev2g"), ExtResource("11_0ty82"), ExtResource("9_b8g7g"), ExtResource("10_hhrtw")])
