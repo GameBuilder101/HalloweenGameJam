@@ -21,7 +21,7 @@ public partial class MathTask : Task
 			case 10: {
 				switch (RandomNum.Next(4)) {
 					case 0: {
-						int numerator = (randFactor - 1) * randFactor * (randFactor + 1);
+						int numerator = (randFactor - 1) * randFactor;
 						latexString = "\\frac[" + numerator + "][{0}]";
 						answer = numerator / randFactor;
 						break;
@@ -45,7 +45,7 @@ public partial class MathTask : Task
 				break;
 			}
 			case 30: {
-				switch (RandomNum.Next(4)) {
+				switch (3) {
 					case 0: {
 						int numerator = randFactor * randFactor * randFactor;
 						latexString = "\\frac[" + numerator + "][{0}]";
@@ -53,8 +53,10 @@ public partial class MathTask : Task
 						break;
 					}
 					case 1: {
-						latexString = "\\frac[2520][{0}]";
-						answer = 2520 / randFactor;
+						int numerator = (randFactor - 1) * randFactor * (
+								randFactor + 1);
+						latexString = "\\frac[" + numerator + "][{0}]";
+						answer = numerator / randFactor;
 						break;
 					}
 					case 2: {
@@ -64,17 +66,37 @@ public partial class MathTask : Task
 						break;
 					}
 					case 3: {
-						latexString = "x+y=5\nx+2y={0}\ny=?";
 						answer = randFactor;
 						randFactor += 5;
+						latexString = "x+y=5\\\\x+2y={0}\\\\\\\\y=?";
 						break;
 					}
 				}
 				break;
 			}
 			case 50: {
-				switch (RandomNum.Next(4)) {
+				switch (3) {
 					case 0: {
+						latexString = "\\frac[2520][{0}]";
+						answer = 2520 / randFactor;
+						break;
+					}
+					case 1: {
+						latexString = "x^2+2x+1={0}";
+						answer = randFactor;
+						randFactor = randFactor * randFactor + 2 * randFactor + 1;
+						break;
+					}
+					case 2: {
+						latexString = "\\frac[2520][{0}]";
+						answer = 2520 / randFactor;
+						break;
+					}
+					case 3: {
+						latexString = "x+y=5\\\\x+y+y^2={0}\\\\\\\\y=?";
+						answer = randFactor;
+						randFactor *= randFactor;
+						randFactor += 5;
 						break;
 					}
 				}
@@ -84,6 +106,7 @@ public partial class MathTask : Task
 
 		string formattedString = string.Format(latexString, randFactor).Replace(
 				'[', '{').Replace(']', '}');
+		GD.Print(formattedString);
 		display.LatexExpression = formattedString;
 		display.Render();
 	}
